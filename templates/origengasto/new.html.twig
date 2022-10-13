@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Origengasto{% endblock %}
+
+{% block body %}
+    <h1>Create new Origengasto</h1>
+
+    {{ include('origengasto/_form.html.twig') }}
+
+    <a href="{{ path('app_origengasto_index') }}">back to list</a>
+{% endblock %}

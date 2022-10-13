@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Fp{% endblock %}
+
+{% block body %}
+    <h1>Edit Fp</h1>
+
+    {{ include('fp/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_fp_index') }}">back to list</a>
+
+    {{ include('fp/_delete_form.html.twig') }}
+{% endblock %}

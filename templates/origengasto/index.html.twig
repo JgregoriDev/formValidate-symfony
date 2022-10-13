@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Origengasto index{% endblock %}
+
+{% block body %}
+    <h1>Origengasto index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codorigen</th>
+                <th>Descripcion</th>
+                <th>Cuenta</th>
+                <th>Esinmolizado</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for origengasto in origengastos %}
+            <tr>
+                <td>{{ origengasto.codorigen }}</td>
+                <td>{{ origengasto.descripcion }}</td>
+                <td>{{ origengasto.cuenta }}</td>
+                <td>{{ origengasto.esinmolizado ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_origengasto_show', {'codorigen': origengasto.codorigen}) }}">show</a>
+                    <a href="{{ path('app_origengasto_edit', {'codorigen': origengasto.codorigen}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_origengasto_new') }}">Create new</a>
+{% endblock %}

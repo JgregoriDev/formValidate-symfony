@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Subfamilia{% endblock %}
+
+{% block body %}
+    <h1>Subfamilia</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Codsubfamilia</th>
+                <td>{{ subfamilium.codsubfamilia }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ subfamilium.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Imagen</th>
+                <td>{{ subfamilium.imagen }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_subfamilia_index') }}">back to list</a>
+
+    <a href="{{ path('app_subfamilia_edit', {'codsubfamilia': subfamilium.codsubfamilia}) }}">edit</a>
+
+    {{ include('subfamilia/_delete_form.html.twig') }}
+{% endblock %}

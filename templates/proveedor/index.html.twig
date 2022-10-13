@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proveedor index{% endblock %}
+
+{% block body %}
+    <h1>Proveedor index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codproveedor</th>
+                <th>Razonsocial</th>
+                <th>Nif</th>
+                <th>Domicilio</th>
+                <th>Codpostal</th>
+                <th>Poblacion</th>
+                <th>Provincia</th>
+                <th>Email</th>
+                <th>Www</th>
+                <th>Tfno1</th>
+                <th>Tfno2</th>
+                <th>Fax</th>
+                <th>Movil</th>
+                <th>Cuenta</th>
+                <th>Cuentapago</th>
+                <th>Ivapercent</th>
+                <th>Ab</th>
+                <th>CodpaisOficial</th>
+                <th>Nifpaisresidencia</th>
+                <th>Claveidenpaisresidencia</th>
+                <th>ContabIntracom</th>
+                <th>TieneRe</th>
+                <th>Esinversionsujetopasivo</th>
+                <th>Pais</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proveedor in proveedors %}
+            <tr>
+                <td>{{ proveedor.codproveedor }}</td>
+                <td>{{ proveedor.razonsocial }}</td>
+                <td>{{ proveedor.nif }}</td>
+                <td>{{ proveedor.domicilio }}</td>
+                <td>{{ proveedor.codpostal }}</td>
+                <td>{{ proveedor.poblacion }}</td>
+                <td>{{ proveedor.provincia }}</td>
+                <td>{{ proveedor.email }}</td>
+                <td>{{ proveedor.www }}</td>
+                <td>{{ proveedor.tfno1 }}</td>
+                <td>{{ proveedor.tfno2 }}</td>
+                <td>{{ proveedor.fax }}</td>
+                <td>{{ proveedor.movil }}</td>
+                <td>{{ proveedor.cuenta }}</td>
+                <td>{{ proveedor.cuentapago }}</td>
+                <td>{{ proveedor.ivapercent }}</td>
+                <td>{{ proveedor.ab }}</td>
+                <td>{{ proveedor.codpaisOficial }}</td>
+                <td>{{ proveedor.nifpaisresidencia }}</td>
+                <td>{{ proveedor.claveidenpaisresidencia }}</td>
+                <td>{{ proveedor.contabIntracom }}</td>
+                <td>{{ proveedor.tieneRe ? 'Yes' : 'No' }}</td>
+                <td>{{ proveedor.esinversionsujetopasivo }}</td>
+                <td>{{ proveedor.pais }}</td>
+                <td>
+                    <a href="{{ path('app_proveedor_show', {'codproveedor': proveedor.codproveedor}) }}">show</a>
+                    <a href="{{ path('app_proveedor_edit', {'codproveedor': proveedor.codproveedor}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="25">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_proveedor_new') }}">Create new</a>
+{% endblock %}

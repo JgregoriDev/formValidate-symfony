@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Marca index{% endblock %}
+
+{% block body %}
+    <h1>Marca index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codmarca</th>
+                <th>Nombremarca</th>
+                <th>Rutalogo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for marca in marcas %}
+            <tr>
+                <td>{{ marca.codmarca }}</td>
+                <td>{{ marca.nombremarca }}</td>
+                <td>{{ marca.rutalogo }}</td>
+                <td>
+                    <a href="{{ path('app_marca_show', {'codmarca': marca.codmarca}) }}">show</a>
+                    <a href="{{ path('app_marca_edit', {'codmarca': marca.codmarca}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_marca_new') }}">Create new</a>
+{% endblock %}

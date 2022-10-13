@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Subfamilia{% endblock %}
+
+{% block body %}
+    <h1>Edit Subfamilia</h1>
+
+    {{ include('subfamilia/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_subfamilia_index') }}">back to list</a>
+
+    {{ include('subfamilia/_delete_form.html.twig') }}
+{% endblock %}

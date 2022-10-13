@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fp index{% endblock %}
+
+{% block body %}
+    <h1>Fp index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codfp</th>
+                <th>Nombre</th>
+                <th>Nplazos</th>
+                <th>Distancia</th>
+                <th>Codeempresa</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fp in fps %}
+            <tr>
+                <td>{{ fp.codfp }}</td>
+                <td>{{ fp.nombre }}</td>
+                <td>{{ fp.nplazos }}</td>
+                <td>{{ fp.distancia }}</td>
+                <td>{{ fp.codeempresa }}</td>
+                <td>
+                    <a href="{{ path('app_fp_show', {'codfp': fp.codfp}) }}">show</a>
+                    <a href="{{ path('app_fp_edit', {'codfp': fp.codfp}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_fp_new') }}">Create new</a>
+{% endblock %}
