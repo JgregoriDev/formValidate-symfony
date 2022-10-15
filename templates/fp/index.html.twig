@@ -1,41 +1,77 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fp index{% endblock %}
+{% block title %}Listado de formas de pago
+{% endblock %}
 
 {% block body %}
-    <h1>Fp index</h1>
+	<h1>Listado de formas de pago</h1>
+	<div class="d-flex justify-content-end">
+		<a href="{{ path('app_fp_new') }}" class="btn btn-primary ">Crear nuevo</a>
+	</div>
+	{% if fps is not empty %}
+				<table class="table">
+		<thead>
+			<tr>
+				<th>Codfp</th>
+				<th>Nombre</th>
+				<th>Nplazos</th>
+				<th>Distancia</th>
+				<th>Codeempresa</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for fp in fps %}
+				<tr>
+					<td>{{ fp.codfp }}</td>
+					<td>{{ fp.nombre }}</td>
+					<td>{{ fp.nplazos }}</td>
+					<td>{{ fp.distancia }}</td>
+					<td>{{ fp.codeempresa }}</td>
+					<td>
+						{# <b href="{{ path('app_fp_delete', {codfp: fp.codfp}) }}" id="b{{fp.codFp}}" class="btn my-2 my-md-0 btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#vModal" title="Borrar">
+							<i class="bi bi-trash2-fill"></i>
+						</b> #}
+						<a href="{{ path('app_fp_edit', {codfp: fp.codfp}) }}" class="btn my-2 my-md-0 btn-warning mx-1" title="Editar">
+							<i class="bi bi-pencil-square"></i>
+						</a>
+						<a href="{{ path('app_fp_show', {codfp: fp.codfp}) }}" class="btn my-2 my-md-0 btn-secondary mx-1" title="Ver">
+							<i class="bi bi-eye"></i>
+						</a>
+					</td>
+				</tr>
+				<div class="modal fade" id="vModal" tabindex="-1" aria-labelledby="vModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								Estas seguro de borrar la forma de pago  con id
+								{{fp.codfp}}?
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+								<form action="" method="post">
+									<input type="hidden" name="id" value="{{fp.codfp}}">
+									<button type="submit" name="send" id="send" class="btn btn-danger">Borrar</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<tr>
+					<td colspan="6">No hay formas de pago añadidas</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+				<div class="text-center">
+			{{ knp_pagination_render(fps) }}
+		</div>
+	{% endif %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Codfp</th>
-                <th>Nombre</th>
-                <th>Nplazos</th>
-                <th>Distancia</th>
-                <th>Codeempresa</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for fp in fps %}
-            <tr>
-                <td>{{ fp.codfp }}</td>
-                <td>{{ fp.nombre }}</td>
-                <td>{{ fp.nplazos }}</td>
-                <td>{{ fp.distancia }}</td>
-                <td>{{ fp.codeempresa }}</td>
-                <td>
-                    <a href="{{ path('app_fp_show', {'codfp': fp.codfp}) }}">show</a>
-                    <a href="{{ path('app_fp_edit', {'codfp': fp.codfp}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_fp_new') }}">Create new</a>
 {% endblock %}

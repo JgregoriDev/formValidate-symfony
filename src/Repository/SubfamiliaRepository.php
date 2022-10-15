@@ -38,7 +38,13 @@ class SubfamiliaRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    public function obtenerQuerySubfamilias()
+    {
+        $qb=$this->createQueryBuilder("s");
+        return $qb
+        ->getQuery()
+        ;
+    }
 //    /**
 //     * @return Subfamilia[] Returns an array of Subfamilia objects
 //     */

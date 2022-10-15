@@ -39,6 +39,13 @@ class MarcaRepository extends ServiceEntityRepository
         }
     }
 
+    public function obtenerQueryMarcas()
+    {
+        $qb=$this->createQueryBuilder("m");
+        return $qb
+        ->getQuery()
+        ;
+    }
 //    /**
 //     * @return Marca[] Returns an array of Marca objects
 //     */

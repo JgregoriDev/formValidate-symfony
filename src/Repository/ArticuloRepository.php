@@ -39,6 +39,14 @@ class ArticuloRepository extends ServiceEntityRepository
         }
     }
 
+    public function obtenerQueryArticulos()
+    {
+        $qb=$this->createQueryBuilder("a");
+        return $qb
+        ->getQuery()
+        ;
+    }
+
 //    /**
 //     * @return Articulo[] Returns an array of Articulo objects
 //     */

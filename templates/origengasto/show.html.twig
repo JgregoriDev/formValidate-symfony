@@ -1,34 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Origengasto{% endblock %}
+{% block title %}Origengasto
+{% endblock %}
 
 {% block body %}
-    <h1>Origengasto</h1>
+	<h1>Origengasto</h1>
+	<div class="d-flex justify-content-end">
+        {{ include('origengasto/_delete_form.html.twig') }}
+		<a href="{{ path('app_origengasto_edit', {'codorigen': origengasto.codorigen}) }}" class="btn mx-2 btn-warning text-white">Editar</a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Codorigen</th>
-                <td>{{ origengasto.codorigen }}</td>
-            </tr>
-            <tr>
-                <th>Descripcion</th>
-                <td>{{ origengasto.descripcion }}</td>
-            </tr>
-            <tr>
-                <th>Cuenta</th>
-                <td>{{ origengasto.cuenta }}</td>
-            </tr>
-            <tr>
-                <th>Esinmolizado</th>
-                <td>{{ origengasto.esinmolizado ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	</div>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Codorigen</th>
+				<td>{{ origengasto.codorigen }}</td>
+			</tr>
+			<tr>
+				<th>Descripcion</th>
+				<td>{{ origengasto.descripcion }}</td>
+			</tr>
+			<tr>
+				<th>Cuenta</th>
+				<td>{{ origengasto.cuenta }}</td>
+			</tr>
+			<tr>
+				<th>Esinmolizado</th>
+				<td>{{ origengasto.esinmolizado ? 'Yes' : 'No' }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="{{ path('app_origengasto_index') }}" class="btn btn-secondary">Volver a la lista</a>
 
-    <a href="{{ path('app_origengasto_index') }}">back to list</a>
 
-    <a href="{{ path('app_origengasto_edit', {'codorigen': origengasto.codorigen}) }}">edit</a>
-
-    {{ include('origengasto/_delete_form.html.twig') }}
+	
 {% endblock %}

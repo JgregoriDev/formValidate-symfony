@@ -1,30 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Subfamilia{% endblock %}
+{% block title %}Subfamilia
+{% endblock %}
 
 {% block body %}
-    <h1>Subfamilia</h1>
+	<h1>Subfamilia</h1>
+	<div class="d-flex justify-content-end">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Codsubfamilia</th>
-                <td>{{ subfamilium.codsubfamilia }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ subfamilium.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Imagen</th>
-                <td>{{ subfamilium.imagen }}</td>
-            </tr>
-        </tbody>
-    </table>
+		<a href="{{ path('app_subfamilia_edit', {'codsubfamilia': subfamilium.codsubfamilia}) }}" class="btn btn-warning me-1">Editar</a>
 
-    <a href="{{ path('app_subfamilia_index') }}">back to list</a>
+		{{ include('subfamilia/_delete_form.html.twig') }}
+	</div>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Codsubfamilia</th>
+				<td>{{ subfamilium.codsubfamilia }}</td>
+			</tr>
+			<tr>
+				<th>Nombre</th>
+				<td>{{ subfamilium.nombre }}</td>
+			</tr>
+			<tr>
+				<th>Imagen</th>
+				<td>{{ subfamilium.imagen }}</td>
+			</tr>
+		</tbody>
+	</table>
+	{% if base64Image is not null %}
+		<div class="mb-3">
+			<img src="data:image/png;base64,{{base64Image}}" alt="" srcset="">
+		</div>
 
-    <a href="{{ path('app_subfamilia_edit', {'codsubfamilia': subfamilium.codsubfamilia}) }}">edit</a>
+	{% endif %}
+	<div class="d-flex justify-content-center">
+		<a href="{{ path('app_subfamilia_index') }}" class="btn btn-secondary">Volver a la lista</a>
+	</div>
 
-    {{ include('subfamilia/_delete_form.html.twig') }}
 {% endblock %}

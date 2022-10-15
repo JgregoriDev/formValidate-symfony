@@ -1,38 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fp{% endblock %}
+{% block title %}Forma de pago
+{% endblock %}
 
 {% block body %}
-    <h1>Fp</h1>
+	<h1>Fp</h1>
+	<div class="d-flex justify-content-end">
+		<a href="{{ path('app_fp_edit', {'codfp': fp.codfp}) }}" class="btn btn-warning text-white mx-2">Editar</a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Codfp</th>
-                <td>{{ fp.codfp }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ fp.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Nplazos</th>
-                <td>{{ fp.nplazos }}</td>
-            </tr>
-            <tr>
-                <th>Distancia</th>
-                <td>{{ fp.distancia }}</td>
-            </tr>
-            <tr>
-                <th>Codeempresa</th>
-                <td>{{ fp.codeempresa }}</td>
-            </tr>
-        </tbody>
-    </table>
+		{{ include('fp/_delete_form.html.twig') }}
+	</div>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Codfp</th>
+				<td>{{ fp.codfp }}</td>
+			</tr>
+			<tr>
+				<th>Nombre</th>
+				<td>{{ fp.nombre }}</td>
+			</tr>
+			<tr>
+				<th>Numero de plazos</th>
+				<td>{{ fp.nplazos }}</td>
+			</tr>
+			<tr>
+				<th>Distancia</th>
+				<td>{{ fp.distancia }}</td>
+			</tr>
+			<tr>
+				<th>Codeempresa</th>
+				<td>{{ fp.codeempresa }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_fp_index') }}">back to list</a>
+	<a href="{{ path('app_fp_index') }}" class="btn btn-secondary">Volver a la lista</a>
 
-    <a href="{{ path('app_fp_edit', {'codfp': fp.codfp}) }}">edit</a>
 
-    {{ include('fp/_delete_form.html.twig') }}
 {% endblock %}

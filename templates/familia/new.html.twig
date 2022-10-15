@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Familia{% endblock %}
+{% block title %}Crear nueva Familia{% endblock %}
 
 {% block body %}
-    <h1>Create new Familia</h1>
+    <h1>Crear nueva Familia</h1>
+<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_familia_index') }}">Familias</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Insertar Familia</li>
+		</ol>
+	</nav>
 
     {{ include('familia/_form.html.twig') }}
-
-    <a href="{{ path('app_familia_index') }}">back to list</a>
+    
+    {# <a href="{{ path('app_familia_index') }}" class="btn btn-secondary">Volver a la lista</a> #}
 {% endblock %}

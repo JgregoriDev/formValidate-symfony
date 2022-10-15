@@ -4,23 +4,48 @@ namespace App\Form;
 
 use App\Entity\Familia;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class FamiliaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            // ->add('CodigoArticulo', NumberType::class,['mapped' => false])
             ->add('nombre')
             ->add('margen')
             ->add('ivapercent')
             ->add('esmanoobra')
             ->add('iniciocodean')
             ->add('re')
-            ->add('imagen')
-            ->add('esanimales')
-        ;
+            ->add('img',FileType::class, [
+                'label' => 'Imagen',
+                'mapped'=>false
+            ])
+            // ->add('upload_imagen', FileType::class, [
+            //     "mapped" => false,
+            //     "label" => "Subir imagen",
+            //     'constraints' => [
+            //         new File([
+            //             'maxSize' => '100k',
+            //             'maxSizeMessage' => 'Sube una imagen como maximo de 100 kb',
+            //             'mimeTypes' => [
+            //                 'image/png',
+            //                 'image/jpg',
+            //                 'image/jpeg',
+            //                 'image/avig',
+            //                 'image/webp',
+            //             ],
+
+            //             'mimeTypesMessage' => 'Por favor sube una imagen tipo png, avif, webp o jpg',
+            //         ])
+            //     ],
+            // ])
+            ->add('esanimales');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

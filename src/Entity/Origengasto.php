@@ -82,6 +82,10 @@ class Origengasto
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->getCodorigen()." - ".$this->getDescripcion();
+    }
 
 
 }

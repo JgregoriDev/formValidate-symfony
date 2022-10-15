@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Fp{% endblock %}
+{% block title %}Editar forma de pago{% endblock %}
 
 {% block body %}
-    <h1>Edit Fp</h1>
+    <h1>Editar forma de pago</h1>
 
-    {{ include('fp/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('fp/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-    <a href="{{ path('app_fp_index') }}">back to list</a>
+    <a href="{{ path('app_fp_index') }}" class="btn btn-secondary">Volver a la lista</a>
 
     {{ include('fp/_delete_form.html.twig') }}
 {% endblock %}

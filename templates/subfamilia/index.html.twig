@@ -1,37 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Subfamilia index{% endblock %}
+{% block title %}Subfamilia
+{% endblock %}
 
 {% block body %}
-    <h1>Subfamilia index</h1>
+	<h1>Listados de Subfamilias</h1>
+	<div class="d-flex justify-content-end">
+		<a href="{{ path('app_subfamilia_new') }}" class="btn btn-primary">Crear nuevo</a>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Codsubfamilia</th>
+				<th>Nombre</th>
+				{# <th>Imagen</th> #}
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for subfamilium in subfamilias %}
+				<tr>
+					<td>{{ subfamilium.codsubfamilia }}</td>
+					<td>{{ subfamilium.nombre }}</td>
+					{# <td>{{ subfamilium.imagen }}</td> #}
+					<td>
+						<a href="{{ path('app_subfamilia_edit', {'codsubfamilia': subfamilium.codsubfamilia}) }}" title="Actualizar" class="btn btn-warning">
+							<i class="bi bi-pencil-square"></i>
+						</a>
+						<a href="{{ path('app_subfamilia_show', {'codsubfamilia': subfamilium.codsubfamilia}) }}" title="Mostrar" class="btn btn-secondary">
+							<i class="bi bi-eye"></i>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">No hay subfamilias disponibles</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Codsubfamilia</th>
-                <th>Nombre</th>
-                <th>Imagen</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for subfamilium in subfamilias %}
-            <tr>
-                <td>{{ subfamilium.codsubfamilia }}</td>
-                <td>{{ subfamilium.nombre }}</td>
-                <td>{{ subfamilium.imagen }}</td>
-                <td>
-                    <a href="{{ path('app_subfamilia_show', {'codsubfamilia': subfamilium.codsubfamilia}) }}">show</a>
-                    <a href="{{ path('app_subfamilia_edit', {'codsubfamilia': subfamilium.codsubfamilia}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_subfamilia_new') }}">Create new</a>
 {% endblock %}

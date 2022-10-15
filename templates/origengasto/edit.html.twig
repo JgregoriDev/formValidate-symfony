@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Edit Origengasto</h1>
 
-    {{ include('origengasto/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('origengasto/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-    <a href="{{ path('app_origengasto_index') }}">back to list</a>
+    <a href="{{ path('app_origengasto_index') }}" class="btn btn-secondary">Volver a la lista</a>
 
     {{ include('origengasto/_delete_form.html.twig') }}
 {% endblock %}

@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use App\Entity\Familia;
 /**
  * Subfamilia
  *
@@ -42,7 +42,7 @@ class Subfamilia
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Familia")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CODFAMILIA", referencedColumnName="CODFAMILIA")
+     *   @ORM\JoinColumn(name="CODFAMILIA", referencedColumnName="CODFAMILIA", onDelete="CASCADE")
      * })
      */
     private $codfamilia;
@@ -80,6 +80,12 @@ class Subfamilia
     {
         return $this->codfamilia;
     }
+
+    public function setCodSubFamilia($codsubfamilia){
+        $this->codsubfamilia=$codsubfamilia;
+        return $this;
+    }
+
 
     public function setCodfamilia(?Familia $codfamilia): self
     {

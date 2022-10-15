@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Subfamilia{% endblock %}
+{% block title %}Crear nueva Subfamilia{% endblock %}
 
 {% block body %}
-    <h1>Create new Subfamilia</h1>
+    <h1>Crear nueva Subfamilia</h1>
 
     {{ include('subfamilia/_form.html.twig') }}
 
-    <a href="{{ path('app_subfamilia_index') }}">back to list</a>
+    {# <a href="{{ path('app_subfamilia_index') }}" class="btn btn-secondary">Volver a la lista</a> #}
 {% endblock %}

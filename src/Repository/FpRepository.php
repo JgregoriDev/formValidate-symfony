@@ -38,6 +38,13 @@ class FpRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function obtenerQueryFP()
+    {
+        $qb=$this->createQueryBuilder("fp");
+        return $qb
+        ->getQuery()
+        ;
+    }
 
 //    /**
 //     * @return Fp[] Returns an array of Fp objects

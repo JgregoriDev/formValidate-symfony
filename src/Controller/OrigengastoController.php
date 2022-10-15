@@ -9,19 +9,42 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Knp\Component\Pager\PaginatorInterface;
+use Doctrine\ORM\EntityManagerInterface;
 /**
  * @Route("/origengasto")
  */
 class OrigengastoController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_origengasto_index", methods={"GET"})
-     */
-    public function index(OrigengastoRepository $origengastoRepository): Response
+
+    private EntityManagerInterface $emi;
+    public function __construct(EntityManagerInterface $emi)
     {
+        $this->emi = $emi;
+    }
+
+    /**
+     * @Route("/", name="app_origengasto_index", methods={"GET","POST{{ include('origengasto/_delete_form.html.twig') }}"})
+     */
+    public function index(OrigengastoRepository $origengastoRepository,PaginatorInterface $paginator,Request $request): Response
+    {
+        $queryArticulos = $origengastoRepository->obtenerQueryOrigenGastos();
+        $pagination = $paginator->paginate(
+            $queryArticulos,
+            $request->query->getInt('page', 1), /*page number*/
+            12 /*limit per page*/
+        );
+        if (isset($_POST['send'])) {
+            $familia = $origengastoRepository->find($_POST['id']);
+            if ($familia !== null) {
+                $this->emi->remove($familia);
+                $this->emi->flush();
+                $this->addFlash("success", "La forma de pago ha sido borrada de manera satisfactoria");
+                return $this->redirectToRoute('app_origengasto_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }
         return $this->render('origengasto/index.html.twig', [
-            'origengastos' => $origengastoRepository->findAll(),
+            'origengastos' => $pagination,
         ]);
     }
 
@@ -81,7 +104,7 @@ class OrigengastoController extends AbstractController
      */
     public function delete(Request $request, Origengasto $origengasto, OrigengastoRepository $origengastoRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$origengasto->getCodorigen(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $origengasto->getCodorigen(), $request->request->get('_token'))) {
             $origengastoRepository->remove($origengasto, true);
         }
 

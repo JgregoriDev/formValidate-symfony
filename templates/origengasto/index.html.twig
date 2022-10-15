@@ -1,39 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Origengasto index{% endblock %}
+{% block title %}Listado origen de gasto
+{% endblock %}
 
 {% block body %}
-    <h1>Origengasto index</h1>
+	<h1>Listado origen de gasto</h1>
+	<div class="d-flex justify-content-end">
+		<a href="{{ path('app_origengasto_new') }}" class="btn btn-primary">Añadir origen gasto</a>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Codorigen</th>
+				<th>Descripcion</th>
+				<th>Cuenta</th>
+				<th>Esinmolizado</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for origengasto in origengastos %}
+				<tr>
+					<td>{{ origengasto.codorigen }}</td>
+					<td>{{ origengasto.descripcion }}</td>
+					<td>{{ origengasto.cuenta }}</td>
+					<td>{{ origengasto.esinmolizado ? 'Yes' : 'No' }}</td>
+					<td>
+						{# <a href="{{ path('app_origengasto_show', {'codorigen': origengasto.codorigen}) }}">Mostrar</a>
+																																										<a href="{{ path('app_origengasto_edit', {'codorigen': origengasto.codorigen}) }}" class="btn btn-warning">Editar</a> #}
+						{# <b href="{{ path('app_origengasto_delete', {codorigen: origengasto.codorigen}) }}" id="b{{origengasto.codorigen}}" class="btn my-2 my-md-0 btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#vModal" title="Borrar">
+							<i class="bi bi-trash2-fill"></i>
+						</b> #}
+						<a href="{{ path('app_origengasto_edit', {codorigen: origengasto.codorigen}) }}" class="btn my-2 my-md-0 btn-warning mx-1" title="Editar">
+							<i class="bi bi-pencil-square"></i>
+						</a>
+						<a href="{{ path('app_origengasto_show', {codorigen: origengasto.codorigen}) }}" class="btn my-2 my-md-0 btn-secondary mx-1" title="Ver">
+							<i class="bi bi-eye"></i>
+						</a>
+					</td>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Codorigen</th>
-                <th>Descripcion</th>
-                <th>Cuenta</th>
-                <th>Esinmolizado</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for origengasto in origengastos %}
-            <tr>
-                <td>{{ origengasto.codorigen }}</td>
-                <td>{{ origengasto.descripcion }}</td>
-                <td>{{ origengasto.cuenta }}</td>
-                <td>{{ origengasto.esinmolizado ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_origengasto_show', {'codorigen': origengasto.codorigen}) }}">show</a>
-                    <a href="{{ path('app_origengasto_edit', {'codorigen': origengasto.codorigen}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+				</tr>
+	
+			{% else %}
+				<tr>
+					<td colspan="5">Ho hay origenes de gasto insertado</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="text-center">
+		{{ knp_pagination_render(origengastos) }}
+	</div>
 
-    <a href="{{ path('app_origengasto_new') }}">Create new</a>
 {% endblock %}

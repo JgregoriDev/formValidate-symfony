@@ -104,7 +104,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="{{ path('app_articulo_new') }}">
+										<a href="{{ path('app_familia_new') }}">
 											<i class="bi bi-plus-square me-2"></i>
 										</i>
 										<span>Añadir familia</span>
@@ -136,7 +136,30 @@
 							</li>
 						</ul>
 					</li>
-					<!-- End  familias -->
+					<!-- End  subfamilias -->
+					<!-- Start subfamilias -->
+					<li class="nav-item">
+						<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+							<i class="bi bi-journal-text me-2"></i>
+							<span>Origen gasto</span>
+							<i class="bi bi-chevron-down ms-auto"></i>
+						</a>
+						<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+							<li>
+								<a href="{{ path('app_origengasto_index') }}">
+									<i class="bi bi-view-list me-2"></i>
+									<span>Listar</span>
+								</a>
+							</li>
+							<li>
+								<a href="{{ path('app_origengasto_new') }}">
+									<i class="bi bi-plus-square me-2"></i>
+									<span>Añadir origen gasto</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<!-- End  subfamilias -->
 					<!-- Start marcas -->
 					<li class="nav-item">
 						<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -215,13 +238,13 @@
 						</a>
 						<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 							<li>
-								<a href="{{ path('app_inicio') }}">
+								<a href="{{ path('app_articulo_index') }}">
 									<i class="bi bi-view-list me-2"></i>
 									<span>Listar</span>
 								</a>
 							</li>
 							<li>
-								<a href="{{ path('app_inicio') }}">
+								<a href="{{ path('app_articulo_new') }}">
 									<i class="bi bi-plus-square me-2"></i>
 									<span>Añadir artículo</span>
 								</a>
@@ -235,9 +258,16 @@
 
 			</ul>
 		</aside>
-		<main class="col col-lg-8"> {% block body %}{% endblock %}
-			</main>
-			<div class="col col-lg-2"></div>
-		</body>
-	</html>
-</div></div></body></html>
+		<main class="col col-lg-8">
+			{% for label, messages in app.flashes %}
+				{% for message in messages %}
+					<div class="alert alert-{{ label }}" role="alert">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endfor %}
+			{% block body %}{% endblock %}
+		</main>
+		<div class="col col-lg-2"></div>
+	</body>
+</html></div></div></body></html>

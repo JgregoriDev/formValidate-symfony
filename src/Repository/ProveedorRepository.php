@@ -39,6 +39,13 @@ class ProveedorRepository extends ServiceEntityRepository
         }
     }
 
+    public function obtenerQueryProveedores()
+    {
+        $qb=$this->createQueryBuilder("p");
+        return $qb
+        ->getQuery()
+        ;
+    }
 //    /**
 //     * @return Proveedor[] Returns an array of Proveedor objects
 //     */

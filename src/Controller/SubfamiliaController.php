@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/subfamilia")
@@ -18,8 +19,14 @@ class SubfamiliaController extends AbstractController
     /**
      * @Route("/", name="app_subfamilia_index", methods={"GET"})
      */
-    public function index(SubfamiliaRepository $subfamiliaRepository): Response
+    public function index(SubfamiliaRepository $subfamiliaRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $querySubfamilia = $subfamiliaRepository->obtenerQuerySubfamilias();
+        // $pagination = $paginator->paginate(
+        //     $querySubfamilia,
+        //     $request->query->getInt('page', 1), /*page number*/
+        //     12 /*limit per page*/
+        // );
         return $this->render('subfamilia/index.html.twig', [
             'subfamilias' => $subfamiliaRepository->findAll(),
         ]);
@@ -35,8 +42,14 @@ class SubfamiliaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $codigo = $form->get("codigo")->getData();
+            // dump($request->request->get("codigo"));
+            $subfamilium->setCodSubFamilia($codigo);
+            $blobData = $form->get("img")->getData();
+            $imageContent = file_get_contents($blobData);
+            $subfamilium->setImagen($imageContent);
             $subfamiliaRepository->add($subfamilium, true);
-
+            $this->addFlash("success", "Ha sido introducido de manera correcta");
             return $this->redirectToRoute('app_subfamilia_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -51,8 +64,12 @@ class SubfamiliaController extends AbstractController
      */
     public function show(Subfamilia $subfamilium): Response
     {
+        $base64Image = null;
+        if ($subfamilium->getImagen() !== null)
+            $base64Image = base64_encode(stream_get_contents($subfamilium->getImagen()));
         return $this->render('subfamilia/show.html.twig', [
             'subfamilium' => $subfamilium,
+            'base64Image' => $base64Image
         ]);
     }
 
@@ -81,7 +98,7 @@ class SubfamiliaController extends AbstractController
      */
     public function delete(Request $request, Subfamilia $subfamilium, SubfamiliaRepository $subfamiliaRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$subfamilium->getCodsubfamilia(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $subfamilium->getCodsubfamilia(), $request->request->get('_token'))) {
             $subfamiliaRepository->remove($subfamilium, true);
         }
 

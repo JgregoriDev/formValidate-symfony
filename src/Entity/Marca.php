@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Marca
@@ -25,6 +26,7 @@ class Marca
      * @var string|null
      *
      * @ORM\Column(name="NOMBREMARCA", type="string", length=40, nullable=true)
+     * @Assert\NotBlank()
      */
     private $nombremarca;
 
@@ -63,6 +65,9 @@ class Marca
 
         return $this;
     }
-
+    public function __toString()
+    {
+        return $this->getCodmarca()." - ".$this->getNombremarca();
+    }
 
 }

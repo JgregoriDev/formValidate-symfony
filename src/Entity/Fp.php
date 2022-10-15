@@ -102,5 +102,8 @@ class Fp
         return $this;
     }
 
-
+    public function __toString()
+    {
+        return $this->getCodfp() . " - " . $this->getNombre();
+    }
 }

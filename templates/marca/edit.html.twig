@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Marca{% endblock %}
+{% block title %}Editar Marca{% endblock %}
 
 {% block body %}
-    <h1>Edit Marca</h1>
+    <h1>Editar Marca</h1>
 
-    {{ include('marca/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('marca/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-    <a href="{{ path('app_marca_index') }}">back to list</a>
+    <div class="d-flex justify-content-start my-1">
+        <a href="{{ path('app_marca_index') }}" class="btn mx-1 btn-secondary">Volver a la lista</a>
+        {{ include('marca/_delete_form.html.twig') }}
+    </div>
 
-    {{ include('marca/_delete_form.html.twig') }}
 {% endblock %}

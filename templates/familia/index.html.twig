@@ -1,49 +1,81 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Familia index{% endblock %}
+{% block title %}Listado de familias
+{% endblock %}
 
 {% block body %}
-    <h1>Familia index</h1>
+	<h1>Listado de familias</h1>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Familias</li>
+		</ol>
+	</nav>
+	<div class="d-flex justify-content-end">
+		<a href="{{ path('app_familia_new') }}" class="btn btn-primary">Añadir familia</a>
+	</div>
+	{% if pagination is  not empty %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Código familia</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<div class="text-end"></div>
+				{% for familia in pagination %}
+					<tr id="{{familia.codfamilia}}">
+						<td>{{familia.codfamilia}}</td>
+						<td>{{familia.nombre}}</td>
+						<td
+							id="{{familia.codFamilia}}">
+							{# <b href="{{ path('app_familia_delete', {codfamilia: familia.codfamilia}) }}" id="b{{familia.codfamilia}}" class="btn my-2 my-md-0 btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#vModal" title="Borrar">
+																																																																							<i class="bi bi-trash2-fill"></i>
+																																																																						</b> #}
+							<a href="{{ path('app_familia_edit', {codfamilia: familia.codfamilia}) }}" class="btn my-2 my-md-0 btn-warning mx-1" title="Editar">
+								<i class="bi bi-pencil-square"></i>
+							</a>
+							<a href="{{ path('app_familia_show', {codfamilia: familia.codfamilia}) }}" class="btn my-2 my-md-0 btn-secondary mx-1" title="Ver">
+								<i class="bi bi-eye"></i>
+							</a>
+						</td>
+					</tr>
+					<div class="modal fade" id="vModal" tabindex="-1" aria-labelledby="vModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									Estas seguro de borrar la familia con id
+									{{familia.codfamilia}}?
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+									<form action="" method="post">
+										<input type="hidden" name="id" value="{{familia.codfamilia}}">
+										<button type="submit" name="send" id="send" class="btn btn-danger">Borrar</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</tbody>
+			<tfoot class="navigation text-center"></tfoot>
+		</table>
+		<div class="d-flex justify-content-center">
+			{{ knp_pagination_render(pagination) }}
+		</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Codfamilia</th>
-                <th>Nombre</th>
-                <th>Margen</th>
-                <th>Ivapercent</th>
-                <th>Esmanoobra</th>
-                <th>Iniciocodean</th>
-                <th>Re</th>
-                <th>Imagen</th>
-                <th>Esanimales</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for familium in familias %}
-            <tr>
-                <td>{{ familium.codfamilia }}</td>
-                <td>{{ familium.nombre }}</td>
-                <td>{{ familium.margen }}</td>
-                <td>{{ familium.ivapercent }}</td>
-                <td>{{ familium.esmanoobra ? 'Yes' : 'No' }}</td>
-                <td>{{ familium.iniciocodean }}</td>
-                <td>{{ familium.re }}</td>
-                <td>{{ familium.imagen }}</td>
-                <td>{{ familium.esanimales ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_familia_show', {'codfamilia': familium.codfamilia}) }}">show</a>
-                    <a href="{{ path('app_familia_edit', {'codfamilia': familium.codfamilia}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	{% else %}
+		<p>No hay familias disponible</p>
+	{% endif %}
 
-    <a href="{{ path('app_familia_new') }}">Create new</a>
+
 {% endblock %}
