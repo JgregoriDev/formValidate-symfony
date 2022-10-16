@@ -1,13 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Origengasto{% endblock %}
+{% block title %}Editar origen de gasto
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Origengasto</h1>
+	<h1>Editar origen de gasto</h1>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_origengasto_index') }}">Origenes de gasto</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Editar orgines de gasto</li>
+		</ol>
+	</nav>
+	{{ include('origengasto/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-    {{ include('origengasto/_form.html.twig', {'button_label': 'Actualizar'}) }}
+	<a href="{{ path('app_origengasto_index') }}" class="btn btn-secondary">Volver a la lista</a>
 
-    <a href="{{ path('app_origengasto_index') }}" class="btn btn-secondary">Volver a la lista</a>
-
-    {{ include('origengasto/_delete_form.html.twig') }}
+	{{ include('origengasto/_delete_form.html.twig') }}
 {% endblock %}

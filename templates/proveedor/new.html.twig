@@ -1,10 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Proveedor{% endblock %}
+{% block title %}Nuevo proveedor{% endblock %}
 
 {% block body %}
-    <h1>Create new Proveedor</h1>
-
+    <h1>Crear nuevo proveedor</h1>
+     <nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_proveedor_index') }}">Proveedores</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Crear proveedor</li>
+		</ol>
+	</nav>
     {{ include('proveedor/_form.html.twig') }}
 
     <a href="{{ path('app_proveedor_index') }}">back to list</a>

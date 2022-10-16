@@ -4,7 +4,15 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Listado origen de gasto</h1>
+	<h1>Listado origenes de gasto</h1>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Origenes de gasto</li>
+		</ol>
+	</nav>
 	<div class="d-flex justify-content-end">
 		<a href="{{ path('app_origengasto_new') }}" class="btn btn-primary">Añadir origen gasto</a>
 	</div>

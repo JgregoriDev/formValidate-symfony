@@ -5,6 +5,14 @@
 
 {% block body %}
 	<h1>Listados de Subfamilias</h1>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Subamilias</li>
+		</ol>
+	</nav>
 	<div class="d-flex justify-content-end">
 		<a href="{{ path('app_subfamilia_new') }}" class="btn btn-primary">Crear nuevo</a>
 	</div>

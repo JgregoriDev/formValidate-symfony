@@ -5,6 +5,17 @@
 
 {% block body %}
 	<h1>Subfamilia</h1>
+	 <nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_subfamilia_index') }}">Subfamilias</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Enseñar subfamilia</li>
+		</ol>
+	</nav>
 	<div class="d-flex justify-content-end">
 
 		<a href="{{ path('app_subfamilia_edit', {'codsubfamilia': subfamilium.codsubfamilia}) }}" class="btn btn-warning me-1">Editar</a>

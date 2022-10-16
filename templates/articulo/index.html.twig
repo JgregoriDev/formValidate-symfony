@@ -4,7 +4,14 @@
 
 {% block body %}
     <h1>Articulo index</h1>
-
+        <nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Articulos</li>
+		</ol>
+        </nav>
     <table class="table">
         <thead>
             <tr>

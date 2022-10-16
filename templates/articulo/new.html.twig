@@ -3,8 +3,18 @@
 {% block title %}New Articulo{% endblock %}
 
 {% block body %}
-    <h1>Create new Articulo</h1>
-
+    <h1>Crear nuevo artículo</h1>
+        <nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_articulo_index') }}">Articulos</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Crear nuevos artículo</li>
+		</ol>
+        </nav>
     {{ include('articulo/_form.html.twig') }}
 
     <a href="{{ path('app_articulo_index') }}">back to list</a>

@@ -4,7 +4,16 @@
 
 {% block body %}
     <h1>Marca</h1>
-
+    <nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_marca_index') }}">Marcas</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Mostrar marca</li>
+		</ol></nav>
     <table class="table">
         <tbody>
             <tr>

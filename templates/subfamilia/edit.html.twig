@@ -4,7 +4,17 @@
 
 {% block body %}
     <h1>Editar Subfamilia</h1>
-
+    <nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_subfamilia_index') }}">Subfamilias</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Editar subfamilia</li>
+		</ol>
+	</nav>
     <div class="d-flex justify-content-end">
     {{ include('subfamilia/_delete_form.html.twig') }}
     </div>

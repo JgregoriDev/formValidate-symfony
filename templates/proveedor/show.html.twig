@@ -1,114 +1,125 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Proveedor{% endblock %}
+{% block title %}Proveedor
+{% endblock %}
 
 {% block body %}
-    <h1>Proveedor</h1>
+	<h1>Proveedor</h1>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_proveedor_index') }}">Proveedores</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">mostrar proveedor</li>
+		</ol>
+	</nav>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Codproveedor</th>
+				<td>{{ proveedor.codproveedor }}</td>
+			</tr>
+			<tr>
+				<th>Razonsocial</th>
+				<td>{{ proveedor.razonsocial }}</td>
+			</tr>
+			<tr>
+				<th>Nif</th>
+				<td>{{ proveedor.nif }}</td>
+			</tr>
+			<tr>
+				<th>Domicilio</th>
+				<td>{{ proveedor.domicilio }}</td>
+			</tr>
+			<tr>
+				<th>Codpostal</th>
+				<td>{{ proveedor.codpostal }}</td>
+			</tr>
+			<tr>
+				<th>Poblacion</th>
+				<td>{{ proveedor.poblacion }}</td>
+			</tr>
+			<tr>
+				<th>Provincia</th>
+				<td>{{ proveedor.provincia }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ proveedor.email }}</td>
+			</tr>
+			<tr>
+				<th>Www</th>
+				<td>{{ proveedor.www }}</td>
+			</tr>
+			<tr>
+				<th>Tfno1</th>
+				<td>{{ proveedor.tfno1 }}</td>
+			</tr>
+			<tr>
+				<th>Tfno2</th>
+				<td>{{ proveedor.tfno2 }}</td>
+			</tr>
+			<tr>
+				<th>Fax</th>
+				<td>{{ proveedor.fax }}</td>
+			</tr>
+			<tr>
+				<th>Movil</th>
+				<td>{{ proveedor.movil }}</td>
+			</tr>
+			<tr>
+				<th>Cuenta</th>
+				<td>{{ proveedor.cuenta }}</td>
+			</tr>
+			<tr>
+				<th>Cuentapago</th>
+				<td>{{ proveedor.cuentapago }}</td>
+			</tr>
+			<tr>
+				<th>Ivapercent</th>
+				<td>{{ proveedor.ivapercent }}</td>
+			</tr>
+			<tr>
+				<th>Ab</th>
+				<td>{{ proveedor.ab }}</td>
+			</tr>
+			<tr>
+				<th>CodpaisOficial</th>
+				<td>{{ proveedor.codpaisOficial }}</td>
+			</tr>
+			<tr>
+				<th>Nifpaisresidencia</th>
+				<td>{{ proveedor.nifpaisresidencia }}</td>
+			</tr>
+			<tr>
+				<th>Claveidenpaisresidencia</th>
+				<td>{{ proveedor.claveidenpaisresidencia }}</td>
+			</tr>
+			<tr>
+				<th>ContabIntracom</th>
+				<td>{{ proveedor.contabIntracom }}</td>
+			</tr>
+			<tr>
+				<th>TieneRe</th>
+				<td>{{ proveedor.tieneRe ? 'Yes' : 'No' }}</td>
+			</tr>
+			<tr>
+				<th>Esinversionsujetopasivo</th>
+				<td>{{ proveedor.esinversionsujetopasivo }}</td>
+			</tr>
+			<tr>
+				<th>Pais</th>
+				<td>{{ proveedor.pais }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Codproveedor</th>
-                <td>{{ proveedor.codproveedor }}</td>
-            </tr>
-            <tr>
-                <th>Razonsocial</th>
-                <td>{{ proveedor.razonsocial }}</td>
-            </tr>
-            <tr>
-                <th>Nif</th>
-                <td>{{ proveedor.nif }}</td>
-            </tr>
-            <tr>
-                <th>Domicilio</th>
-                <td>{{ proveedor.domicilio }}</td>
-            </tr>
-            <tr>
-                <th>Codpostal</th>
-                <td>{{ proveedor.codpostal }}</td>
-            </tr>
-            <tr>
-                <th>Poblacion</th>
-                <td>{{ proveedor.poblacion }}</td>
-            </tr>
-            <tr>
-                <th>Provincia</th>
-                <td>{{ proveedor.provincia }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ proveedor.email }}</td>
-            </tr>
-            <tr>
-                <th>Www</th>
-                <td>{{ proveedor.www }}</td>
-            </tr>
-            <tr>
-                <th>Tfno1</th>
-                <td>{{ proveedor.tfno1 }}</td>
-            </tr>
-            <tr>
-                <th>Tfno2</th>
-                <td>{{ proveedor.tfno2 }}</td>
-            </tr>
-            <tr>
-                <th>Fax</th>
-                <td>{{ proveedor.fax }}</td>
-            </tr>
-            <tr>
-                <th>Movil</th>
-                <td>{{ proveedor.movil }}</td>
-            </tr>
-            <tr>
-                <th>Cuenta</th>
-                <td>{{ proveedor.cuenta }}</td>
-            </tr>
-            <tr>
-                <th>Cuentapago</th>
-                <td>{{ proveedor.cuentapago }}</td>
-            </tr>
-            <tr>
-                <th>Ivapercent</th>
-                <td>{{ proveedor.ivapercent }}</td>
-            </tr>
-            <tr>
-                <th>Ab</th>
-                <td>{{ proveedor.ab }}</td>
-            </tr>
-            <tr>
-                <th>CodpaisOficial</th>
-                <td>{{ proveedor.codpaisOficial }}</td>
-            </tr>
-            <tr>
-                <th>Nifpaisresidencia</th>
-                <td>{{ proveedor.nifpaisresidencia }}</td>
-            </tr>
-            <tr>
-                <th>Claveidenpaisresidencia</th>
-                <td>{{ proveedor.claveidenpaisresidencia }}</td>
-            </tr>
-            <tr>
-                <th>ContabIntracom</th>
-                <td>{{ proveedor.contabIntracom }}</td>
-            </tr>
-            <tr>
-                <th>TieneRe</th>
-                <td>{{ proveedor.tieneRe ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Esinversionsujetopasivo</th>
-                <td>{{ proveedor.esinversionsujetopasivo }}</td>
-            </tr>
-            <tr>
-                <th>Pais</th>
-                <td>{{ proveedor.pais }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<a href="{{ path('app_proveedor_index') }}">back to list</a>
 
-    <a href="{{ path('app_proveedor_index') }}">back to list</a>
+	<a href="{{ path('app_proveedor_edit', {'codproveedor': proveedor.codproveedor}) }}">edit</a>
 
-    <a href="{{ path('app_proveedor_edit', {'codproveedor': proveedor.codproveedor}) }}">edit</a>
-
-    {{ include('proveedor/_delete_form.html.twig') }}
+	{{ include('proveedor/_delete_form.html.twig') }}
 {% endblock %}

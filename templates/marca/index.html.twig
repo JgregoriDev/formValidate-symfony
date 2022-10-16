@@ -5,38 +5,51 @@
 
 {% block body %}
 	<h1>Listado de marcas</h1>
-    <div class="d-flex justify-content-end">
-        <a href="{{ path('app_marca_new') }}" class="btn btn-primary">Añadir marca</a>
-    </div>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Codmarca</th>
-				<th>Nombremarca</th>
-				<th>Rutalogo</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for marca in marcas %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+		
+			<li class="breadcrumb-item active" aria-current="page">Marcas</li>
+		</ol>
+	</nav>
+		<div class="d-flex justify-content-end">
+			<a href="{{ path('app_marca_new') }}" class="btn btn-primary">Añadir marca</a>
+		</div>
+		<table class="table">
+			<thead>
 				<tr>
-					<td>{{ marca.codmarca }}</td>
-					<td>{{ marca.nombremarca }}</td>
-					<td>{{ marca.rutalogo }}</td>
-					<td>
-						<a href="{{ path('app_marca_show', {'codmarca': marca.codmarca}) }}" class="btn btn-secondary" title="Ver">	<i class="bi bi-eye"></i></a>
-						<a href="{{ path('app_marca_edit', {'codmarca': marca.codmarca}) }}" class="btn btn-warning" title="Editar">	<i class="bi bi-pencil-square"></i></a>
-					</td>
+					<th>Codmarca</th>
+					<th>Nombremarca</th>
+					<th>Rutalogo</th>
+					<th>actions</th>
 				</tr>
-			{% else %}
-				<tr>
-					<td colspan="4">No se han encontrado marcas</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-	<div class="text-center">
-		{{ knp_pagination_render(marcas) }}
-	</div>
-	
-{% endblock %}
+			</thead>
+			<tbody>
+				{% for marca in marcas %}
+					<tr>
+						<td>{{ marca.codmarca }}</td>
+						<td>{{ marca.nombremarca }}</td>
+						<td>{{ marca.rutalogo }}</td>
+						<td>
+							<a href="{{ path('app_marca_show', {'codmarca': marca.codmarca}) }}" class="btn btn-secondary" title="Ver">
+								<i class="bi bi-eye"></i>
+							</a>
+							<a href="{{ path('app_marca_edit', {'codmarca': marca.codmarca}) }}" class="btn btn-warning" title="Editar">
+								<i class="bi bi-pencil-square"></i>
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">No se han encontrado marcas</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="text-center">
+			{{ knp_pagination_render(marcas) }}
+		</div>
+
+	{% endblock %}

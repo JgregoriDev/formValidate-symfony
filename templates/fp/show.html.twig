@@ -5,6 +5,17 @@
 
 {% block body %}
 	<h1>Fp</h1>
+		<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_fp_index') }}">formas de pago</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Mostrar formas de pago</li>
+		</ol>
+    </nav>
 	<div class="d-flex justify-content-end">
 		<a href="{{ path('app_fp_edit', {'codfp': fp.codfp}) }}" class="btn btn-warning text-white mx-2">Editar</a>
 

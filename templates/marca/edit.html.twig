@@ -1,15 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Editar Marca{% endblock %}
+{% block title %}Editar Marca
+{% endblock %}
 
 {% block body %}
-    <h1>Editar Marca</h1>
+	<h1>Editar Marca</h1>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_marca_index') }}">Marcas</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Editar marcas</li>
+		</ol>
+	</nav>
+	{{ include('marca/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-    {{ include('marca/_form.html.twig', {'button_label': 'Actualizar'}) }}
-
-    <div class="d-flex justify-content-start my-1">
-        <a href="{{ path('app_marca_index') }}" class="btn mx-1 btn-secondary">Volver a la lista</a>
-        {{ include('marca/_delete_form.html.twig') }}
-    </div>
+	<div class="d-flex justify-content-start my-1">
+		<a href="{{ path('app_marca_index') }}" class="btn mx-1 btn-secondary">Volver a la lista</a>
+		{{ include('marca/_delete_form.html.twig') }}
+	</div>
 
 {% endblock %}

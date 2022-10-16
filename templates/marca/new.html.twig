@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Marca nueva{% endblock %}
+{% block title %}Marca nueva
+{% endblock %}
 
 {% block body %}
-    <h1>Create Marca nueva</h1>
+	<h1>Create marca nueva</h1>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_marca_index') }}">Marcas</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Crear marca</li>
+		</ol>
+	</nav>
+	{{ include('marca/_form.html.twig') }}
 
-    {{ include('marca/_form.html.twig') }}
-
-    <a href="{{ path('app_marca_index') }}" class="btn btn-secondary">Volver a la lista</a>
+	<a href="{{ path('app_marca_index') }}" class="btn btn-secondary">Volver a la lista</a>
 {% endblock %}

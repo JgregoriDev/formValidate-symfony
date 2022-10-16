@@ -4,7 +4,17 @@
 
 {% block body %}
     <h1>Crear forma de pago</h1>
-
+    <nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_fp_index') }}">formas de pago</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Nuevas formas de pago</li>
+		</ol>
+    </nav>
     {{ include('fp/_form.html.twig') }}
 
     <a href="{{ path('app_fp_index') }}">Volver a la lista</a>

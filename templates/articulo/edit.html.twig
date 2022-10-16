@@ -4,7 +4,17 @@
 
 {% block body %}
     <h1>Edit Articulo</h1>
-
+    <nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_articulo_index') }}">Articulos</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Editar artículo</li>
+		</ol>
+	</nav>
     {{ include('articulo/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('app_articulo_index') }}">back to list</a>
