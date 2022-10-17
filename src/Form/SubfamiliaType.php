@@ -20,7 +20,8 @@ class SubfamiliaType extends AbstractType
             ->add('nombre')
             ->add('img',FileType::class, [
                 'label' => 'Imagen',
-                'mapped'=>false
+                'mapped'=>false,
+                'required'=>false
             ]);
     }
 

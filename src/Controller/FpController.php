@@ -108,6 +108,10 @@ class FpController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$fp->getCodfp(), $request->request->get('_token'))) {
             $fpRepository->remove($fp, true);
+            $this->addFlash(
+               'success',
+               'Has borrado de manera satisfactoria la forma de pago'
+            );
         }
 
         return $this->redirectToRoute('app_fp_index', [], Response::HTTP_SEE_OTHER);

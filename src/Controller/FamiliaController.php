@@ -126,6 +126,7 @@ class FamiliaController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $familium->getCodfamilia(), $request->request->get('_token'))) {
             $familiaRepository->remove($familium, true);
+            $this->addFlash("success","Has borrado de manera satisfactoria la familia.");
         }
 
         return $this->redirectToRoute('app_familia_index', [], Response::HTTP_SEE_OTHER);

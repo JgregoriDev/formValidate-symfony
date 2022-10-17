@@ -108,6 +108,10 @@ class OrigengastoController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $origengasto->getCodorigen(), $request->request->get('_token'))) {
             $origengastoRepository->remove($origengasto, true);
+            $this->addFlash(
+                'success',
+                'Has borrado de manera satisfactoria el origen de gasto'
+            );
         }
 
         return $this->redirectToRoute('app_origengasto_index', [], Response::HTTP_SEE_OTHER);

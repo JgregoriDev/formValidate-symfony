@@ -85,6 +85,10 @@ class ProveedorController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$proveedor->getCodproveedor(), $request->request->get('_token'))) {
             $proveedorRepository->remove($proveedor, true);
+            $this->addFlash(
+                'success',
+                'Has borrado de manera satisfactoria el proveedor'
+            );
         }
 
         return $this->redirectToRoute('app_proveedor_index', [], Response::HTTP_SEE_OTHER);

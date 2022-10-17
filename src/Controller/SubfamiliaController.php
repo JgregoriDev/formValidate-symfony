@@ -43,11 +43,12 @@ class SubfamiliaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $codigo = $form->get("codigo")->getData();
-            // dump($request->request->get("codigo"));
             $subfamilium->setCodSubFamilia($codigo);
             $blobData = $form->get("img")->getData();
-            $imageContent = file_get_contents($blobData);
-            $subfamilium->setImagen($imageContent);
+            if ($blobData) {
+                $imageContent = file_get_contents($blobData);
+                $subfamilium->setImagen($imageContent);
+            }
             $subfamiliaRepository->add($subfamilium, true);
             $this->addFlash("success", "Ha sido introducido de manera correcta");
             return $this->redirectToRoute('app_subfamilia_index', [], Response::HTTP_SEE_OTHER);
@@ -55,7 +56,7 @@ class SubfamiliaController extends AbstractController
 
         return $this->renderForm('subfamilia/new.html.twig', [
             'subfamilium' => $subfamilium,
-            'typeButton'=>'success',
+            'typeButton' => 'success',
             'form' => $form,
         ]);
     }
@@ -83,14 +84,24 @@ class SubfamiliaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $codigo = $form->get("codigo")->getData();
+            $subfamilium->setCodSubFamilia($codigo);
+            $blobData = $form->get("img")->getData();
+            if ($blobData) {
+                $imageContent = file_get_contents($blobData);
+                $subfamilium->setImagen($imageContent);
+            }
             $subfamiliaRepository->add($subfamilium, true);
-
+            $this->addFlash(
+                'success',
+                'Has edidatado de manera satisfactoria la subfamilia'
+            );
             return $this->redirectToRoute('app_subfamilia_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('subfamilia/edit.html.twig', [
             'subfamilium' => $subfamilium,
-            'typeButton'=>'warning',
+            'typeButton' => 'warning',
             'form' => $form,
         ]);
     }
@@ -102,6 +113,10 @@ class SubfamiliaController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $subfamilium->getCodsubfamilia(), $request->request->get('_token'))) {
             $subfamiliaRepository->remove($subfamilium, true);
+            $this->addFlash(
+                'success',
+                'Has borrado de manera satisfactoria la subfamilia'
+            );
         }
 
         return $this->redirectToRoute('app_subfamilia_index', [], Response::HTTP_SEE_OTHER);

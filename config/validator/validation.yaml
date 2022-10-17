@@ -1,0 +1,14 @@
+# config/validator/validation.yaml
+# App\Entity\Subfamilia:
+#     properties:
+#         codsubfamilia:
+#             - NotBlank: { message: 'subfamilia.codsubfamilia.not_blank' }
+App\Entity\Familia:
+  properties:
+    margen:
+      - GreaterThan: { value: 0, message: Deberia ser un numero mayor de 0}
+      - LessThan: { value: 10000, message: Deberia ser un numero menor de 10000}
+    ivapercent:
+      - GreaterThan: { value: 0, message: Deberia ser un numero mayor de 0}
+      - LessThan: { value: 100, message: Deberia ser un numero menor de 100}
+#              - NotBlank: { message: 'familia.margen.not_blank' }

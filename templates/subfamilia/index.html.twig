@@ -26,8 +26,10 @@
 			</tr>
 		</thead>
 		<tbody>
+			{{i=0}}
 			{% for subfamilium in subfamilias %}
-				<tr>
+				{{i++}}
+				<tr class="">
 					<td>{{ subfamilium.codsubfamilia }}</td>
 					<td>{{ subfamilium.nombre }}</td>
 					{# <td>{{ subfamilium.imagen }}</td> #}

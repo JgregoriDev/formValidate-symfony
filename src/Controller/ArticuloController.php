@@ -96,6 +96,7 @@ class ArticuloController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$articulo->getCodarticulo(), $request->request->get('_token'))) {
             $entityManager->remove($articulo);
+            $this->addFlash("success","Has borrado de manera satisfactoria el artículo.");
             $entityManager->flush();
         }
 

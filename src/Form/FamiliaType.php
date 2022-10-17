@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Validator\Constraints\File;
 
 class FamiliaType extends AbstractType
@@ -17,15 +18,15 @@ class FamiliaType extends AbstractType
         $builder
             // ->add('CodigoArticulo', NumberType::class,['mapped' => false])
             ->add('nombre')
-            ->add('margen')
-            ->add('ivapercent')
+            ->add('margen',IntegerType::class)
+            ->add('ivapercent',IntegerType::class)
             ->add('esmanoobra')
             ->add('iniciocodean')
             ->add('re')
             ->add('img',FileType::class, [
                 'label' => 'Imagen',
                 'mapped'=>false,
-                'required'=>true,
+                'required'=>false,
                 
             ])
             // ->add('upload_imagen', FileType::class, [

@@ -98,6 +98,10 @@ class MarcaController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $marca->getCodmarca(), $request->request->get('_token'))) {
             $marcaRepository->remove($marca, true);
+            $this->addFlash(
+                'success',
+                'Has borrado de manera satisfactoria la forma de pago'
+             );
         }
 
         return $this->redirectToRoute('app_marca_index', [], Response::HTTP_SEE_OTHER);
