@@ -65,6 +65,7 @@ class FpController extends AbstractController
 
         return $this->renderForm('fp/new.html.twig', [
             'fp' => $fp,
+            'typeButton'=>'success',
             'form' => $form,
         ]);
     }
@@ -95,6 +96,7 @@ class FpController extends AbstractController
 
         return $this->renderForm('fp/edit.html.twig', [
             'fp' => $fp,
+            'typeButton'=>'warning',
             'form' => $form,
         ]);
     }

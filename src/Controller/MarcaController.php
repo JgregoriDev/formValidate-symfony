@@ -55,6 +55,7 @@ class MarcaController extends AbstractController
 
         return $this->renderForm('marca/new.html.twig', [
             'marca' => $marca,
+            'typeButton'=>'success',
             'form' => $form,
         ]);
     }
@@ -85,6 +86,7 @@ class MarcaController extends AbstractController
 
         return $this->renderForm('marca/edit.html.twig', [
             'marca' => $marca,
+            'typeButton'=>'warning',
             'form' => $form,
         ]);
     }

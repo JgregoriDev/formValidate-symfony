@@ -2,6 +2,6 @@
 {{ form_widget(form) }}
     <div class="d-flex justify-content-center">
         <a href="{{ path('app_familia_index') }}" class="me-1 btn btn-secondary">Volver a la lista</a>
-        <button class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
+        <button class="btn btn-{{typeButton}}">{{ button_label|default('Guardar') }}</button>
     </div>
 {{ form_end(form) }}

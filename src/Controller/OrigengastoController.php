@@ -65,6 +65,7 @@ class OrigengastoController extends AbstractController
 
         return $this->renderForm('origengasto/new.html.twig', [
             'origengasto' => $origengasto,
+            'typeButton'=>'success',
             'form' => $form,
         ]);
     }
@@ -95,6 +96,7 @@ class OrigengastoController extends AbstractController
 
         return $this->renderForm('origengasto/edit.html.twig', [
             'origengasto' => $origengasto,
+            'typeButton'=>'warning',
             'form' => $form,
         ]);
     }

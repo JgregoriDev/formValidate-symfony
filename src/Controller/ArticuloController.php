@@ -43,7 +43,7 @@ class ArticuloController extends AbstractController
         $articulo = new Articulo();
         $form = $this->createForm(ArticuloType::class, $articulo);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($articulo);
             $entityManager->flush();
@@ -53,6 +53,7 @@ class ArticuloController extends AbstractController
 
         return $this->renderForm('articulo/new.html.twig', [
             'articulo' => $articulo,
+            'typeButton'=>'success',
             'form' => $form,
         ]);
     }
@@ -83,6 +84,7 @@ class ArticuloController extends AbstractController
 
         return $this->renderForm('articulo/edit.html.twig', [
             'articulo' => $articulo,
+            'typeButton'=>'warning',
             'form' => $form,
         ]);
     }

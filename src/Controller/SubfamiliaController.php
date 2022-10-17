@@ -55,6 +55,7 @@ class SubfamiliaController extends AbstractController
 
         return $this->renderForm('subfamilia/new.html.twig', [
             'subfamilium' => $subfamilium,
+            'typeButton'=>'success',
             'form' => $form,
         ]);
     }
@@ -89,6 +90,7 @@ class SubfamiliaController extends AbstractController
 
         return $this->renderForm('subfamilia/edit.html.twig', [
             'subfamilium' => $subfamilium,
+            'typeButton'=>'warning',
             'form' => $form,
         ]);
     }

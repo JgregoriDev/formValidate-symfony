@@ -42,6 +42,7 @@ class ProveedorController extends AbstractController
 
         return $this->renderForm('proveedor/new.html.twig', [
             'proveedor' => $proveedor,
+            'typeButton'=>'success',
             'form' => $form,
         ]);
     }
@@ -72,6 +73,7 @@ class ProveedorController extends AbstractController
 
         return $this->renderForm('proveedor/edit.html.twig', [
             'proveedor' => $proveedor,
+            'typeButton'=>'warning',
             'form' => $form,
         ]);
     }

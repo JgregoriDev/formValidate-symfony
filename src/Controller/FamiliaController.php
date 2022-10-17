@@ -76,6 +76,7 @@ class FamiliaController extends AbstractController
 
         return $this->renderForm('familia/new.html.twig', [
             'familium' => $familium,
+            'typeButton'=>'success',
             'form' => $form,
         ]);
     }
@@ -113,6 +114,7 @@ class FamiliaController extends AbstractController
 
         return $this->renderForm('familia/edit.html.twig', [
             'familium' => $familium,
+            'typeButton'=>'warning',
             'form' => $form,
         ]);
     }
