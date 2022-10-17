@@ -103,17 +103,16 @@
 						</a>
 					</td>
 				</tr>
-		
+
 			{% else %}
 				<tr>
 					<td colspan="35">No hay artículos registrados</td>
 				</tr>
 			{% endfor %}
 		</tbody>
-		
-	</table>
-			<div class="d-flex justify-content-center">
-					{{ knp_pagination_render(articulos) }}
-				</div>
 
+	</table>
+	<div class="d-flex justify-content-center">
+		{{ knp_pagination_render(articulos) }}
+	</div>
 {% endblock %}
