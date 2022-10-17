@@ -1,5 +1,7 @@
 
 {{ form_start(form) }}
     {{ form_widget(form) }}
+    <a href="{{ path('app_marca_index') }}" class="btn mx-1 btn-secondary">Volver a la lista</a>
+
     <button class="btn btn-{{typeButton}}">{{ button_label|default('Guardar') }}</button>
 {{ form_end(form) }}

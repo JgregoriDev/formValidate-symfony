@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Subfamilia;
 use App\Entity\Familia;
 use App\Entity\Proveedor;
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Marca;
 /**
  * Articulo
@@ -26,8 +27,8 @@ class Articulo
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="CODIGOEAN", type="string", length=25, nullable=true)
+     * @Assert\NotNull(message="No puede esta el código ean vacio:/")
+     * @ORM\Column(name="CODIGOEAN", type="string", length=25, nullable=false)
      */
     private $codigoean;
 
@@ -267,7 +268,7 @@ class Articulo
 
     /**
      * @var \Subfamilia
-     *
+    * @Assert\NotNull(message="No puede estar vacio :/")
      * @ORM\ManyToOne(targetEntity="Subfamilia")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="CODSUBFAMILIA", referencedColumnName="CODSUBFAMILIA"),
