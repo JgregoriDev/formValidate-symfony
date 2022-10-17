@@ -24,7 +24,9 @@ class FamiliaType extends AbstractType
             ->add('re')
             ->add('img',FileType::class, [
                 'label' => 'Imagen',
-                'mapped'=>false
+                'mapped'=>false,
+                'required'=>true,
+                
             ])
             // ->add('upload_imagen', FileType::class, [
             //     "mapped" => false,
