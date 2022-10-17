@@ -58,7 +58,7 @@ class FamiliaController extends AbstractController
     // }
 
     /**
-     * @Route("/new", name="app_familia_new", methods={"GET", "POST"})
+     * @Route("/nuevo", name="app_familia_new", methods={"GET", "POST"})
      */
     public function new(Request $request, FamiliaRepository $familiaRepository, SluggerInterface $slugger): Response
     {
@@ -95,7 +95,7 @@ class FamiliaController extends AbstractController
     }
 
     /**
-     * @Route("/{codfamilia}/edit", name="app_familia_edit", methods={"GET", "POST"})
+     * @Route("/{codfamilia}/editar", name="app_familia_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Familia $familium, FamiliaRepository $familiaRepository): Response
     {

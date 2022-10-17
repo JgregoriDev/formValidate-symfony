@@ -49,7 +49,7 @@ class FpController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_fp_new", methods={"GET", "POST"})
+     * @Route("/nuevo", name="app_fp_new", methods={"GET", "POST"})
      */
     public function new(Request $request, FpRepository $fpRepository): Response
     {
@@ -80,7 +80,7 @@ class FpController extends AbstractController
     }
 
     /**
-     * @Route("/{codfp}/edit", name="app_fp_edit", methods={"GET", "POST"})
+     * @Route("/{codfp}/editar", name="app_fp_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Fp $fp, FpRepository $fpRepository): Response
     {

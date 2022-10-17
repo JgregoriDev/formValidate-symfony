@@ -39,7 +39,7 @@ class MarcaController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_marca_new", methods={"GET", "POST"})
+     * @Route("/nuevo", name="app_marca_new", methods={"GET", "POST"})
      */
     public function new(Request $request, MarcaRepository $marcaRepository): Response
     {
@@ -70,7 +70,7 @@ class MarcaController extends AbstractController
     }
 
     /**
-     * @Route("/{codmarca}/edit", name="app_marca_edit", methods={"GET", "POST"})
+     * @Route("/{codmarca}/editar", name="app_marca_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Marca $marca, MarcaRepository $marcaRepository): Response
     {

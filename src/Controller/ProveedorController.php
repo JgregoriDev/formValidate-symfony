@@ -26,7 +26,7 @@ class ProveedorController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_proveedor_new", methods={"GET", "POST"})
+     * @Route("/nuevo", name="app_proveedor_new", methods={"GET", "POST"})
      */
     public function new(Request $request, ProveedorRepository $proveedorRepository): Response
     {
@@ -57,7 +57,7 @@ class ProveedorController extends AbstractController
     }
 
     /**
-     * @Route("/{codproveedor}/edit", name="app_proveedor_edit", methods={"GET", "POST"})
+     * @Route("/{codproveedor}/editar", name="app_proveedor_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Proveedor $proveedor, ProveedorRepository $proveedorRepository): Response
     {

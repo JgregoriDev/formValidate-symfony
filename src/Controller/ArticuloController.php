@@ -30,7 +30,7 @@ class ArticuloController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_articulo_new", methods={"GET", "POST"})
+     * @Route("/nuevo", name="app_articulo_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -62,7 +62,7 @@ class ArticuloController extends AbstractController
     }
 
     /**
-     * @Route("/{codarticulo}/edit", name="app_articulo_edit", methods={"GET", "POST"})
+     * @Route("/{codarticulo}/editar", name="app_articulo_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Articulo $articulo, EntityManagerInterface $entityManager): Response
     {

@@ -5,10 +5,7 @@
 
 {% block body %}
 	<h1>Listar artículos</h1>
-	<div class="d-flex justify-content-end">
-		<a href="{{ path('app_articulo_new') }}" class="btn btn-success">Create artículo nuevo</a>
-	</div>
-	<nav aria-label="breadcrumb">
+	<nav aria-label="breadcrumb my-3">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="{{ path('app_inicio') }}">Inicio</a>
@@ -16,6 +13,10 @@
 			<li class="breadcrumb-item active" aria-current="page">Articulos</li>
 		</ol>
 	</nav>
+	<div class="d-flex justify-content-end">
+		<a href="{{ path('app_articulo_new') }}" class="btn btn-success">Crear artículo nuevo</a>
+	</div>
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -94,17 +95,17 @@
 					<td>{{ articulo.nomcategoria }}</td>
 					<td>{{ articulo.nomsubcategoria }}</td>
 					<td>
-						<a href="{{ path('app_articulo_show', {'codarticulo': articulo.codarticulo}) }}" class="btn btn-secondary" title="Mostrar">
-                        
-                        </a>
+						<a href="{{ path('app_articulo_show', {'codarticulo': articulo.codarticulo}) }}" class="btn btn-secondary" title="Ver">
+						<i class="bi bi-eye"></i>
+						</a>
 						<a href="{{ path('app_articulo_edit', {'codarticulo': articulo.codarticulo}) }}" class="btn btn-warning" title="Editar">
-                        
-                        </a>
+						<i class="bi bi-pencil-square"></i>
+						</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="35">no records found</td>
+					<td colspan="35">No hay artículos registrados</td>
 				</tr>
 			{% endfor %}
 		</tbody>

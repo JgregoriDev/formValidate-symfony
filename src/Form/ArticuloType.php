@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Articulo;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class ArticuloType extends AbstractType
 {
@@ -31,7 +33,24 @@ class ArticuloType extends AbstractType
             ->add('posibleb')
             ->add('codartGranel')
             ->add('udXUdgrannel')
-            ->add('imagen')
+            // ->add('imagen')
+            ->add('img', FileType::class, [
+                "label" => "Selecciona una imagen",
+                "required" => false,
+                "mapped" => false,
+                // "multiple" => true,
+                'constraints' => [
+                    new File([
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpg',
+                            'image/jpeg'
+                        ],
+
+                        'mimeTypesMessage' => 'Por favor sube una imagen con formato png o jpg',
+                    ])
+                ],
+            ])
             ->add('ivapercent')
             ->add('nordenMostrar')
             ->add('intrastat')
@@ -47,8 +66,7 @@ class ArticuloType extends AbstractType
             ->add('nomsubcategoria')
             ->add('codproveedor')
             ->add('codsubfamilia')
-            ->add('codmarcar')
-        ;
+            ->add('codmarcar');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

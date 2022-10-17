@@ -49,7 +49,7 @@ class OrigengastoController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_origengasto_new", methods={"GET", "POST"})
+     * @Route("/nuevo", name="app_origengasto_new", methods={"GET", "POST"})
      */
     public function new(Request $request, OrigengastoRepository $origengastoRepository): Response
     {
@@ -80,7 +80,7 @@ class OrigengastoController extends AbstractController
     }
 
     /**
-     * @Route("/{codorigen}/edit", name="app_origengasto_edit", methods={"GET", "POST"})
+     * @Route("/{codorigen}/editar", name="app_origengasto_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Origengasto $origengasto, OrigengastoRepository $origengastoRepository): Response
     {

@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Editar artículo</h1>
-        	<nav aria-label="breadcrumb">
+        	<nav aria-label="breadcrumb my-3">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="{{ path('app_inicio') }}">Inicio</a>
@@ -15,9 +15,15 @@
 			<li class="breadcrumb-item active" aria-current="page">Editar artículo</li>
 		</ol>
 	</nav>
-    {{ include('articulo/_form.html.twig', {'button_label': 'Update'}) }}
+		<div class="d-flex justify-content-end">
+		 {{ include('articulo/_delete_form.html.twig') }}
+		</div>
+		<div class="mb-3">
+			{{ include('articulo/_form.html.twig', {'button_label': 'Actualizar'}) }}
+		</div>
+  
 
-    <a href="{{ path('app_articulo_index') }}">back to list</a>
+    
 
-    {{ include('articulo/_delete_form.html.twig') }}
+   
 {% endblock %}

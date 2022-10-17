@@ -33,7 +33,7 @@ class SubfamiliaController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_subfamilia_new", methods={"GET", "POST"})
+     * @Route("/nuevo", name="app_subfamilia_new", methods={"GET", "POST"})
      */
     public function new(Request $request, SubfamiliaRepository $subfamiliaRepository): Response
     {
@@ -74,7 +74,7 @@ class SubfamiliaController extends AbstractController
     }
 
     /**
-     * @Route("/{codsubfamilia}/edit", name="app_subfamilia_edit", methods={"GET", "POST"})
+     * @Route("/{codsubfamilia}/editar", name="app_subfamilia_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Subfamilia $subfamilium, SubfamiliaRepository $subfamiliaRepository): Response
     {

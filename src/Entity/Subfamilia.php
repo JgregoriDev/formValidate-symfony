@@ -57,6 +57,13 @@ class Subfamilia
         return $this->nombre;
     }
 
+    public function setCodSubFamilia(?int $codSubfamilia): self
+    {
+        $this->codsubfamilia = $codSubfamilia;
+
+        return $this;
+    }
+    
     public function setNombre(?string $nombre): self
     {
         $this->nombre = $nombre;
