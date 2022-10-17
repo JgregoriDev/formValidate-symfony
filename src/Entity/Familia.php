@@ -3,13 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Familia
  *
  * @ORM\Table(name="familia")
- * @ORM\Entity(repositoryClass="App\Repository\FamiliaRepository")
+ * @ORM\Entity
  */
 class Familia
 {
@@ -18,7 +17,7 @@ class Familia
      *
      * @ORM\Column(name="CODFAMILIA", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $codfamilia;
 
@@ -180,19 +179,4 @@ class Familia
     }
 
 
-
-
-    /**
-     * Set the value of codfamilia
-     */
-    public function setCodfamilia($codfamilia): self
-    {
-        $this->codfamilia = $codfamilia;
-
-        return $this;
-    }
-    public function __toString()
-    {
-        return $this->getCodFamilia() . " - " . $this->getNombre();
-    }
 }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Fp
  *
  * @ORM\Table(name="fp")
- * @ORM\Entity(repositoryClass="App\Repository\FpRepository")
+ * @ORM\Entity
  */
 class Fp
 {
@@ -102,8 +102,5 @@ class Fp
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->getCodfp() . " - " . $this->getNombre();
-    }
+
 }

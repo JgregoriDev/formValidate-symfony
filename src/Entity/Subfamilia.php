@@ -8,7 +8,7 @@ use App\Entity\Familia;
  * Subfamilia
  *
  * @ORM\Table(name="subfamilia", indexes={@ORM\Index(name="IDX_150B6A80C6BB373F", columns={"CODFAMILIA"})})
- * @ORM\Entity(repositoryClass="App\Repository\SubfamiliaRepository")
+ * @ORM\Entity
  */
 class Subfamilia
 {
@@ -42,7 +42,7 @@ class Subfamilia
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Familia")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CODFAMILIA", referencedColumnName="CODFAMILIA", onDelete="CASCADE")
+     *   @ORM\JoinColumn(name="CODFAMILIA", referencedColumnName="CODFAMILIA")
      * })
      */
     private $codfamilia;
@@ -81,18 +81,15 @@ class Subfamilia
         return $this->codfamilia;
     }
 
-    public function setCodSubFamilia($codsubfamilia){
-        $this->codsubfamilia=$codsubfamilia;
-        return $this;
-    }
-
-
     public function setCodfamilia(?Familia $codfamilia): self
     {
         $this->codfamilia = $codfamilia;
 
         return $this;
     }
-
+    public function __toString ( ) : string
+    {
+        return $this->getCodsubfamilia()." - ".$this->getNombre();
+    }
 
 }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Origengasto
  *
  * @ORM\Table(name="origengasto")
- * @ORM\Entity(repositoryClass="App\Repository\OrigengastoRepository")
+ * @ORM\Entity
  */
 class Origengasto
 {
@@ -82,10 +82,6 @@ class Origengasto
 
         return $this;
     }
-    public function __toString()
-    {
-        return $this->getCodorigen()." - ".$this->getDescripcion();
-    }
-
+    
 
 }

@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Articulo;
 use App\Form\ArticuloType;
-use App\Repository\ArticuloRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,24 +18,29 @@ class ArticuloController extends AbstractController
     /**
      * @Route("/", name="app_articulo_index", methods={"GET"})
      */
-    public function index(ArticuloRepository $articuloRepository): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
+        $articulos = $entityManager
+            ->getRepository(Articulo::class)
+            ->findAll();
+
         return $this->render('articulo/index.html.twig', [
-            'articulos' => $articuloRepository->findAll(),
+            'articulos' => $articulos,
         ]);
     }
 
     /**
      * @Route("/new", name="app_articulo_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, ArticuloRepository $articuloRepository): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $articulo = new Articulo();
         $form = $this->createForm(ArticuloType::class, $articulo);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $articuloRepository->add($articulo, true);
+            $entityManager->persist($articulo);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -59,13 +64,13 @@ class ArticuloController extends AbstractController
     /**
      * @Route("/{codarticulo}/edit", name="app_articulo_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Articulo $articulo, ArticuloRepository $articuloRepository): Response
+    public function edit(Request $request, Articulo $articulo, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ArticuloType::class, $articulo);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $articuloRepository->add($articulo, true);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -79,10 +84,11 @@ class ArticuloController extends AbstractController
     /**
      * @Route("/{codarticulo}", name="app_articulo_delete", methods={"POST"})
      */
-    public function delete(Request $request, Articulo $articulo, ArticuloRepository $articuloRepository): Response
+    public function delete(Request $request, Articulo $articulo, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$articulo->getCodarticulo(), $request->request->get('_token'))) {
-            $articuloRepository->remove($articulo, true);
+            $entityManager->remove($articulo);
+            $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);

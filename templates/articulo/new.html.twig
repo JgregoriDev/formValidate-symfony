@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Articulo{% endblock %}
+{% block title %}Crear artículo nuevo{% endblock %}
 
 {% block body %}
-    <h1>Crear nuevo artículo</h1>
-        <nav aria-label="breadcrumb">
+    <h1>Crear artículo nuevo</h1>
+    	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="{{ path('app_inicio') }}">Inicio</a>
@@ -12,9 +12,9 @@
 			<li class="breadcrumb-item">
 				<a href="{{ path('app_articulo_index') }}">Articulos</a>
 			</li>
-			<li class="breadcrumb-item active" aria-current="page">Crear nuevos artículo</li>
+			<li class="breadcrumb-item active" aria-current="page">Crear artículo nuevo</li>
 		</ol>
-        </nav>
+	</nav>
     {{ include('articulo/_form.html.twig') }}
 
     <a href="{{ path('app_articulo_index') }}">back to list</a>

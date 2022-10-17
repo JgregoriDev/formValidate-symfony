@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Proveedor
  *
  * @ORM\Table(name="proveedor", indexes={@ORM\Index(name="PROVEEDOR_FK", columns={"CODFP"}), @ORM\Index(name="CAJ_PROV_FK", columns={"TIPOGASTO"})})
- * @ORM\Entity(repositoryClass="App\Repository\ProveedorRepository")
+ * @ORM\Entity
  */
 class Proveedor
 {
@@ -507,5 +507,8 @@ class Proveedor
         return $this;
     }
 
-
+    public function __toString ( ) : string
+    {
+        return $this->getCodproveedor()." - ".$this->getRazonsocial();
+    }
 }

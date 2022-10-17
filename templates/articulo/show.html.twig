@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Articulo{% endblock %}
+{% block title %}Mostrar artículo
+{% endblock %}
 
 {% block body %}
-    <h1>Articulo</h1>
-    <nav aria-label="breadcrumb">
+	<h1>Mostrar artículo</h1>
+	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="{{ path('app_inicio') }}">Inicio</a>
@@ -14,147 +15,152 @@
 			</li>
 			<li class="breadcrumb-item active" aria-current="page">Mostrar artículo</li>
 		</ol>
-    </nav>
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Codarticulo</th>
-                <td>{{ articulo.codarticulo }}</td>
-            </tr>
-            <tr>
-                <th>Codsubfamiliarel</th>
-                <td>{{ articulo.codsubfamiliarel }}</td>
-            </tr>
-            <tr>
-                <th>Codigoean</th>
-                <td>{{ articulo.codigoean }}</td>
-            </tr>
-            <tr>
-                <th>Referenciaproveedor</th>
-                <td>{{ articulo.referenciaproveedor }}</td>
-            </tr>
-            <tr>
-                <th>Referenciamarca</th>
-                <td>{{ articulo.referenciamarca }}</td>
-            </tr>
-            <tr>
-                <th>Descripcion</th>
-                <td>{{ articulo.descripcion }}</td>
-            </tr>
-            <tr>
-                <th>AuxMargen</th>
-                <td>{{ articulo.auxMargen }}</td>
-            </tr>
-            <tr>
-                <th>Column1</th>
-                <td>{{ articulo.column1 }}</td>
-            </tr>
-            <tr>
-                <th>Margen</th>
-                <td>{{ articulo.margen }}</td>
-            </tr>
-            <tr>
-                <th>Base</th>
-                <td>{{ articulo.base }}</td>
-            </tr>
-            <tr>
-                <th>Existenciasdisponible</th>
-                <td>{{ articulo.existenciasdisponible }}</td>
-            </tr>
-            <tr>
-                <th>PvpOfertaMostrador</th>
-                <td>{{ articulo.pvpOfertaMostrador }}</td>
-            </tr>
-            <tr>
-                <th>Pvp</th>
-                <td>{{ articulo.pvp }}</td>
-            </tr>
-            <tr>
-                <th>Pvp2</th>
-                <td>{{ articulo.pvp2 }}</td>
-            </tr>
-            <tr>
-                <th>Codigo</th>
-                <td>{{ articulo.codigo }}</td>
-            </tr>
-            <tr>
-                <th>Esmanoobra</th>
-                <td>{{ articulo.esmanoobra ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>UdsUltimaentrada</th>
-                <td>{{ articulo.udsUltimaentrada }}</td>
-            </tr>
-            <tr>
-                <th>Base2</th>
-                <td>{{ articulo.base2 }}</td>
-            </tr>
-            <tr>
-                <th>Favorito</th>
-                <td>{{ articulo.favorito ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Posibleb</th>
-                <td>{{ articulo.posibleb ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>CodartGranel</th>
-                <td>{{ articulo.codartGranel }}</td>
-            </tr>
-            <tr>
-                <th>UdXUdgrannel</th>
-                <td>{{ articulo.udXUdgrannel }}</td>
-            </tr>
-            <tr>
-                <th>Imagen</th>
-                <td>{{ articulo.imagen }}</td>
-            </tr>
-            <tr>
-                <th>Ivapercent</th>
-                <td>{{ articulo.ivapercent }}</td>
-            </tr>
-            <tr>
-                <th>NordenMostrar</th>
-                <td>{{ articulo.nordenMostrar }}</td>
-            </tr>
-            <tr>
-                <th>Intrastat</th>
-                <td>{{ articulo.intrastat }}</td>
-            </tr>
-            <tr>
-                <th>Umedida</th>
-                <td>{{ articulo.umedida }}</td>
-            </tr>
-            <tr>
-                <th>Peso</th>
-                <td>{{ articulo.peso }}</td>
-            </tr>
-            <tr>
-                <th>ReqEq</th>
-                <td>{{ articulo.reqEq }}</td>
-            </tr>
-            <tr>
-                <th>Codcategoria</th>
-                <td>{{ articulo.codcategoria }}</td>
-            </tr>
-            <tr>
-                <th>Codsubcategoria</th>
-                <td>{{ articulo.codsubcategoria }}</td>
-            </tr>
-            <tr>
-                <th>Idwoocommerce</th>
-                <td>{{ articulo.idwoocommerce }}</td>
-            </tr>
-            <tr>
-                <th>Caractecnicas</th>
-                <td>{{ articulo.caractecnicas }}</td>
-            </tr>
-        </tbody>
-    </table>
+	</nav>
 
-    <a href="{{ path('app_articulo_index') }}">back to list</a>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Codarticulo</th>
+				<td>{{ articulo.codarticulo }}</td>
+			</tr>
+			<tr>
+				<th>Codigoean</th>
+				<td>{{ articulo.codigoean }}</td>
+			</tr>
+			<tr>
+				<th>Referenciaproveedor</th>
+				<td>{{ articulo.referenciaproveedor }}</td>
+			</tr>
+			<tr>
+				<th>Referenciamarca</th>
+				<td>{{ articulo.referenciamarca }}</td>
+			</tr>
+			<tr>
+				<th>Descripcion</th>
+				<td>{{ articulo.descripcion }}</td>
+			</tr>
+			<tr>
+				<th>AuxMargen</th>
+				<td>{{ articulo.auxMargen }}</td>
+			</tr>
+			<tr>
+				<th>Margen</th>
+				<td>{{ articulo.margen }}</td>
+			</tr>
+			<tr>
+				<th>Base</th>
+				<td>{{ articulo.base }}</td>
+			</tr>
+			<tr>
+				<th>Existenciasdisponibles</th>
+				<td>{{ articulo.existenciasdisponibles }}</td>
+			</tr>
+			<tr>
+				<th>PvpOfertaMostrador</th>
+				<td>{{ articulo.pvpOfertaMostrador }}</td>
+			</tr>
+			<tr>
+				<th>Pvp</th>
+				<td>{{ articulo.pvp }}</td>
+			</tr>
+			<tr>
+				<th>Pvp2</th>
+				<td>{{ articulo.pvp2 }}</td>
+			</tr>
+			<tr>
+				<th>Codigo</th>
+				<td>{{ articulo.codigo }}</td>
+			</tr>
+			<tr>
+				<th>Esmanoobra</th>
+				<td>{{ articulo.esmanoobra ? 'Yes' : 'No' }}</td>
+			</tr>
+			<tr>
+				<th>UdsUltimaentrada</th>
+				<td>{{ articulo.udsUltimaentrada }}</td>
+			</tr>
+			<tr>
+				<th>Base2</th>
+				<td>{{ articulo.base2 }}</td>
+			</tr>
+			<tr>
+				<th>Favorito</th>
+				<td>{{ articulo.favorito ? 'Yes' : 'No' }}</td>
+			</tr>
+			<tr>
+				<th>Posibleb</th>
+				<td>{{ articulo.posibleb ? 'Yes' : 'No' }}</td>
+			</tr>
+			<tr>
+				<th>CodartGranel</th>
+				<td>{{ articulo.codartGranel }}</td>
+			</tr>
+			<tr>
+				<th>UdXUdgrannel</th>
+				<td>{{ articulo.udXUdgrannel }}</td>
+			</tr>
+			<tr>
+				<th>Imagen</th>
+				<td>{{ articulo.imagen }}</td>
+			</tr>
+			<tr>
+				<th>Ivapercent</th>
+				<td>{{ articulo.ivapercent }}</td>
+			</tr>
+			<tr>
+				<th>NordenMostrar</th>
+				<td>{{ articulo.nordenMostrar }}</td>
+			</tr>
+			<tr>
+				<th>Intrastat</th>
+				<td>{{ articulo.intrastat }}</td>
+			</tr>
+			<tr>
+				<th>Umedida</th>
+				<td>{{ articulo.umedida }}</td>
+			</tr>
+			<tr>
+				<th>Peso</th>
+				<td>{{ articulo.peso }}</td>
+			</tr>
+			<tr>
+				<th>ReqEq</th>
+				<td>{{ articulo.reqEq }}</td>
+			</tr>
+			<tr>
+				<th>Codcategoria</th>
+				<td>{{ articulo.codcategoria }}</td>
+			</tr>
+			<tr>
+				<th>Codsubcategoria</th>
+				<td>{{ articulo.codsubcategoria }}</td>
+			</tr>
+			<tr>
+				<th>Idwoocommerce</th>
+				<td>{{ articulo.idwoocommerce }}</td>
+			</tr>
+			<tr>
+				<th>Caractecnicas</th>
+				<td>{{ articulo.caractecnicas }}</td>
+			</tr>
+			<tr>
+				<th>Pvd</th>
+				<td>{{ articulo.pvd }}</td>
+			</tr>
+			<tr>
+				<th>Nomcategoria</th>
+				<td>{{ articulo.nomcategoria }}</td>
+			</tr>
+			<tr>
+				<th>Nomsubcategoria</th>
+				<td>{{ articulo.nomsubcategoria }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_articulo_edit', {'codarticulo': articulo.codarticulo}) }}">edit</a>
+	<a href="{{ path('app_articulo_index') }}">back to list</a>
 
-    {{ include('articulo/_delete_form.html.twig') }}
+	<a href="{{ path('app_articulo_edit', {'codarticulo': articulo.codarticulo}) }}">edit</a>
+
+	{{ include('articulo/_delete_form.html.twig') }}
 {% endblock %}

@@ -3,11 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use App\Entity\Subfamilia;
+use App\Entity\Familia;
+use App\Entity\Proveedor;
+use App\Entity\Marca;
 /**
  * Articulo
  *
- * @ORM\Table(name="articulo", indexes={@ORM\Index(name="articulo_FK2", columns={"CODPROVEEDORREL"}), @ORM\Index(name="articulo_FK3", columns={"CODFAMILIAREL", "CODSUBFAMILIAREL"}), @ORM\Index(name="ARTICULO_FK_1", columns={"CODMARCAREL"}), @ORM\Index(name="IDX_69E94E91819EFD6C", columns={"CODFAMILIAREL"})})
+ * @ORM\Table(name="articulo", indexes={@ORM\Index(name="ARTICULO_FK_1", columns={"CODMARCAR"}), @ORM\Index(name="articulo_FK2", columns={"CODPROVEEDOR"}), @ORM\Index(name="IDX_69E94E91819EFD6C", columns={"CODFAMILIA"}), @ORM\Index(name="articulo_FK3", columns={"CODFAMILIA", "CODSUBFAMILIA"}), @ORM\Index(name="articulo_FK", columns={"CODSUBFAMILIA", "CODFAMILIA"})})
  * @ORM\Entity(repositoryClass="App\Repository\ArticuloRepository")
  */
 class Articulo
@@ -20,13 +23,6 @@ class Articulo
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $codarticulo;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="CODSUBFAMILIAREL", type="integer", nullable=true)
-     */
-    private $codsubfamiliarel;
 
     /**
      * @var string|null
@@ -66,13 +62,6 @@ class Articulo
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Column1", type="decimal", precision=10, scale=0, nullable=true)
-     */
-    private $column1;
-
-    /**
-     * @var string|null
-     *
      * @ORM\Column(name="MARGEN", type="decimal", precision=14, scale=4, nullable=true)
      */
     private $margen;
@@ -87,9 +76,9 @@ class Articulo
     /**
      * @var string|null
      *
-     * @ORM\Column(name="EXISTENCIASDISPONIBLE", type="decimal", precision=12, scale=2, nullable=true)
+     * @ORM\Column(name="EXISTENCIASDISPONIBLES", type="decimal", precision=12, scale=2, nullable=true)
      */
-    private $existenciasdisponible;
+    private $existenciasdisponibles;
 
     /**
      * @var string|null
@@ -246,50 +235,60 @@ class Articulo
     private $caractecnicas;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="PVD", type="decimal", precision=14, scale=4, nullable=true)
+     */
+    private $pvd;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="NOMCATEGORIA", type="string", length=30, nullable=true)
+     */
+    private $nomcategoria;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="NOMSUBCATEGORIA", type="string", length=100, nullable=true)
+     */
+    private $nomsubcategoria;
+
+    /**
      * @var \Proveedor
      *
      * @ORM\ManyToOne(targetEntity="Proveedor")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CODPROVEEDORREL", referencedColumnName="CODPROVEEDOR")
+     *   @ORM\JoinColumn(name="CODPROVEEDOR", referencedColumnName="CODPROVEEDOR")
      * })
      */
-    private $codproveedorrel;
+    private $codproveedor;
 
     /**
-     * @var \Familia
+     * @var \Subfamilia
      *
-     * @ORM\ManyToOne(targetEntity="Familia")
+     * @ORM\ManyToOne(targetEntity="Subfamilia")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CODFAMILIAREL", referencedColumnName="CODFAMILIA")
+     *   @ORM\JoinColumn(name="CODSUBFAMILIA", referencedColumnName="CODSUBFAMILIA"),
+     *   @ORM\JoinColumn(name="CODFAMILIA", referencedColumnName="CODFAMILIA")
      * })
      */
-    private $codfamiliarel;
+    private $codsubfamilia;
 
     /**
      * @var \Marca
      *
      * @ORM\ManyToOne(targetEntity="Marca")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CODMARCAREL", referencedColumnName="CODMARCA")
+     *   @ORM\JoinColumn(name="CODMARCAR", referencedColumnName="CODMARCA")
      * })
      */
-    private $codmarcarel;
+    private $codmarcar;
 
     public function getCodarticulo(): ?int
     {
         return $this->codarticulo;
-    }
-
-    public function getCodsubfamiliarel(): ?int
-    {
-        return $this->codsubfamiliarel;
-    }
-
-    public function setCodsubfamiliarel(?int $codsubfamiliarel): self
-    {
-        $this->codsubfamiliarel = $codsubfamiliarel;
-
-        return $this;
     }
 
     public function getCodigoean(): ?string
@@ -352,18 +351,6 @@ class Articulo
         return $this;
     }
 
-    public function getColumn1(): ?string
-    {
-        return $this->column1;
-    }
-
-    public function setColumn1(?string $column1): self
-    {
-        $this->column1 = $column1;
-
-        return $this;
-    }
-
     public function getMargen(): ?string
     {
         return $this->margen;
@@ -388,14 +375,14 @@ class Articulo
         return $this;
     }
 
-    public function getExistenciasdisponible(): ?string
+    public function getExistenciasdisponibles(): ?string
     {
-        return $this->existenciasdisponible;
+        return $this->existenciasdisponibles;
     }
 
-    public function setExistenciasdisponible(?string $existenciasdisponible): self
+    public function setExistenciasdisponibles(?string $existenciasdisponibles): self
     {
-        $this->existenciasdisponible = $existenciasdisponible;
+        $this->existenciasdisponibles = $existenciasdisponibles;
 
         return $this;
     }
@@ -664,38 +651,74 @@ class Articulo
         return $this;
     }
 
-    public function getCodproveedorrel(): ?Proveedor
+    public function getPvd(): ?string
     {
-        return $this->codproveedorrel;
+        return $this->pvd;
     }
 
-    public function setCodproveedorrel(?Proveedor $codproveedorrel): self
+    public function setPvd(?string $pvd): self
     {
-        $this->codproveedorrel = $codproveedorrel;
+        $this->pvd = $pvd;
 
         return $this;
     }
 
-    public function getCodfamiliarel(): ?Familia
+    public function getNomcategoria(): ?string
     {
-        return $this->codfamiliarel;
+        return $this->nomcategoria;
     }
 
-    public function setCodfamiliarel(?Familia $codfamiliarel): self
+    public function setNomcategoria(?string $nomcategoria): self
     {
-        $this->codfamiliarel = $codfamiliarel;
+        $this->nomcategoria = $nomcategoria;
 
         return $this;
     }
 
-    public function getCodmarcarel(): ?Marca
+    public function getNomsubcategoria(): ?string
     {
-        return $this->codmarcarel;
+        return $this->nomsubcategoria;
     }
 
-    public function setCodmarcarel(?Marca $codmarcarel): self
+    public function setNomsubcategoria(?string $nomsubcategoria): self
     {
-        $this->codmarcarel = $codmarcarel;
+        $this->nomsubcategoria = $nomsubcategoria;
+
+        return $this;
+    }
+
+    public function getCodproveedor(): ?Proveedor
+    {
+        return $this->codproveedor;
+    }
+
+    public function setCodproveedor(?Proveedor $codproveedor): self
+    {
+        $this->codproveedor = $codproveedor;
+
+        return $this;
+    }
+
+    public function getCodsubfamilia(): ?Subfamilia
+    {
+        return $this->codsubfamilia;
+    }
+
+    public function setCodsubfamilia(?Subfamilia $codsubfamilia): self
+    {
+        $this->codsubfamilia = $codsubfamilia;
+
+        return $this;
+    }
+
+    public function getCodmarcar(): ?Marca
+    {
+        return $this->codmarcar;
+    }
+
+    public function setCodmarcar(?Marca $codmarcar): self
+    {
+        $this->codmarcar = $codmarcar;
 
         return $this;
     }

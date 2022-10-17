@@ -12,16 +12,14 @@ class ArticuloType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('codsubfamiliarel')
             ->add('codigoean')
             ->add('referenciaproveedor')
             ->add('referenciamarca')
             ->add('descripcion')
             ->add('auxMargen')
-            ->add('column1')
             ->add('margen')
             ->add('base')
-            ->add('existenciasdisponible')
+            ->add('existenciasdisponibles')
             ->add('pvpOfertaMostrador')
             ->add('pvp')
             ->add('pvp2')
@@ -44,9 +42,12 @@ class ArticuloType extends AbstractType
             ->add('codsubcategoria')
             ->add('idwoocommerce')
             ->add('caractecnicas')
-            ->add('codproveedorrel')
-            ->add('codfamiliarel')
-            ->add('codmarcarel')
+            ->add('pvd')
+            ->add('nomcategoria')
+            ->add('nomsubcategoria')
+            ->add('codproveedor')
+            ->add('codsubfamilia')
+            ->add('codmarcar')
         ;
     }
 
