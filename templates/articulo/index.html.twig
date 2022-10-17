@@ -1,104 +1,114 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Articulo index{% endblock %}
+{% block title %}Listar artículos
+{% endblock %}
 
 {% block body %}
-    <h1>Articulo index</h1>
-        <nav aria-label="breadcrumb">
+	<h1>Listar artículos</h1>
+	<div class="d-flex justify-content-end">
+		<a href="{{ path('app_articulo_new') }}" class="btn btn-success">Create artículo nuevo</a>
+	</div>
+	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="{{ path('app_inicio') }}">Inicio</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page">Articulos</li>
 		</ol>
-        </nav>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Codarticulo</th>
-                <th>Codsubfamiliarel</th>
-                <th>Codigoean</th>
-                <th>Referenciaproveedor</th>
-                <th>Referenciamarca</th>
-                <th>Descripcion</th>
-                <th>AuxMargen</th>
-                <th>Column1</th>
-                <th>Margen</th>
-                <th>Base</th>
-                <th>Existenciasdisponible</th>
-                <th>PvpOfertaMostrador</th>
-                <th>Pvp</th>
-                <th>Pvp2</th>
-                <th>Codigo</th>
-                <th>Esmanoobra</th>
-                <th>UdsUltimaentrada</th>
-                <th>Base2</th>
-                <th>Favorito</th>
-                <th>Posibleb</th>
-                <th>CodartGranel</th>
-                <th>UdXUdgrannel</th>
-                <th>Imagen</th>
-                <th>Ivapercent</th>
-                <th>NordenMostrar</th>
-                <th>Intrastat</th>
-                <th>Umedida</th>
-                <th>Peso</th>
-                <th>ReqEq</th>
-                <th>Codcategoria</th>
-                <th>Codsubcategoria</th>
-                <th>Idwoocommerce</th>
-                <th>Caractecnicas</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for articulo in articulos %}
-            <tr>
-                <td>{{ articulo.codarticulo }}</td>
-                <td>{{ articulo.codsubfamiliarel }}</td>
-                <td>{{ articulo.codigoean }}</td>
-                <td>{{ articulo.referenciaproveedor }}</td>
-                <td>{{ articulo.referenciamarca }}</td>
-                <td>{{ articulo.descripcion }}</td>
-                <td>{{ articulo.auxMargen }}</td>
-                <td>{{ articulo.column1 }}</td>
-                <td>{{ articulo.margen }}</td>
-                <td>{{ articulo.base }}</td>
-                <td>{{ articulo.existenciasdisponible }}</td>
-                <td>{{ articulo.pvpOfertaMostrador }}</td>
-                <td>{{ articulo.pvp }}</td>
-                <td>{{ articulo.pvp2 }}</td>
-                <td>{{ articulo.codigo }}</td>
-                <td>{{ articulo.esmanoobra ? 'Yes' : 'No' }}</td>
-                <td>{{ articulo.udsUltimaentrada }}</td>
-                <td>{{ articulo.base2 }}</td>
-                <td>{{ articulo.favorito ? 'Yes' : 'No' }}</td>
-                <td>{{ articulo.posibleb ? 'Yes' : 'No' }}</td>
-                <td>{{ articulo.codartGranel }}</td>
-                <td>{{ articulo.udXUdgrannel }}</td>
-                <td>{{ articulo.imagen }}</td>
-                <td>{{ articulo.ivapercent }}</td>
-                <td>{{ articulo.nordenMostrar }}</td>
-                <td>{{ articulo.intrastat }}</td>
-                <td>{{ articulo.umedida }}</td>
-                <td>{{ articulo.peso }}</td>
-                <td>{{ articulo.reqEq }}</td>
-                <td>{{ articulo.codcategoria }}</td>
-                <td>{{ articulo.codsubcategoria }}</td>
-                <td>{{ articulo.idwoocommerce }}</td>
-                <td>{{ articulo.caractecnicas }}</td>
-                <td>
-                    <a href="{{ path('app_articulo_show', {'codarticulo': articulo.codarticulo}) }}">show</a>
-                    <a href="{{ path('app_articulo_edit', {'codarticulo': articulo.codarticulo}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="34">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	</nav>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Codarticulo</th>
+				<th>Codigoean</th>
+				<th>Referenciaproveedor</th>
+				<th>Referenciamarca</th>
+				<th>Descripcion</th>
+				<th>AuxMargen</th>
+				<th>Margen</th>
+				<th>Base</th>
+				<th>Existenciasdisponibles</th>
+				<th>PvpOfertaMostrador</th>
+				<th>Pvp</th>
+				<th>Pvp2</th>
+				<th>Codigo</th>
+				<th>Esmanoobra</th>
+				<th>UdsUltimaentrada</th>
+				<th>Base2</th>
+				<th>Favorito</th>
+				<th>Posibleb</th>
+				<th>CodartGranel</th>
+				<th>UdXUdgrannel</th>
+				<th>Imagen</th>
+				<th>Ivapercent</th>
+				<th>NordenMostrar</th>
+				<th>Intrastat</th>
+				<th>Umedida</th>
+				<th>Peso</th>
+				<th>ReqEq</th>
+				<th>Codcategoria</th>
+				<th>Codsubcategoria</th>
+				<th>Idwoocommerce</th>
+				<th>Caractecnicas</th>
+				<th>Pvd</th>
+				<th>Nomcategoria</th>
+				<th>Nomsubcategoria</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for articulo in articulos %}
+				<tr>
+					<td>{{ articulo.codarticulo }}</td>
+					<td>{{ articulo.codigoean }}</td>
+					<td>{{ articulo.referenciaproveedor }}</td>
+					<td>{{ articulo.referenciamarca }}</td>
+					<td>{{ articulo.descripcion }}</td>
+					<td>{{ articulo.auxMargen }}</td>
+					<td>{{ articulo.margen }}</td>
+					<td>{{ articulo.base }}</td>
+					<td>{{ articulo.existenciasdisponibles }}</td>
+					<td>{{ articulo.pvpOfertaMostrador }}</td>
+					<td>{{ articulo.pvp }}</td>
+					<td>{{ articulo.pvp2 }}</td>
+					<td>{{ articulo.codigo }}</td>
+					<td>{{ articulo.esmanoobra ? 'Yes' : 'No' }}</td>
+					<td>{{ articulo.udsUltimaentrada }}</td>
+					<td>{{ articulo.base2 }}</td>
+					<td>{{ articulo.favorito ? 'Yes' : 'No' }}</td>
+					<td>{{ articulo.posibleb ? 'Yes' : 'No' }}</td>
+					<td>{{ articulo.codartGranel }}</td>
+					<td>{{ articulo.udXUdgrannel }}</td>
+					<td>{{ articulo.imagen }}</td>
+					<td>{{ articulo.ivapercent }}</td>
+					<td>{{ articulo.nordenMostrar }}</td>
+					<td>{{ articulo.intrastat }}</td>
+					<td>{{ articulo.umedida }}</td>
+					<td>{{ articulo.peso }}</td>
+					<td>{{ articulo.reqEq }}</td>
+					<td>{{ articulo.codcategoria }}</td>
+					<td>{{ articulo.codsubcategoria }}</td>
+					<td>{{ articulo.idwoocommerce }}</td>
+					<td>{{ articulo.caractecnicas }}</td>
+					<td>{{ articulo.pvd }}</td>
+					<td>{{ articulo.nomcategoria }}</td>
+					<td>{{ articulo.nomsubcategoria }}</td>
+					<td>
+						<a href="{{ path('app_articulo_show', {'codarticulo': articulo.codarticulo}) }}" class="btn btn-secondary" title="Mostrar">
+                        
+                        </a>
+						<a href="{{ path('app_articulo_edit', {'codarticulo': articulo.codarticulo}) }}" class="btn btn-warning" title="Editar">
+                        
+                        </a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="35">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_articulo_new') }}">Create new</a>
+
 {% endblock %}
