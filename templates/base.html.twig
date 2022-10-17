@@ -34,13 +34,13 @@
 							<!--User dropdown start-->
 							<div
 								class="w-75">
-								<!-- Boton mostra -->
-								<button class="btn">
+								<!-- Boton muesstra -->
+								<button id="btnHideShowAside" class="btn">
 									<i class="bi bi-list fs-3 toggle-sidebar-btn"></i>
 								</button>
-								<!-- Boton mostra -->
+								<!-- Boton muesstra -->
 								<!-- Formulario busqueda inicio -->
-								<form action="" class="d-none d-md-inline" method="get">
+								<form action="" class="d-none d-lg-inline" method="get">
 
 									<input type="search" name="buscar" placeholder="Buscar" id="buscar">
 									<button type="submit" name="buscar" class="bbuscar btn position-relative" placeholder="Buscar" id="bbuscar">
@@ -76,198 +76,215 @@
 				</header>
 			</div>
 			<div class="row">
-				<aside class="bg-white d-flex justify-content-center justify-content-md-start col col-lg-2">
-					<nav>
-						<ul class="sidebar-nav list-unstyled" id="sidebar-nav">
+				<aside id="asideBar" class="col-lg-3 bg-white d-flex flex-column  justify-content-start justify-content-lg-center ">
+					<ul class="sidebar-nav list-unstyled" id="sidebar-nav">
 
-							<li class="nav-item">
-								<a class="nav-link " href="{{ path('app_inicio') }}">
-									<i class="bi bi-grid"></i>
-									<span>Inicio</span>
-								</a>
-							</li>
-							<!-- End Dashboard Nav -->
+						<li class="nav-item">
+							<a class="nav-link " href="{{ path('app_inicio') }}">
+								<i class="bi bi-grid"></i>
+								<span>Inicio</span>
+							</a>
+						</li>
+					</ul>
+					<!-- End Dashboard Nav -->
 
 
-							<!-- Start familias -->
-							<li class="nav-item">
-								<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-									<i class="bi bi-journal-text me-2"></i>
-									<span>Familias</span>
-									<i class="bi bi-chevron-down ms-auto"></i>
-								</a>
-								<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-									<li>
-										<a href="{{ path('app_familia_index') }}">
-											<i class="bi bi-view-list me-2"></i>
-											<span>Listar</span>
-										</a>
-									</li>
-									<li>
-										<a href="{{ path('app_familia_new') }}">
-											<i class="bi bi-plus-square me-2"></i>
-										</i>
-										<span>Añadir familia</span>
-									</li>
-								</a>
-							</li>
-						</ul>
-					</li>
+					<!-- Start familias -->
+					<ul class="sidebar-nav list-unstyled" id="sidebar-nav">
+
+						<li class="nav-item">
+							<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+								<i class="bi bi-journal-text me-2"></i>
+								<span>Familias</span>
+								<i class="bi bi-chevron-down ms-auto"></i>
+							</a>
+							<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+								<li>
+									<a href="{{ path('app_familia_index') }}">
+										<i class="bi bi-view-list me-2"></i>
+										<span>Listar</span>
+									</a>
+								</li>
+								<li>
+									<a href="{{ path('app_familia_new') }}">
+										<i class="bi bi-plus-square me-2"></i>
+										<span>Añadir subfamilia</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
 					<!-- End  familias -->
 					<!-- Start subfamilias -->
-					<li class="nav-item">
-						<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-							<i class="bi bi-journal-text me-2"></i>
-							<span>Subamilias</span>
-							<i class="bi bi-chevron-down ms-auto"></i>
-						</a>
-						<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-							<li>
-								<a href="{{ path('app_subfamilia_index') }}">
-									<i class="bi bi-view-list me-2"></i>
-									<span>Listar</span>
-								</a>
-							</li>
-							<li>
-								<a href="{{ path('app_subfamilia_new') }}">
-									<i class="bi bi-plus-square me-2"></i>
-									<span>Añadir subfamilia</span>
-								</a>
-							</li>
-						</ul>
-					</li>
+					<ul class="sidebar-nav list-unstyled" id="sidebar-nav">
+
+						<li class="nav-item">
+							<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+								<i class="bi bi-journal-text me-2"></i>
+								<span>Subamilias</span>
+								<i class="bi bi-chevron-down ms-auto"></i>
+							</a>
+							<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+								<li>
+									<a href="{{ path('app_subfamilia_index') }}">
+										<i class="bi bi-view-list me-2"></i>
+										<span>Listar</span>
+									</a>
+								</li>
+								<li>
+									<a href="{{ path('app_subfamilia_new') }}">
+										<i class="bi bi-plus-square me-2"></i>
+										<span>Añadir subfamilia</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
 					<!-- End  subfamilias -->
 					<!-- Start subfamilias -->
-					<li class="nav-item">
-						<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-							<i class="bi bi-journal-text me-2"></i>
-							<span>Origen gasto</span>
-							<i class="bi bi-chevron-down ms-auto"></i>
-						</a>
-						<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-							<li>
-								<a href="{{ path('app_origengasto_index') }}">
-									<i class="bi bi-view-list me-2"></i>
-									<span>Listar</span>
-								</a>
-							</li>
-							<li>
-								<a href="{{ path('app_origengasto_new') }}">
-									<i class="bi bi-plus-square me-2"></i>
-									<span>Añadir origen gasto</span>
-								</a>
-							</li>
-						</ul>
-					</li>
+					<ul class="sidebar-nav list-unstyled" id="sidebar-nav">
+						<li class="nav-item">
+							<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+								<i class="bi bi-journal-text me-2"></i>
+								<span>Origen gasto</span>
+								<i class="bi bi-chevron-down ms-auto"></i>
+							</a>
+							<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+								<li>
+									<a href="{{ path('app_origengasto_index') }}">
+										<i class="bi bi-view-list me-2"></i>
+										<span>Listar</span>
+									</a>
+								</li>
+								<li>
+									<a href="{{ path('app_origengasto_new') }}">
+										<i class="bi bi-plus-square me-2"></i>
+										<span>Añadir origen gasto</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
 					<!-- End  subfamilias -->
 					<!-- Start marcas -->
-					<li class="nav-item">
-						<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-							<i class="bi bi-journal-text me-2"></i>
-							<span>Marcas</span>
-							<i class="bi bi-chevron-down ms-auto"></i>
-						</a>
-						<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-							<li>
-								<a href="{{ path('app_marca_index') }}">
-									<i class="bi bi-view-list me-2"></i>
-									<span>Listar</span>
-								</a>
-							</li>
-							<li>
-								<a href="{{ path('app_marca_new') }}">
-									<i class="bi bi-plus-square me-2"></i>
-									<span>Añadir marca</span>
-								</a>
-							</li>
-						</ul>
-					</li>
+					<ul class="sidebar-nav list-unstyled" id="sidebar-nav">
+						<li class="nav-item">
+							<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+								<i class="bi bi-journal-text me-2"></i>
+								<span>Marcas</span>
+								<i class="bi bi-chevron-down ms-auto"></i>
+							</a>
+							<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+								<li>
+									<a href="{{ path('app_marca_index') }}">
+										<i class="bi bi-view-list me-2"></i>
+										<span>Listar</span>
+									</a>
+								</li>
+								<li>
+									<a href="{{ path('app_marca_new') }}">
+										<i class="bi bi-plus-square me-2"></i>
+										<span>Añadir marca</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
 					<!-- End  marcas -->
 					<!-- Start Formas de pago -->
-					<li class="nav-item">
-						<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-							<i class="bi bi-journal-text me-2"></i>
-							<span>Formas de pago</span>
-							<i class="bi bi-chevron-down ms-auto"></i>
-						</a>
-						<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-							<li>
-								<a href="{{ path('app_fp_index') }}">
-									<i class="bi bi-view-list me-2"></i>
-									<span>Listar</span>
-								</a>
-							</li>
-							<li>
-								<a href="{{ path('app_fp_new') }}">
-									<i class="bi bi-plus-square me-2"></i>
-									<span>Añadir forma de pago</span>
-								</a>
-							</li>
-						</ul>
-					</li>
+					<ul class="sidebar-nav list-unstyled" id="sidebar-nav">
+						<li class="nav-item">
+							<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+								<i class="bi bi-journal-text me-2"></i>
+								<span>Formas de pago</span>
+								<i class="bi bi-chevron-down ms-auto"></i>
+							</a>
+							<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+								<li>
+									<a href="{{ path('app_fp_index') }}">
+										<i class="bi bi-view-list me-2"></i>
+										<span>Listar</span>
+									</a>
+								</li>
+								<li>
+									<a href="{{ path('app_fp_new') }}">
+										<i class="bi bi-plus-square me-2"></i>
+										<span>Añadir forma de pago</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
 					<!-- End  Formas de pago -->
 					<!-- Start Proveedores -->
-					<li class="nav-item">
-						<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-							<i class="bi bi-journal-text me-2"></i>
-							<span>Proveedores</span>
-							<i class="bi bi-chevron-down ms-auto"></i>
-						</a>
-						<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-							<li>
-								<a href="{{ path('app_proveedor_index') }}">
-									<i class="bi bi-view-list me-2"></i>
-									<span>Listar</span>
-								</a>
-							</li>
-							<li>
-								<a href="{{ path('app_proveedor_new') }}">
-									<i class="bi bi-plus-square me-2"></i>
-									<span>Añadir proveedor</span>
-								</a>
-							</li>
-						</ul>
-					</li>
+					<ul class="sidebar-nav list-unstyled" id="sidebar-nav">
+						<li class="nav-item">
+							<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+								<i class="bi bi-journal-text me-2"></i>
+								<span>Proveedores</span>
+								<i class="bi bi-chevron-down ms-auto"></i>
+							</a>
+							<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+								<li>
+									<a href="{{ path('app_proveedor_index') }}">
+										<i class="bi bi-view-list me-2"></i>
+										<span>Listar</span>
+									</a>
+								</li>
+								<li>
+									<a href="{{ path('app_proveedor_new') }}">
+										<i class="bi bi-plus-square me-2"></i>
+										<span>Añadir proveedor</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
 					<!-- End  Proveedores -->
 					<!-- Start Articulos -->
-					<li class="nav-item">
-						<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-							<i class="bi bi-journal-text me-2"></i>
-							<span>Articulos</span>
-							<i class="bi bi-chevron-down ms-auto"></i>
-						</a>
-						<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-							<li>
-								<a href="{{ path('app_articulo_index') }}">
-									<i class="bi bi-view-list me-2"></i>
-									<span>Listar</span>
-								</a>
-							</li>
-							<li>
-								<a href="{{ path('app_articulo_new') }}">
-									<i class="bi bi-plus-square me-2"></i>
-									<span>Añadir artículo</span>
-								</a>
-							</li>
-						</ul>
-					</li>
+					<ul class="sidebar-nav list-unstyled" id="sidebar-nav">
+						<li class="nav-item">
+							<a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+								<i class="bi bi-journal-text me-2"></i>
+								<span>Articulos</span>
+								<i class="bi bi-chevron-down ms-auto"></i>
+							</a>
+							<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+								<li>
+									<a href="{{ path('app_articulo_index') }}">
+										<i class="bi bi-view-list me-2"></i>
+										<span>Listar</span>
+									</a>
+								</li>
+								<li>
+									<a href="{{ path('app_articulo_new') }}">
+										<i class="bi bi-plus-square me-2"></i>
+										<span>Añadir artículo</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
 					<!-- End  Articulos -->
-				</nav>
-				<nav></nav>
 
 
-			</ul>
-		</aside>
-		<main class="col col-lg-8">
-			{% for label, messages in app.flashes %}
-				{% for message in messages %}
-					<div class="alert alert-{{ label }}" role="alert">
-						{{ message }}
-					</div>
-				{% endfor %}
-			{% endfor %}
-			{% block body %}{% endblock %}
-		</main>
-		<div class="col col-lg-2"></div>
+				</aside>
+
+				<main id="mainBar" class="col-lg-9">
+					{% for label, messages in app.flashes %}
+						{% for message in messages %}
+							<div class="alert alert-{{ label }}" role="alert">
+								{{ message }}
+							</div>
+						{% endfor %}
+					{% endfor %}
+					{% block body %}{% endblock %}
+				</main>
+				{# <div class="col col-lg-2"></div> #}
+			</div>
+		</div>
+	<script src="http://127.0.0.8/js/hideAside.js"></script>
 	</body>
-</html></div></div></body></html>
+</html>

@@ -96,20 +96,24 @@
 					<td>{{ articulo.nomsubcategoria }}</td>
 					<td>
 						<a href="{{ path('app_articulo_show', {'codarticulo': articulo.codarticulo}) }}" class="btn btn-secondary" title="Ver">
-						<i class="bi bi-eye"></i>
+							<i class="bi bi-eye"></i>
 						</a>
 						<a href="{{ path('app_articulo_edit', {'codarticulo': articulo.codarticulo}) }}" class="btn btn-warning" title="Editar">
-						<i class="bi bi-pencil-square"></i>
+							<i class="bi bi-pencil-square"></i>
 						</a>
 					</td>
 				</tr>
+		
 			{% else %}
 				<tr>
 					<td colspan="35">No hay artículos registrados</td>
 				</tr>
 			{% endfor %}
 		</tbody>
+		
 	</table>
-
+			<div class="d-flex justify-content-center">
+					{{ knp_pagination_render(articulos) }}
+				</div>
 
 {% endblock %}

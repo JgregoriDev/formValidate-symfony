@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Articulo;
 use App\Form\ArticuloType;
+use App\Repository\ArticuloRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 /**
  * @Route("/articulo")
  */
@@ -18,14 +20,18 @@ class ArticuloController extends AbstractController
     /**
      * @Route("/", name="app_articulo_index", methods={"GET"})
      */
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(ArticuloRepository $articuloRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $articulos = $entityManager
-            ->getRepository(Articulo::class)
-            ->findAll();
+            $queryArticulos=$articuloRepository->obtenerQueryArticulos();
 
+            
+            $pagination = $paginator->paginate(
+                $queryArticulos,
+                $request->query->getInt('page', 1), /*page number*/
+                12 /*limit per page*/
+            );
         return $this->render('articulo/index.html.twig', [
-            'articulos' => $articulos,
+            'articulos' => $pagination,
         ]);
     }
 
