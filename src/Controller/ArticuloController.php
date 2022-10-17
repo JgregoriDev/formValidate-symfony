@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+
 /**
  * @Route("/articulo")
  */
@@ -22,14 +23,14 @@ class ArticuloController extends AbstractController
      */
     public function index(ArticuloRepository $articuloRepository, PaginatorInterface $paginator, Request $request): Response
     {
-            $queryArticulos=$articuloRepository->obtenerQueryArticulos();
+        $queryArticulos = $articuloRepository->obtenerQueryArticulos();
 
-            
-            $pagination = $paginator->paginate(
-                $queryArticulos,
-                $request->query->getInt('page', 1), /*page number*/
-                12 /*limit per page*/
-            );
+
+        $pagination = $paginator->paginate(
+            $queryArticulos,
+            $request->query->getInt('page', 1), /*page number*/
+            12 /*limit per page*/
+        );
         return $this->render('articulo/index.html.twig', [
             'articulos' => $pagination,
         ]);
@@ -43,8 +44,13 @@ class ArticuloController extends AbstractController
         $articulo = new Articulo();
         $form = $this->createForm(ArticuloType::class, $articulo);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $blobData = $form->get("img")->getData();
+            if ($blobData) {
+                $imageContent = file_get_contents($blobData);
+                $articulo->setImagen($imageContent);
+            }
             $entityManager->persist($articulo);
             $entityManager->flush();
 
@@ -53,7 +59,7 @@ class ArticuloController extends AbstractController
 
         return $this->renderForm('articulo/new.html.twig', [
             'articulo' => $articulo,
-            'typeButton'=>'success',
+            'typeButton' => 'success',
             'form' => $form,
         ]);
     }
@@ -63,8 +69,13 @@ class ArticuloController extends AbstractController
      */
     public function show(Articulo $articulo): Response
     {
+        $base64Image=null;
+        if($articulo->getImagen()){
+            $base64Image = base64_encode(stream_get_contents($articulo->getImagen()));
+        }
         return $this->render('articulo/show.html.twig', [
             'articulo' => $articulo,
+            'base64Image'=>$base64Image
         ]);
     }
 
@@ -77,6 +88,11 @@ class ArticuloController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $blobData = $form->get("img")->getData();
+            if ($blobData) {
+                $imageContent = file_get_contents($blobData);
+                $articulo->setImagen($imageContent);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);
@@ -84,7 +100,7 @@ class ArticuloController extends AbstractController
 
         return $this->renderForm('articulo/edit.html.twig', [
             'articulo' => $articulo,
-            'typeButton'=>'warning',
+            'typeButton' => 'warning',
             'form' => $form,
         ]);
     }
@@ -94,9 +110,9 @@ class ArticuloController extends AbstractController
      */
     public function delete(Request $request, Articulo $articulo, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$articulo->getCodarticulo(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $articulo->getCodarticulo(), $request->request->get('_token'))) {
             $entityManager->remove($articulo);
-            $this->addFlash("success","Has borrado de manera satisfactoria el artículo.");
+            $this->addFlash("success", "Has borrado de manera satisfactoria el artículo.");
             $entityManager->flush();
         }
 

@@ -68,15 +68,18 @@ class FamiliaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $blobData = $form->get("img")->getData();
-            $imageContent = file_get_contents($blobData);
-            $familium->setImagen($imageContent);
+            if ($blobData) {
+
+                $imageContent = file_get_contents($blobData);
+                $familium->setImagen($imageContent);
+            }
             $familiaRepository->add($familium, true);
             return $this->redirectToRoute('app_familia_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('familia/new.html.twig', [
             'familium' => $familium,
-            'typeButton'=>'success',
+            'typeButton' => 'success',
             'form' => $form,
         ]);
     }
@@ -105,8 +108,10 @@ class FamiliaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $blobData = $form->get("img")->getData();
-            $imageContent = file_get_contents($blobData);
-            $familium->setImagen($imageContent);
+            if ($blobData) {
+                $imageContent = file_get_contents($blobData);
+                $familium->setImagen($imageContent);
+            }
             $familiaRepository->add($familium, true);
 
             return $this->redirectToRoute('app_familia_index', [], Response::HTTP_SEE_OTHER);
@@ -114,7 +119,7 @@ class FamiliaController extends AbstractController
 
         return $this->renderForm('familia/edit.html.twig', [
             'familium' => $familium,
-            'typeButton'=>'warning',
+            'typeButton' => 'warning',
             'form' => $form,
         ]);
     }
@@ -126,7 +131,7 @@ class FamiliaController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $familium->getCodfamilia(), $request->request->get('_token'))) {
             $familiaRepository->remove($familium, true);
-            $this->addFlash("success","Has borrado de manera satisfactoria la familia.");
+            $this->addFlash("success", "Has borrado de manera satisfactoria la familia.");
         }
 
         return $this->redirectToRoute('app_familia_index', [], Response::HTTP_SEE_OTHER);

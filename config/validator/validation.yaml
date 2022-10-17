@@ -1,14 +1,58 @@
 # config/validator/validation.yaml
-# App\Entity\Subfamilia:
-#     properties:
-#         codsubfamilia:
-#             - NotBlank: { message: 'subfamilia.codsubfamilia.not_blank' }
+# familia
 App\Entity\Familia:
   properties:
+    nombre:
+      - Length:
+          max: 40
+          maxMessage: "el campo nombre no puede superar el límite de {{ limit }} caracteres"
     margen:
-      - GreaterThan: { value: 0, message: Deberia ser un numero mayor de 0}
-      - LessThan: { value: 10000, message: Deberia ser un numero menor de 10000}
+      - GreaterThan: { value: 0, message: Deberia ser un numero mayor de 0 }
+      - LessThan:
+          { value: 10000, message: Deberia ser un numero menor de 10000 }
     ivapercent:
-      - GreaterThan: { value: 0, message: Deberia ser un numero mayor de 0}
-      - LessThan: { value: 100, message: Deberia ser un numero menor de 100}
-#              - NotBlank: { message: 'familia.margen.not_blank' }
+      - GreaterThan: { value: 0, message: Deberia ser un numero mayor de 0 }
+      - LessThan: { value: 100, message: Deberia ser un numero menor de 100 }
+# Subfamilia
+App\Entity\Subfamilia:
+  properties:
+    nombre:
+      - Length:
+          max: 40
+          maxMessage: "el campo nombre no puede superar el límite de {{ limit }} caracteres"
+    codfamilia:
+      - NotBlank: { message: El campo código familia no puede estar vacio }
+    codsubfamilia:
+      - NotBlank: { message: El campo código subfamilia no puede estar vacio }
+      - GreaterThan: { value: -1, message: Deberia ser un numero mayor de 0 }
+# Origen gasto
+App\Entity\Origengasto:
+  properties:
+    descripcion:
+      - Length:
+          max: 40
+          maxMessage: "el campo descripción no puede superar el límite de {{ limit }} caracteres"
+# Marca
+App\Entity\Marca:
+
+# Proveedor
+App\Entity\Proveedor:
+    properties:
+    razonsocial:
+      - Length:
+          max: 50
+          maxMessage: "el campo razón social no puede superar el límite de {{ limit }} caracteres"
+# Articulo
+App\Entity\Articulo:
+  properties:
+    descripcion:
+      - Length:
+          max: 50
+          maxMessage: "el campo descripción no puede superar el límite de {{ limit }} caracteres"
+    caractecnicas:
+      - Length:
+          max: 50
+          maxMessage: "el campo descripción no puede superar el límite de {{ limit }} caracteres"
+
+# Forma de pago
+App\Entity\Fp:

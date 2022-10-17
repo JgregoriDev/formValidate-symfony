@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Articulo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -17,7 +18,7 @@ class ArticuloType extends AbstractType
             ->add('codigoean')
             ->add('referenciaproveedor')
             ->add('referenciamarca')
-            ->add('descripcion')
+            ->add('descripcion',TextareaType::class)
             ->add('auxMargen')
             ->add('margen')
             ->add('base')
@@ -60,7 +61,7 @@ class ArticuloType extends AbstractType
             ->add('codcategoria')
             ->add('codsubcategoria')
             ->add('idwoocommerce')
-            ->add('caractecnicas')
+            ->add('caractecnicas', TextareaType::class)
             ->add('pvd')
             ->add('nomcategoria')
             ->add('nomsubcategoria')

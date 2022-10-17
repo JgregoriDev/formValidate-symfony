@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class SubfamiliaType extends AbstractType
 {
@@ -15,7 +16,7 @@ class SubfamiliaType extends AbstractType
     {
         $builder
             // ->add('codsubfamilia')
-            ->add('codigo',NumberType::class,["label"=>"Codigo subfamilia:",'mapped' => false])
+            ->add('codsubfamilia',IntegerType::class,["label"=>"Codigo subfamilia:"])
             ->add('codfamilia')
             ->add('nombre')
             ->add('img',FileType::class, [
