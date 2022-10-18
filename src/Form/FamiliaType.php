@@ -17,17 +17,23 @@ class FamiliaType extends AbstractType
     {
         $builder
             // ->add('CodigoArticulo', NumberType::class,['mapped' => false])
-            ->add('nombre')
-            ->add('margen',IntegerType::class)
-            ->add('ivapercent',IntegerType::class)
-            ->add('esmanoobra')
+            ->add('nombre', null, [
+                "label" => "Nombre:",
+            ])
+            ->add('margen', IntegerType::class, [
+                "label" => "Margen:",
+            ])
+            ->add('ivapercent', IntegerType::class, [
+                "label" => "Iva porcentaje:",
+            ])
+            ->add('esmanoobra', null, ["label" => "Es mano de obra:",])
             ->add('iniciocodean')
-            ->add('re')
-            ->add('img',FileType::class, [
+            ->add('re', null, ["label" => "Margen:",])
+            ->add('img', FileType::class, [
                 'label' => 'Imagen',
-                'mapped'=>false,
-                'required'=>false,
-                
+                'mapped' => false,
+                'required' => false,
+
             ])
             // ->add('upload_imagen', FileType::class, [
             //     "mapped" => false,

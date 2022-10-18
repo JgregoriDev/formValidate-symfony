@@ -17,11 +17,14 @@
 			<li class="breadcrumb-item active" aria-current="page">Editar marcas</li>
 		</ol>
 	</nav>
-		<div class="d-flex justify-content-end">
-		{{ include('marca/_delete_form.html.twig') }}
+	<div class="row">
+		<div class="col-1"></div>
+		<div class="col-10 text-end">
+				{{ include('marca/_delete_form.html.twig') }}
 		</div>
+		<div class="col-1"></div>
+	</div>
 	{{ include('marca/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-	
 
 {% endblock %}
