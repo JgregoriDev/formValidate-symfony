@@ -37,15 +37,7 @@ class FamiliaController extends AbstractController
             12 /*limit per page*/
         );
 
-        if (isset($_POST['send'])) {
-            $familia = $familiaRepository->find($_POST['id']);
-            if ($familia !== null) {
-                $this->emi->remove($familia);
-                $this->emi->flush();
-                $this->addFlash("success", "La familia ha sido borrada de manera satisfactoria");
-                return $this->redirectToRoute('app_familia_index', [], Response::HTTP_SEE_OTHER);
-            }
-        }
+    
         return $this->render('familia/index.html.twig', [
             'pagination' => $pagination,
         ]);
@@ -74,6 +66,7 @@ class FamiliaController extends AbstractController
                 $familium->setImagen($imageContent);
             }
             $familiaRepository->add($familium, true);
+            
             return $this->redirectToRoute('app_familia_index', [], Response::HTTP_SEE_OTHER);
         }
 

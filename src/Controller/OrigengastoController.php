@@ -34,15 +34,7 @@ class OrigengastoController extends AbstractController
             $request->query->getInt('page', 1), /*page number*/
             12 /*limit per page*/
         );
-        if (isset($_POST['send'])) {
-            $familia = $origengastoRepository->find($_POST['id']);
-            if ($familia !== null) {
-                $this->emi->remove($familia);
-                $this->emi->flush();
-                $this->addFlash("success", "La forma de pago ha sido borrada de manera satisfactoria");
-                return $this->redirectToRoute('app_origengasto_index', [], Response::HTTP_SEE_OTHER);
-            }
-        }
+    
         return $this->render('origengasto/index.html.twig', [
             'origengastos' => $pagination,
         ]);
