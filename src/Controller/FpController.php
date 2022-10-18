@@ -51,7 +51,10 @@ class FpController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $fpRepository->add($fp, true);
-
+            $this->addFlash(
+                'success',
+                'Se ha introducido la forma de pago de manera correcta'
+             );
             return $this->redirectToRoute('app_fp_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -82,7 +85,10 @@ class FpController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $fpRepository->add($fp, true);
-
+            $this->addFlash(
+                'success',
+                'Se ha editado la forma de pago de manera correcta'
+             );
             return $this->redirectToRoute('app_fp_index', [], Response::HTTP_SEE_OTHER);
         }
 

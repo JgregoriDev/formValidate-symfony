@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
+
 /**
  * @Route("/origengasto")
  */
@@ -26,7 +27,7 @@ class OrigengastoController extends AbstractController
     /**
      * @Route("/", name="app_origengasto_index", methods={"GET","POST{{ include('origengasto/_delete_form.html.twig') }}"})
      */
-    public function index(OrigengastoRepository $origengastoRepository,PaginatorInterface $paginator,Request $request): Response
+    public function index(OrigengastoRepository $origengastoRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $queryArticulos = $origengastoRepository->obtenerQueryOrigenGastos();
         $pagination = $paginator->paginate(
@@ -34,7 +35,7 @@ class OrigengastoController extends AbstractController
             $request->query->getInt('page', 1), /*page number*/
             12 /*limit per page*/
         );
-    
+
         return $this->render('origengasto/index.html.twig', [
             'origengastos' => $pagination,
         ]);
@@ -51,13 +52,16 @@ class OrigengastoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $origengastoRepository->add($origengasto, true);
-
+            $this->addFlash(
+                'success',
+                'Se ha introducido el ordigen de gasto de manera correcta'
+            );
             return $this->redirectToRoute('app_origengasto_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('origengasto/new.html.twig', [
             'origengasto' => $origengasto,
-            'typeButton'=>'success',
+            'typeButton' => 'success',
             'form' => $form,
         ]);
     }
@@ -82,13 +86,16 @@ class OrigengastoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $origengastoRepository->add($origengasto, true);
-
+            $this->addFlash(
+                'success',
+                'Se ha editado el origen de gasto de manera correcta'
+            );
             return $this->redirectToRoute('app_origengasto_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('origengasto/edit.html.twig', [
             'origengasto' => $origengasto,
-            'typeButton'=>'warning',
+            'typeButton' => 'warning',
             'form' => $form,
         ]);
     }

@@ -36,7 +36,10 @@ class ProveedorController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $proveedorRepository->add($proveedor, true);
-
+            $this->addFlash(
+                'success',
+                'Se ha introducido el articulo de manera correcta'
+             );
             return $this->redirectToRoute('app_proveedor_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -67,7 +70,10 @@ class ProveedorController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $proveedorRepository->add($proveedor, true);
-
+            $this->addFlash(
+                'success',
+                'Se ha editado el articulo de manera correcta'
+             );
             return $this->redirectToRoute('app_proveedor_index', [], Response::HTTP_SEE_OTHER);
         }
 

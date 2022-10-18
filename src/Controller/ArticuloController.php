@@ -100,7 +100,10 @@ class ArticuloController extends AbstractController
                 $articulo->setImagen($imageContent);
             }
             $entityManager->flush();
-
+            $this->addFlash(
+                'success',
+                'Se ha editado el articulo de manera correcta'
+             );
             return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);
         }
 

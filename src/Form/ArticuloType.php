@@ -26,7 +26,10 @@ class ArticuloType extends AbstractType
             ->add('referenciamarca', null, [
                 'label' => 'Referencia marca:'
             ])
-            ->add('descripcion', TextareaType::class, [
+            ->add('descripcion', TextareaType::class, 
+            [
+                'required'=>false,
+                'empty_data' => '',
                 'label' => 'Descripción:'
             ])
             ->add('auxMargen', NumberType::class, [
@@ -164,6 +167,8 @@ class ArticuloType extends AbstractType
                 'label' => 'idwoocommerce:'
             ])
             ->add('caractecnicas', TextareaType::class, [
+                'required'=>false,                
+                'empty_data' => '0',
                 'label' => 'Características técnicas:'
             ])
             ->add('pvd', IntegerType::class, [

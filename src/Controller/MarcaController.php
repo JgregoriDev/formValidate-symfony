@@ -49,7 +49,10 @@ class MarcaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $marcaRepository->add($marca, true);
-
+            $this->addFlash(
+                'success',
+                'Se ha introducido la marca de manera correcta'
+             );
             return $this->redirectToRoute('app_marca_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -80,7 +83,10 @@ class MarcaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $marcaRepository->add($marca, true);
-
+            $this->addFlash(
+                'success',
+                'Se ha editado la marca de manera correcta'
+             );
             return $this->redirectToRoute('app_marca_index', [], Response::HTTP_SEE_OTHER);
         }
 

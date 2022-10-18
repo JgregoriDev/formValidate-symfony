@@ -66,7 +66,10 @@ class FamiliaController extends AbstractController
                 $familium->setImagen($imageContent);
             }
             $familiaRepository->add($familium, true);
-            
+            $this->addFlash(
+                'success',
+                'Se ha introducido la forma de pago de manera correcta'
+             );
             return $this->redirectToRoute('app_familia_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -106,7 +109,10 @@ class FamiliaController extends AbstractController
                 $familium->setImagen($imageContent);
             }
             $familiaRepository->add($familium, true);
-
+            $this->addFlash(
+                'success',
+                'Se ha editado la forma de pago de manera correcta'
+             );
             return $this->redirectToRoute('app_familia_index', [], Response::HTTP_SEE_OTHER);
         }
 
