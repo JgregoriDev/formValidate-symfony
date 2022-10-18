@@ -82,10 +82,8 @@ class SubfamiliaController extends AbstractController
     {
         $form = $this->createForm(SubfamiliaType::class, $subfamilium);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $codigo = $form->get("codigo")->getData();
-            $subfamilium->setCodSubFamilia($codigo);
+        
             $blobData = $form->get("img")->getData();
             if ($blobData) {
                 $imageContent = file_get_contents($blobData);

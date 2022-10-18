@@ -1,8 +1,15 @@
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<div class="d-flex justify-content-center">
-	<a href="{{ path('app_articulo_index') }}" class="btn btn-secondary me-1">Volver a la lista</a>
-	<button class="btn btn-success">{{ button_label|default('Guardar') }}</button>
+<div class="row">
+	<div class="col-1"></div>
+	<div class="col-10">
+	<div class="col-1"></div>
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<div class="d-flex justify-content-center">
+			<a href="{{ path('app_articulo_index') }}" class="btn btn-secondary me-1">Volver a la lista</a>
+			<button class="btn btn-success">{{ button_label|default('Guardar') }}</button>
 
+		</div>
+		{{ form_end(form) }}
+		<div class="col-1"></div>
+	</div>
 </div>
-{{ form_end(form) }}

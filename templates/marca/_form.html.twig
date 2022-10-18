@@ -1,7 +1,14 @@
+<div class="row">
+	<div class="col-1"></div>
+	<div class="col-10">
 
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <a href="{{ path('app_marca_index') }}" class="btn mx-1 btn-secondary">Volver a la lista</a>
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<a href="{{ path('app_marca_index') }}" class="btn mx-1 btn-secondary">Volver a la lista</a>
 
-    <button class="btn btn-{{typeButton}}">{{ button_label|default('Guardar') }}</button>
-{{ form_end(form) }}
+		<button class="btn btn-{{typeButton}}">{{ button_label|default('Guardar') }}</button>
+		{{ form_end(form) }}
+
+	</div>
+	<div class="col-1"></div>
+</div>
