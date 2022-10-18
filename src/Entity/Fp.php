@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Expr\Cast\String_;
 
 /**
  * Fp
@@ -101,6 +102,9 @@ class Fp
 
         return $this;
     }
-
+    public function __toString(): String
+    {
+        return $this->getCodfp().' - '.$this->getNombre();
+    }
 
 }
