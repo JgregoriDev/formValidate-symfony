@@ -34,11 +34,11 @@
 					<td class="d-none d-lg-table-cell">{{ subfamilium.codfamilia }}</td>
 					{# <td>{{ subfamilium.imagen }}</td> #}
 					<td>
-						<a href="{{ path('app_subfamilia_edit', {'codsubfamilia': subfamilium.codsubfamilia}) }}" title="Actualizar" class="btn btn-warning">
-							<i class="bi bi-pencil-square"></i>
-						</a>
 						<a href="{{ path('app_subfamilia_show', {'codsubfamilia': subfamilium.codsubfamilia}) }}" title="Mostrar" class="btn btn-secondary">
 							<i class="bi bi-eye"></i>
+						</a>
+						<a href="{{ path('app_subfamilia_edit', {'codsubfamilia': subfamilium.codsubfamilia}) }}" title="Actualizar" class="btn btn-warning">
+							<i class="bi bi-pencil-square"></i>
 						</a>
 					</td>
 				</tr>

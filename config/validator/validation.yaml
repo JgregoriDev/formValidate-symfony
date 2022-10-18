@@ -37,14 +37,16 @@ App\Entity\Marca:
 
 # Proveedor
 App\Entity\Proveedor:
-    properties:
-    razonsocial:
-      - Length:
-          max: 50
-          maxMessage: "el campo razón social no puede superar el límite de {{ limit }} caracteres"
+  properties:
+  razonsocial:
+    - Length:
+        max: 50
+        maxMessage: "el campo razón social no puede superar el límite de {{ limit }} caracteres"
 # Articulo
 App\Entity\Articulo:
   properties:
+    codigoean:
+      - NotBlank: { message: "El campo código ean no puede estar vacio" }
     descripcion:
       - Length:
           max: 50
@@ -53,6 +55,90 @@ App\Entity\Articulo:
       - Length:
           max: 50
           maxMessage: "el campo descripción no puede superar el límite de {{ limit }} caracteres"
+    auxMargen:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo margen auxiliar deber ser un numero mayor o igual a 0",
+          }
+    margen:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo margen  deber ser un numero mayor o igual a 0",
+          }
+    base:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo base deber ser un numero mayor o igual a 0",
+          }
+    base2:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo base 2 deber ser un numero mayor o igual a 0",
+          }
+    existenciasdisponibles:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo existencias disponibles deber ser un numero mayor o igual a 0",
+          }
+    pvpOfertaMostrador:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo pvp oferta mostrador deber ser un numero mayor o igual a 0",
+          }
+    pvp:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo pvp deber ser un numero mayor o igual a 0",
+          }
+    pvp2:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo pvp2 deber ser un numero mayor o igual a 0",
+          }
+    udsUltimaentrada:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo unidades última entrada deber ser un numero mayor o igual a 0",
+          }
+    ivapercent:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo margen auxiliar deber ser un numero mayor o igual a 0",
+          }
+    nordenMostrar:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo margen auxiliar deber ser un numero mayor o igual a 0",
+          }
+    peso:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo peso deber ser un numero mayor o igual a 0",
+          }
+    codcategoria:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo código categoria deber ser un numero mayor o igual a 0",
+          }
+    codsubcategoria:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "el campo código subcategoria deber ser un numero mayor o igual a 0",
+          }
 
 # Forma de pago
 App\Entity\Fp:

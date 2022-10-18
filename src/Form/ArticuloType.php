@@ -111,6 +111,8 @@ class ArticuloType extends AbstractType
                 "mapped" => false,
                 'constraints' => [
                     new File([
+                        'maxSize' => '64k',
+                        'maxSizeMessage'=>'Por favor sube una imagen como máximo de 64 kb',
                         'mimeTypes' => [
                             'image/png',
                             'image/jpg',
