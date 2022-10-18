@@ -31,8 +31,7 @@
 					<tr id="{{familia.codfamilia}}">
 						<td>{{familia.codfamilia}}</td>
 						<td>{{familia.nombre}}</td>
-						<td
-							id="{{familia.codFamilia}}">
+						<td id="{{familia.codFamilia}}">
 							<a href="{{ path('app_familia_edit', {codfamilia: familia.codfamilia}) }}" class="btn my-2 my-lg-0 btn-warning mx-1" title="Editar">
 								<i class="bi bi-pencil-square"></i>
 							</a>
@@ -41,7 +40,8 @@
 							</a>
 						</td>
 					</tr>
-				
+
+				{% endfor %}
 			</tbody>
 			<tfoot class="navigation text-center"></tfoot>
 		</table>

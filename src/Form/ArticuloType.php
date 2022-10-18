@@ -6,6 +6,7 @@ use App\Entity\Articulo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,46 +29,65 @@ class ArticuloType extends AbstractType
             ->add('descripcion', TextareaType::class, [
                 'label' => 'Descripción:'
             ])
-            ->add('auxMargen', IntegerType::class, [
-                
+            ->add('auxMargen', NumberType::class, [
+                'required'   => false,
+                'scale' => 4,
+                'empty_data' => '0',
                 'label' => 'Margen auxiliar:'
             ])
-            ->add('margen', IntegerType::class, [
-                
+            ->add('margen', NumberType::class, [
+                'required'   => false,
+                'scale' => 4,
+                'empty_data' => '0',
                 'label' => 'Margen:'
             ])
-            ->add('base', IntegerType::class, [
-                
+            ->add('base', NumberType::class, [
+                'required'   => false,
+                'scale' => 4,
+                'empty_data' => '0',
                 'label' => 'Base:'
             ])
-            ->add('existenciasdisponibles', IntegerType::class, [
-                
+            ->add('existenciasdisponibles', NumberType::class, [
+                'required'   => false,
+                'scale' => 2,
+                'empty_data' => '0',
                 'label' => 'Existencias disponibles:'
             ])
-            ->add('pvpOfertaMostrador', IntegerType::class, [
-                
+            ->add('pvpOfertaMostrador', NumberType::class, [
+                'required'   => false,
+                'scale' => 4,
+                'empty_data' => '0',
                 'label' => 'PVP oferta en mostrador:'
             ])
-            ->add('pvp', IntegerType::class, [
-                
+            ->add('pvp', NumberType::class, [
+                'required'   => false,
+                'scale' => 4,
+                'empty_data' => '0',
                 'label' => 'PVP:'
             ])
-            ->add('pvp2', IntegerType::class, [
-                
+            ->add('pvp2', NumberType::class, [
+                'required'   => false,
+                'scale' => 4,
+                'empty_data' => '0',
                 'label' => 'PVP2:'
             ])
-            ->add('codigo', null, [
+            ->add('codigo', IntegerType::class, [
+                'label' => 'Código:',
+                'empty_data' => '0',
                 'label' => 'Código:'
             ])
             ->add('esmanoobra', null, [
                 'label' => 'Ha habido mano de obra'
             ])
             ->add('udsUltimaentrada', IntegerType::class, [
-                
+                'required'   => false,
+                'empty_data' => '0',
                 'label' => 'Unidades recibidas en la última entrada :'
             ])
-            ->add('base2', null, [
-                'label' => 'Base2:'
+            ->add('base2', IntegerType::class, [
+                'label' => 'Base2:',
+                'required'   => false,
+                'empty_data' => '0',
             ])
             ->add('favorito', null, [
                 'label' => 'Artículo favorito'
@@ -86,7 +106,6 @@ class ArticuloType extends AbstractType
                 "label" => "Selecciona una imagen",
                 "required" => false,
                 "mapped" => false,
-                // "multiple" => true,
                 'constraints' => [
                     new File([
                         'mimeTypes' => [
@@ -100,11 +119,13 @@ class ArticuloType extends AbstractType
                 ],
             ])
             ->add('ivapercent', IntegerType::class, [
-                
+                'required'   => false,
+                'empty_data' => '0',
                 'label' => 'IVA porcentaje:'
             ])
             ->add('nordenMostrar', IntegerType::class, [
-                
+                'required'   => false,
+                'empty_data' => '0',
                 'label' => 'Número de orden a la hora de mostrar:'
             ])
             ->add('intrastat', null, [
@@ -114,35 +135,40 @@ class ArticuloType extends AbstractType
                 'label' => 'Unidad de medida:'
             ])
             ->add('peso', IntegerType::class, [
-                
+                'required'   => false,
+                'empty_data' => '0',
                 'label' => 'Peso:'
             ])
             ->add('reqEq', null, [
                 'label' => 'Unidades por granel:'
             ])
             ->add('codcategoria', IntegerType::class, [
-                
+                'required'   => false,
+                'empty_data' => '0',
                 'label' => 'Código de categoria:'
             ])
             ->add('nomcategoria', null, [
                 'label' => 'Nombre categoría:'
             ])
             ->add('codsubcategoria', IntegerType::class, [
-                
+                'required'   => false,
+                'empty_data' => '0',
                 'label' => 'Código de subcategoria:'
             ])
             ->add('nomsubcategoria', null, [
                 'label' => 'Nombre subcategoría:'
             ])
             ->add('idwoocommerce', IntegerType::class, [
-                
+                'required'   => false,
+                'empty_data' => '0',
                 'label' => 'idwoocommerce:'
             ])
             ->add('caractecnicas', TextareaType::class, [
                 'label' => 'Características técnicas:'
             ])
             ->add('pvd', IntegerType::class, [
-                
+                'required'   => false,
+                'empty_data' => '0',
                 'label' => 'PVD:'
             ])
             ->add('codproveedor', null, [
