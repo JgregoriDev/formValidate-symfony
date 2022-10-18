@@ -19,13 +19,16 @@ class SubfamiliaFixture extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
+        // $familia=$manager->getRepository(Familia::class)->findAll();
         $familias=$manager->getRepository(Familia::class)->findAll();
+        
         for ($i=0; $i < 20; $i++) { 
             $subfamilia=new Subfamilia();
-            $subfamilia->setCodfamilia($familias[$this->faker->numberBetween(0,6)])
-            ->setCodSubFamilia($this->faker->numberBetween(0,300))
+            $subfamilia->setCodfamilia($familias[$this->faker->numberBetween(0,19)])
+            ->setCodSubFamilia($this->faker->numberBetween(0,30000))
             ->setNombre($this->faker->word())
             ->setImagen($this->faker->word());
+            $manager->persist($subfamilia);
         }
         $manager->flush();
     }

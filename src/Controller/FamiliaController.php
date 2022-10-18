@@ -30,6 +30,7 @@ class FamiliaController extends AbstractController
      */
     public function index(FamiliaRepository $familiaRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        
         $queryArticulos = $familiaRepository->obtenerQueryArticulos();
         $pagination = $paginator->paginate(
             $queryArticulos,
@@ -61,7 +62,6 @@ class FamiliaController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $blobData = $form->get("img")->getData();
             if ($blobData) {
-
                 $imageContent = file_get_contents($blobData);
                 $familium->setImagen($imageContent);
             }

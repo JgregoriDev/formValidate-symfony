@@ -21,7 +21,7 @@
 			<tr>
 				<th>Codsubfamilia</th>
 				<th>Nombre</th>
-				<th>CodFamilia</th>
+				<th class="d-none d-lg-table-cell">CodFamilia</th>
 				{# <th>Imagen</th> #}
 				<th>actions</th>
 			</tr>
@@ -31,7 +31,7 @@
 				<tr class="">
 					<td>{{ subfamilium.codsubfamilia }}</td>
 					<td>{{ subfamilium.nombre }}</td>
-					<td>{{ subfamilium.codfamilia }}</td>
+					<td class="d-none d-lg-table-cell">{{ subfamilium.codfamilia }}</td>
 					{# <td>{{ subfamilium.imagen }}</td> #}
 					<td>
 						<a href="{{ path('app_subfamilia_edit', {'codsubfamilia': subfamilium.codsubfamilia}) }}" title="Actualizar" class="btn btn-warning">

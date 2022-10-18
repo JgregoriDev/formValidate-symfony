@@ -56,7 +56,7 @@ class Articulo
     /**
      * @var string|null
      *
-     * @ORM\Column(name="AUX_MARGEN", type="decimal", precision=4, scale=2, nullable=true)
+     * @ORM\Column(name="AUX_MARGEN", type="decimal", precision=14, scale=4, nullable=true)
      */
     private $auxMargen;
 
@@ -286,6 +286,7 @@ class Articulo
      * })
      */
     private $codmarcar;
+
 
     public function getCodarticulo(): ?int
     {
@@ -723,6 +724,7 @@ class Articulo
 
         return $this;
     }
+
 
 
 }

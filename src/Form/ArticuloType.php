@@ -29,24 +29,31 @@ class ArticuloType extends AbstractType
                 'label' => 'Descripción:'
             ])
             ->add('auxMargen', IntegerType::class, [
+                
                 'label' => 'Margen auxiliar:'
             ])
             ->add('margen', IntegerType::class, [
+                
                 'label' => 'Margen:'
             ])
             ->add('base', IntegerType::class, [
+                
                 'label' => 'Base:'
             ])
             ->add('existenciasdisponibles', IntegerType::class, [
-                'label' => 'Código ean:'
+                
+                'label' => 'Existencias disponibles:'
             ])
             ->add('pvpOfertaMostrador', IntegerType::class, [
+                
                 'label' => 'PVP oferta en mostrador:'
             ])
             ->add('pvp', IntegerType::class, [
+                
                 'label' => 'PVP:'
             ])
             ->add('pvp2', IntegerType::class, [
+                
                 'label' => 'PVP2:'
             ])
             ->add('codigo', null, [
@@ -56,7 +63,8 @@ class ArticuloType extends AbstractType
                 'label' => 'Ha habido mano de obra'
             ])
             ->add('udsUltimaentrada', IntegerType::class, [
-                'label' => 'Código ean:'
+                
+                'label' => 'Unidades recibidas en la última entrada :'
             ])
             ->add('base2', null, [
                 'label' => 'Base2:'
@@ -92,9 +100,11 @@ class ArticuloType extends AbstractType
                 ],
             ])
             ->add('ivapercent', IntegerType::class, [
+                
                 'label' => 'IVA porcentaje:'
             ])
             ->add('nordenMostrar', IntegerType::class, [
+                
                 'label' => 'Número de orden a la hora de mostrar:'
             ])
             ->add('intrastat', null, [
@@ -104,30 +114,35 @@ class ArticuloType extends AbstractType
                 'label' => 'Unidad de medida:'
             ])
             ->add('peso', IntegerType::class, [
+                
                 'label' => 'Peso:'
             ])
             ->add('reqEq', null, [
                 'label' => 'Unidades por granel:'
             ])
             ->add('codcategoria', IntegerType::class, [
+                
                 'label' => 'Código de categoria:'
             ])
             ->add('nomcategoria', null, [
                 'label' => 'Nombre categoría:'
             ])
             ->add('codsubcategoria', IntegerType::class, [
+                
                 'label' => 'Código de subcategoria:'
             ])
             ->add('nomsubcategoria', null, [
                 'label' => 'Nombre subcategoría:'
             ])
             ->add('idwoocommerce', IntegerType::class, [
+                
                 'label' => 'idwoocommerce:'
             ])
             ->add('caractecnicas', TextareaType::class, [
                 'label' => 'Características técnicas:'
             ])
             ->add('pvd', IntegerType::class, [
+                
                 'label' => 'PVD:'
             ])
             ->add('codproveedor', null, [

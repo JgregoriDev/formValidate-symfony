@@ -33,9 +33,6 @@
 						<td>{{familia.nombre}}</td>
 						<td
 							id="{{familia.codFamilia}}">
-							{# <b href="{{ path('app_familia_delete', {codfamilia: familia.codfamilia}) }}" id="b{{familia.codfamilia}}" class="btn my-2 my-lg-0 btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#vModal" title="Borrar">
-																																																																							<i class="bi bi-trash2-fill"></i>
-																																																																						</b> #}
 							<a href="{{ path('app_familia_edit', {codfamilia: familia.codfamilia}) }}" class="btn my-2 my-lg-0 btn-warning mx-1" title="Editar">
 								<i class="bi bi-pencil-square"></i>
 							</a>
@@ -44,28 +41,7 @@
 							</a>
 						</td>
 					</tr>
-					<div class="modal fade" id="vModal" tabindex="-1" aria-labelledby="vModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									Estas seguro de borrar la familia con id
-									{{familia.codfamilia}}?
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-									<form action="" method="post">
-										<input type="hidden" name="id" value="{{familia.codfamilia}}">
-										<button type="submit" name="send" id="send" class="btn btn-danger">Borrar</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				{% endfor %}
+				
 			</tbody>
 			<tfoot class="navigation text-center"></tfoot>
 		</table>

@@ -47,13 +47,19 @@ class ArticuloController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $blobData = $form->get("img")->getData();
+            
             if ($blobData) {
                 $imageContent = file_get_contents($blobData);
                 $articulo->setImagen($imageContent);
             }
+            // $subfamilia = $form->get("codsubfamilia")->getData();
+            
             $entityManager->persist($articulo);
             $entityManager->flush();
-
+            $this->addFlash(
+               'success',
+               'Se ha introducido el articulo de manera correcta'
+            );
             return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);
         }
 
