@@ -1,10 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Marca{% endblock %}
+{% block title %}Marca
+{% endblock %}
 
 {% block body %}
-    <h1>Marca</h1>
-    <nav aria-label="breadcrumb my-3">
+
+	{% if formBusqueda is defined  %}
+
+		{{form_start(formBusqueda)}}
+		<div class="row">
+			<div class="col-9">
+				{{ form_widget(formBusqueda) }}
+			</div>
+			<div class="col-3">
+				<button type="submit" class="d-inline btn btn-primary" title="Buscar">
+					<i class="bi bi-search mx-2"></i>
+				</button>
+			</div>
+		</div>
+		{{form_end(formBusqueda)}}
+	{% endif %}
+
+
+	<h1>Marca</h1>
+
+	<nav aria-label="breadcrumb my-3">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="{{ path('app_inicio') }}">Inicio</a>
@@ -13,29 +33,33 @@
 				<a href="{{ path('app_marca_index') }}">Marcas</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page">Mostrar marca</li>
-		</ol></nav>
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Codmarca</th>
-                <td>{{ marca.codmarca }}</td>
-            </tr>
-            <tr>
-                <th>Nombremarca</th>
-                <td>{{ marca.nombremarca }}</td>
-            </tr>
-            <tr>
-                <th>Rutalogo</th>
-                <td>{{ marca.rutalogo }}</td>
-            </tr>
-        </tbody>
-    </table>
+		</ol>
+	</nav>
+	<div class="text-end">
+		{{ include('marca/_delete_form.html.twig') }}
+	</div>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Codmarca</th>
+				<td>{{ marca.codmarca }}</td>
+			</tr>
+			<tr>
+				<th>Nombremarca</th>
+				<td>{{ marca.nombremarca }}</td>
+			</tr>
+			<tr>
+				<th>Rutalogo</th>
+				<td>{{ marca.rutalogo }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <div class="mb-3">
-    <a href="{{ path('app_marca_index') }}" class="btn btn-secondary mx-1">Volver a la lista</a>
+	<div class="mb-3 text-center">
+		<a href="{{ path('app_marca_index') }}" class="btn btn-secondary mx-1">Volver a la lista</a>
 
-    <a href="{{ path('app_marca_edit', {'codmarca': marca.codmarca}) }}" class="btn btn-warning">editar</a>
+		<a href="{{ path('app_marca_edit', {'codmarca': marca.codmarca}) }}" class="btn btn-warning">editar</a>
 
-    </div>
-    {{ include('marca/_delete_form.html.twig') }}
+	</div>
+
 {% endblock %}

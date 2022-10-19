@@ -41,33 +41,40 @@ class MarcaRepository extends ServiceEntityRepository
 
     public function obtenerQueryMarcas()
     {
-        $qb=$this->createQueryBuilder("m");
+        $qb = $this->createQueryBuilder("m");
         return $qb
-        ->getQuery()
-        ;
+            ->getQuery();
     }
-//    /**
-//     * @return Marca[] Returns an array of Marca objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Marca
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function searchMarcaByNombre(String $busqueda)
+    {
+        $query = $this->createQueryBuilder("m");
+        return $query
+            ->andWhere("m.nombremarca LIKE :busqueda")
+            ->setParameter("busqueda", "%" . $busqueda . "%");
+    }
+    //    /**
+    //     * @return Marca[] Returns an array of Marca objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('m')
+    //            ->andWhere('m.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('m.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Marca
+    //    {
+    //        return $this->createQueryBuilder('m')
+    //            ->andWhere('m.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
