@@ -30,7 +30,7 @@ class FpController extends AbstractController
         $queryArticulos = $fpRepository->obtenerQueryFP();
         $pagination = $paginator->paginate(
             $queryArticulos,
-            $request->query->getInt('page', 1), /*page number*/
+            $request->query->getInt('pagina', 1), /*page number*/
             12 /*limit per page*/
         );
 

@@ -1,10 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Editar artículo{% endblock %}
+{% block title %}Editar artículo
+{% endblock %}
 
 {% block body %}
-    <h1>Editar artículo</h1>
-        	<nav aria-label="breadcrumb my-3">
+	{% if formBusqueda is defined  %}
+
+		{{form_start(formBusqueda)}}
+		<div class="row">
+			<div class="col-9">
+				{{ form_widget(formBusqueda) }}
+			</div>
+			<div class="col-3">
+				<button type="submit" class="d-inline btn btn-primary" title="Buscar">
+					<i class="bi bi-search mx-2"></i>
+				</button>
+			</div>
+		</div>
+		{{form_end(formBusqueda)}}
+	{% endif %}
+	<h1>Editar artículo</h1>
+	<nav aria-label="breadcrumb my-3">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="{{ path('app_inicio') }}">Inicio</a>
@@ -15,15 +31,16 @@
 			<li class="breadcrumb-item active" aria-current="page">Editar artículo</li>
 		</ol>
 	</nav>
-		<div class="d-flex justify-content-end">
-		 {{ include('articulo/_delete_form.html.twig') }}
+	<div class="row">
+		<div class="col-1"></div>
+		<div class="col-10 text-end">
+				{{ include('articulo/_delete_form.html.twig') }}
 		</div>
-		<div class="mb-3">
-			{{ include('articulo/_form.html.twig', {'button_label': 'Actualizar'}) }}
-		</div>
-  
+		<div class="col-1"></div>
+	</div>
+	<div class="mb-3">
+		{{ include('articulo/_form.html.twig', {'button_label': 'Actualizar'}) }}
+	</div>
 
-    
 
-   
 {% endblock %}

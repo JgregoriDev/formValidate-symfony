@@ -16,7 +16,7 @@ class BusquedaArticuloType extends AbstractType
                 "required"=>true,
                 "label"=>false,
                 "attr"=>[
-                    "placeholder"=>"Buscar Llibre",
+                    "placeholder"=>"Buscar artículo",
                     "class"=>"d-inline"
                 ]
             ])

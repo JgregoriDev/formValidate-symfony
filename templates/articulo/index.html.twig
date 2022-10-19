@@ -4,121 +4,136 @@
 {% endblock %}
 
 {% block body %}
+	{% if formBusqueda is defined  %}
 
-		<h1>Listar artículos</h1>
-
-		<nav aria-label="breadcrumb my-3">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item">
-					<a href="{{ path('app_inicio') }}">Inicio</a>
-				</li>
-				<li class="breadcrumb-item active" aria-current="page">Articulos</li>
-			</ol>
-		</nav>
-		<div class="d-flex justify-content-end">
-			<a href="{{ path('app_articulo_new') }}" class="btn btn-primary">Crear artículo nuevo</a>
+		{{form_start(formBusqueda)}}
+		<div class="row">
+			<div class="col-9">
+				{{ form_widget(formBusqueda) }}
+			</div>
+			<div class="col-3">
+				<button type="submit" class="d-inline btn btn-primary" title="Buscar">
+					<i class="bi bi-search mx-2"></i>
+				</button>
+			</div>
 		</div>
+		{{form_end(formBusqueda)}}
+	{% endif %}
 
-		<table class="table">
-			<thead>
+	<h1>Listar artículos</h1>
+
+	<nav aria-label="breadcrumb my-3">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Articulos</li>
+		</ol>
+	</nav>
+	<div class="d-flex justify-content-end">
+		<a href="{{ path('app_articulo_new') }}" class="btn btn-primary">Crear artículo nuevo</a>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Codarticulo</th>
+				<th>Codigoean</th>
+				<th>Código de familia</th>
+				<th>Código de subfamilia</th>
+				{# <th class="d-none d-lg-table-cell">Referenciaproveedor</th>
+																															<th class="d-none d-lg-table-cell">Referenciamarca</th> #}
+				<th>Descripcion</th>
+				{# <th class="d-none d-lg-table-cell">AuxMargen</th>
+																															<th class="d-none d-lg-table-cell">Margen</th>
+																															<th class="d-none d-lg-table-cell">Base</th>
+																															<th class="d-none d-lg-table-cell">Existenciasdisponibles</th>
+																															<th class="d-none d-lg-table-cell">PvpOfertaMostrador</th>
+																															<th class="d-none d-lg-table-cell">Pvp</th>
+																															<th class="d-none d-lg-table-cell">Pvp2</th>
+																															<th class="d-none d-lg-table-cell">Codigo</th>
+																															<th class="d-none d-lg-table-cell">Esmanoobra</th>
+																															<th class="d-none d-lg-table-cell">UdsUltimaentrada</th>
+																															<th class="d-none d-lg-table-cell">Base2</th>
+																															<th class="d-none d-lg-table-cell">Favorito</th>
+																															<th class="d-none d-lg-table-cell">Posibleb</th>
+																															<th class="d-none d-lg-table-cell">CodartGranel</th>
+																															<th class="d-none d-lg-table-cell">UdXUdgrannel</th>
+																															<th class="d-none d-lg-table-cell">Imagen</th>
+																															<th class="d-none d-lg-table-cell">Ivapercent</th>
+																															<th class="d-none d-lg-table-cell">NordenMostrar</th>
+																															<th class="d-none d-lg-table-cell">Intrastat</th>
+																															<th class="d-none d-lg-table-cell">Umedida</th>
+																															<th class="d-none d-lg-table-cell">Peso</th>
+																															<th class="d-none d-lg-table-cell">ReqEq</th>
+																															<th class="d-none d-lg-table-cell">Codcategoria</th>
+																															<th class="d-none d-lg-table-cell">Codsubcategoria</th>
+																															<th class="d-none d-lg-table-cell">Idwoocommerce</th>
+																															<th class="d-none d-lg-table-cell">Caractecnicas</th>
+																															<th class="d-none d-lg-table-cell">Pvd</th>
+																															<th class="d-none d-lg-table-cell">Nomcategoria</th>
+																															<th class="d-none d-lg-table-cell">Nomsubcategoria</th> #}
+				<th class="">actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for articulo in articulos %}
 				<tr>
-					<th>Codarticulo</th>
-					<th>Codigoean</th>
-					<th>Código de familia</th>
-					<th>Código de subfamilia</th>
-					{# <th class="d-none d-lg-table-cell">Referenciaproveedor</th>
-																			<th class="d-none d-lg-table-cell">Referenciamarca</th> #}
-					<th>Descripcion</th>
-					{# <th class="d-none d-lg-table-cell">AuxMargen</th>
-																			<th class="d-none d-lg-table-cell">Margen</th>
-																			<th class="d-none d-lg-table-cell">Base</th>
-																			<th class="d-none d-lg-table-cell">Existenciasdisponibles</th>
-																			<th class="d-none d-lg-table-cell">PvpOfertaMostrador</th>
-																			<th class="d-none d-lg-table-cell">Pvp</th>
-																			<th class="d-none d-lg-table-cell">Pvp2</th>
-																			<th class="d-none d-lg-table-cell">Codigo</th>
-																			<th class="d-none d-lg-table-cell">Esmanoobra</th>
-																			<th class="d-none d-lg-table-cell">UdsUltimaentrada</th>
-																			<th class="d-none d-lg-table-cell">Base2</th>
-																			<th class="d-none d-lg-table-cell">Favorito</th>
-																			<th class="d-none d-lg-table-cell">Posibleb</th>
-																			<th class="d-none d-lg-table-cell">CodartGranel</th>
-																			<th class="d-none d-lg-table-cell">UdXUdgrannel</th>
-																			<th class="d-none d-lg-table-cell">Imagen</th>
-																			<th class="d-none d-lg-table-cell">Ivapercent</th>
-																			<th class="d-none d-lg-table-cell">NordenMostrar</th>
-																			<th class="d-none d-lg-table-cell">Intrastat</th>
-																			<th class="d-none d-lg-table-cell">Umedida</th>
-																			<th class="d-none d-lg-table-cell">Peso</th>
-																			<th class="d-none d-lg-table-cell">ReqEq</th>
-																			<th class="d-none d-lg-table-cell">Codcategoria</th>
-																			<th class="d-none d-lg-table-cell">Codsubcategoria</th>
-																			<th class="d-none d-lg-table-cell">Idwoocommerce</th>
-																			<th class="d-none d-lg-table-cell">Caractecnicas</th>
-																			<th class="d-none d-lg-table-cell">Pvd</th>
-																			<th class="d-none d-lg-table-cell">Nomcategoria</th>
-																			<th class="d-none d-lg-table-cell">Nomsubcategoria</th> #}
-					<th class="">actions</th>
+					<td>{{ articulo.codarticulo }}</td>
+					<td>{{ articulo.codigoean }}</td>
+					<td>{{ articulo.codsubfamilia.codfamilia }}</td>
+					<td>{{ articulo.codsubfamilia }}</td>
+					{# <td class="d-none d-lg-table-cell">{{ articulo.referenciaproveedor }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.referenciamarca }}</td> #}
+					<td>{{ articulo.descripcion }}</td>
+					{# <td class="d-none d-lg-table-cell">{{ articulo.auxMargen }}</td> #}
+					{# <td class="d-none d-lg-table-cell">{{ articulo.margen }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.base }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.existenciasdisponibles }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.pvpOfertaMostrador }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.pvp }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.pvp2 }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.codigo }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.esmanoobra ? 'Yes' : 'No' }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.udsUltimaentrada }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.base2 }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.favorito ? 'Yes' : 'No' }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.posibleb ? 'Yes' : 'No' }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.codartGranel }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.udXUdgrannel }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.imagen }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.ivapercent }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.nordenMostrar }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.intrastat }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.umedida }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.peso }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.reqEq }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.codcategoria }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.codsubcategoria }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.idwoocommerce }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.caractecnicas }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.pvd }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.nomcategoria }}</td>
+																																						<td class="d-none d-lg-table-cell">{{ articulo.nomsubcategoria }}</td> #}
+					<td>
+						<a href="{{ path('app_articulo_show', {'codarticulo': articulo.codarticulo}) }}" class="btn my-1 my-lg-0 btn-secondary" title="Ver">
+							<i class="bi bi-eye"></i>
+						</a>
+						<a href="{{ path('app_articulo_edit', {'codarticulo': articulo.codarticulo}) }}" class="btn my-1 my-lg-0 btn-warning" title="Editar">
+							<i class="bi bi-pencil-square"></i>
+						</a>
+					</td>
 				</tr>
-			</thead>
-			<tbody>
-				{% for articulo in articulos %}
-					<tr>
-						<td>{{ articulo.codarticulo }}</td>
-						<td>{{ articulo.codigoean }}</td>
-						<td>{{ articulo.codsubfamilia.codfamilia }}</td>
-						<td>{{ articulo.codsubfamilia }}</td>
-						{# <td class="d-none d-lg-table-cell">{{ articulo.referenciaproveedor }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.referenciamarca }}</td> #}
-						<td>{{ articulo.descripcion }}</td>
-						{# <td class="d-none d-lg-table-cell">{{ articulo.auxMargen }}</td> #}
-						{# <td class="d-none d-lg-table-cell">{{ articulo.margen }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.base }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.existenciasdisponibles }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.pvpOfertaMostrador }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.pvp }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.pvp2 }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.codigo }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.esmanoobra ? 'Yes' : 'No' }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.udsUltimaentrada }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.base2 }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.favorito ? 'Yes' : 'No' }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.posibleb ? 'Yes' : 'No' }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.codartGranel }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.udXUdgrannel }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.imagen }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.ivapercent }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.nordenMostrar }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.intrastat }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.umedida }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.peso }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.reqEq }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.codcategoria }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.codsubcategoria }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.idwoocommerce }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.caractecnicas }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.pvd }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.nomcategoria }}</td>
-																							<td class="d-none d-lg-table-cell">{{ articulo.nomsubcategoria }}</td> #}
-						<td>
-							<a href="{{ path('app_articulo_show', {'codarticulo': articulo.codarticulo}) }}" class="btn my-1 my-lg-0 btn-secondary" title="Ver">
-								<i class="bi bi-eye"></i>
-							</a>
-							<a href="{{ path('app_articulo_edit', {'codarticulo': articulo.codarticulo}) }}" class="btn my-1 my-lg-0 btn-warning" title="Editar">
-								<i class="bi bi-pencil-square"></i>
-							</a>
-						</td>
-					</tr>
 
-				{% else %}
-					<tr>
-						<td colspan="35">No hay artículos registrados</td>
-					</tr>
-				{% endfor %}
-			</tbody>
+			{% else %}
+				<tr>
+					<td colspan="35">No hay artículos registrados</td>
+				</tr>
+			{% endfor %}
+		</tbody>
 
-		</table>
-		<div class="d-flex justify-content-center">
-			{{ knp_pagination_render(articulos) }}
-		</div>
-	{% endblock %}
+	</table>
+	<div class="d-flex justify-content-center">
+		{{ knp_pagination_render(articulos) }}
+	</div>
+{% endblock %}

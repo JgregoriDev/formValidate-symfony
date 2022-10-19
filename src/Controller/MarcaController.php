@@ -30,7 +30,7 @@ class MarcaController extends AbstractController
         $queryMarcas = $marcaRepository->obtenerQueryMarcas();
         $pagination = $paginator->paginate(
             $queryMarcas,
-            $request->query->getInt('page', 1), /*page number*/
+            $request->query->getInt('pagina', 1), /*page number*/
             12 /*limit per page*/
         );
         return $this->render('marca/index.html.twig', [

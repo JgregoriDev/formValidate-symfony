@@ -32,7 +32,7 @@ class OrigengastoController extends AbstractController
         $queryArticulos = $origengastoRepository->obtenerQueryOrigenGastos();
         $pagination = $paginator->paginate(
             $queryArticulos,
-            $request->query->getInt('page', 1), /*page number*/
+            $request->query->getInt('pagina', 1), /*page number*/
             12 /*limit per page*/
         );
 

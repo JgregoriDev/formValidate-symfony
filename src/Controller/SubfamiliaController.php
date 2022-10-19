@@ -24,7 +24,7 @@ class SubfamiliaController extends AbstractController
         $querySubfamilia = $subfamiliaRepository->obtenerQuerySubfamilias();
         // $pagination = $paginator->paginate(
         //     $querySubfamilia,
-        //     $request->query->getInt('page', 1), /*page number*/
+        //     $request->query->getInt('pagina', 1), /*page number*/
         //     12 /*limit per page*/
         // );
         return $this->render('subfamilia/index.html.twig', [

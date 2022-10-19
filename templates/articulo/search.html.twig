@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Busqueda artículo
+{% block title %}Búsqueda artículo con descripción {{textoBuscado}}
 {% endblock %}
 
 {% block body %}
-	<h1>Busqueda artículo</h1>
+	<h1>Búsqueda artículo</h1>
 	<nav aria-label="breadcrumb my-3">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
@@ -16,7 +16,7 @@
 			<li class="breadcrumb-item active" aria-current="page">Buscar artículo</li>
 		</ol>
 	</nav>
-	<h3>Resultados de busqueda por descripción
+	<h3>Resultados de Búsqueda por descripción
 		{{textoBuscado}}</h3>
 	<div class="d-inline justify-content-center align-content-center">
 		{{form_start(formBusqueda)}}
@@ -25,14 +25,14 @@
 				{{ form_widget(formBusqueda) }}
 			</div>
 			<div class="col-3">
-				<button type="submit" class="d-inline btn btn-primary">
+				<button type="submit" class="d-inline btn btn-primary" title="Buscar">
 					<i class="bi bi-search mx-2"></i>
 				</button>
 			</div>
 		</div>
 		{{form_end(formBusqueda)}}
 		{% if articulos is not empty %}
-			<p>Total de articulos encontrados
+			<p class="fw-bold text-success">Total de articulos encontrados
 				{{articulos|length}}</p>
 			<div class="row">
 				{% for articulo in articulos %}
@@ -53,6 +53,8 @@
 			<div class="d-flex justify-content-center">
 				{{ knp_pagination_render(articulos) }}
 			</div>
+		{% else %}
+			<p class="fw-bold text-danger">No existen artículos con la descripción: {{textoBuscado}}</p>
 		{% endif %}
 
 	</div>
