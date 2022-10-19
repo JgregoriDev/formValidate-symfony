@@ -4,6 +4,21 @@
 {% endblock %}
 
 {% block body %}
+	{% if formBusqueda is defined %}
+	<div class="d-inline justify-content-center align-content-center">
+		{{form_start(formBusqueda)}}
+		<div class="row">
+			<div class="col-9">
+				{{ form_widget(formBusqueda) }}
+			</div>
+			<div class="col-3">
+				<button type="submit" class="d-inline btn btn-primary" title="Buscar">
+					<i class="bi bi-search mx-2"></i>
+				</button>
+			</div>
+		</div>
+		{{form_end(formBusqueda)}}
+	{% endif %}
 	<h1>Editar origen de gasto</h1>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
@@ -24,11 +39,10 @@
 		</div>
 		<div class="col-1"></div>
 	</div>
-	<div class="d-flex justify-content-end">
-	</div>
+	<div class="d-flex justify-content-end"></div>
 	{{ include('origengasto/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
 	{# <a href="{{ path('app_origengasto_index') }}" class="btn btn-secondary">Volver a la lista</a> #}
 
-	
+
 {% endblock %}

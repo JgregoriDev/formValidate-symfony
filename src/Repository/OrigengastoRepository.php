@@ -45,6 +45,16 @@ class OrigengastoRepository extends ServiceEntityRepository
         return $qb
             ->getQuery();
     }
+
+    public function searchOrigenGastoByDescription(String $busqueda)
+    {
+        $query = $this->createQueryBuilder("o");
+        return $query
+            ->andWhere("o.descripcion LIKE :busqueda")
+            ->setParameter("busqueda", "%" . $busqueda . "%")
+            ->getQuery();
+    }
+
     //    /**
     //     * @return Origengasto[] Returns an array of Origengasto objects
     //     */

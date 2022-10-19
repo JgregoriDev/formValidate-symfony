@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Form\BusquedaType;
 
 /**
  * @Route("/origengasto")
@@ -35,9 +36,15 @@ class OrigengastoController extends AbstractController
             $request->query->getInt('pagina', 1), /*page number*/
             12 /*limit per page*/
         );
-
+        $formBusqueda = $this->createForm(BusquedaType::class);
+        $formBusqueda->handleRequest($request);
+        if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
+            $textABuscar = $formBusqueda->get('buscar')->getData();
+            return $this->redirectToRoute('app_origengasto_search', ['slug' => $textABuscar]);
+        }
         return $this->render('origengasto/index.html.twig', [
             'origengastos' => $pagination,
+            'formBusqueda' => $formBusqueda->createView(),
         ]);
     }
 
@@ -58,21 +65,34 @@ class OrigengastoController extends AbstractController
             );
             return $this->redirectToRoute('app_origengasto_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        $formBusqueda = $this->createForm(BusquedaType::class);
+        $formBusqueda->handleRequest($request);
+        if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
+            $textABuscar = $formBusqueda->get('buscar')->getData();
+            return $this->redirectToRoute('app_origengasto_search', ['slug' => $textABuscar]);
+        }
         return $this->renderForm('origengasto/new.html.twig', [
             'origengasto' => $origengasto,
             'typeButton' => 'success',
             'form' => $form,
+            'formBusqueda' => $formBusqueda,
         ]);
     }
 
     /**
      * @Route("/{codorigen}", name="app_origengasto_show", methods={"GET"})
      */
-    public function show(Origengasto $origengasto): Response
+    public function show(Origengasto $origengasto,Request $request): Response
     {
+        $formBusqueda = $this->createForm(BusquedaType::class);
+        $formBusqueda->handleRequest($request);
+        if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
+            $textABuscar = $formBusqueda->get('buscar')->getData();
+            return $this->redirectToRoute('app_origengasto_search', ['slug' => $textABuscar]);
+        }
         return $this->render('origengasto/show.html.twig', [
             'origengasto' => $origengasto,
+            'formBusqueda' => $formBusqueda->createView(),
         ]);
     }
 
@@ -92,11 +112,17 @@ class OrigengastoController extends AbstractController
             );
             return $this->redirectToRoute('app_origengasto_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        $formBusqueda = $this->createForm(BusquedaType::class);
+        $formBusqueda->handleRequest($request);
+        if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
+            $textABuscar = $formBusqueda->get('buscar')->getData();
+            return $this->redirectToRoute('app_origengasto_search', ['slug' => $textABuscar]);
+        }
         return $this->renderForm('origengasto/edit.html.twig', [
             'origengasto' => $origengasto,
             'typeButton' => 'warning',
             'form' => $form,
+            'formBusqueda' => $formBusqueda
         ]);
     }
 
@@ -114,5 +140,33 @@ class OrigengastoController extends AbstractController
         }
 
         return $this->redirectToRoute('app_origengasto_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/buscar/{slug}", name="app_origengasto_search", methods={"GET","POST"})
+     */
+    public function searchSubfamilia(OrigengastoRepository $origengastoRepository, String $slug, Request $request, PaginatorInterface $paginator): Response
+    {
+        $formBusqueda = $this->createForm(BusquedaType::class);
+        $formBusqueda->handleRequest($request);
+        if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
+            $textABuscar = $formBusqueda->get('buscar')->getData();
+            return $this->redirectToRoute('app_origengasto_search', ['slug' => $textABuscar]);
+        }
+        $origengasto = $origengastoRepository->searchOrigenGastoByDescription($slug);
+        // var_dump($subfamilia);
+        $pagination = $paginator->paginate(
+            $origengasto,
+            $request->query->getInt('pagina', 1), /*page number*/
+            12 /*limit per page*/
+        );
+
+        return $this->render('origengasto/search.html.twig', [
+            'formBusqueda' => $formBusqueda->createView(),
+            'textoBuscado' => $slug,
+            'origenes' => $pagination,
+            'formBusqueda' => $formBusqueda->createView(),
+            // 'articulo' => $articulo,
+        ]);
     }
 }

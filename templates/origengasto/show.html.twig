@@ -4,6 +4,21 @@
 {% endblock %}
 
 {% block body %}
+{% if formBusqueda is defined %}
+	<div class="d-inline justify-content-center align-content-center">
+		{{form_start(formBusqueda)}}
+		<div class="row">
+			<div class="col-9">
+				{{ form_widget(formBusqueda) }}
+			</div>
+			<div class="col-3">
+				<button type="submit" class="d-inline btn btn-primary" title="Buscar">
+					<i class="bi bi-search mx-2"></i>
+				</button>
+			</div>
+		</div>
+		{{form_end(formBusqueda)}}
+	{% endif %}
 	<h1>Origengasto</h1>
 	<nav aria-label="breadcrumb my-3">
 		<ol class="breadcrumb">
