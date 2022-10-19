@@ -44,6 +44,14 @@ class ArticuloRepository extends ServiceEntityRepository
         return $qb
             ->getQuery();
     }
+    public function searchByDescription(String $busqueda)
+    {
+        $query=$this->createQueryBuilder("a");
+        return $query
+        ->andWhere("a.descripcion LIKE :busqueda")
+        ->setParameter("busqueda","%".$busqueda."%")
+        ->getQuery();
+    }
 
 //    /**
 //     * @return Articulo[] Returns an array of Articulo objects

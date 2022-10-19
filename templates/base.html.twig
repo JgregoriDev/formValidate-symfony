@@ -8,13 +8,13 @@
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-		<link rel="shortcut icon" href="http://127.0.0.8/uploads/basket.avif" type="image/x-icon">
+		<link rel="shortcut icon" href="{{ asset('/uploads/basket.avif') }}" type="image/x-icon">
 		<link
 		rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
-			<link rel="stylesheet" href="http://127.0.0.8/css/index.css">
+			<link rel="stylesheet" href="{{ asset('/css/index.css') }}">
 		{% endblock %}
 
 		{% block javascripts %}
@@ -41,13 +41,21 @@
 								</button>
 								<!-- Boton muesstra -->
 								<!-- Formulario busqueda inicio -->
-								<form action="" class="d-none d-lg-inline" method="get">
-
-									<input type="search" name="buscar" placeholder="Buscar" id="buscar">
-									<button type="submit" name="buscar" class="bbuscar btn position-relative" placeholder="Buscar" id="bbuscar">
-										<i class="bi bi-search"></i>
-									</button>
-								</form>
+								{# {% if formBusqueda is defined %}
+									<div class="d-inline justify-content-center align-content-center">
+										{{form_start(formBusqueda)}}
+										<div class="row">
+											<div class="col-9">
+												{{ form_widget(formBusqueda) }}
+											</div>
+											<div class="col-3">
+												<button type="submit" class="d-inline btn btn-primary">
+													<i class="bi bi-search mx-2"></i>
+												</button>
+											</div>
+										</div>
+										{{form_end()}}
+								{% endif %} #}
 								<!-- Formulario busqueda fin -->
 							</div>
 							<div>
@@ -279,14 +287,16 @@
 						{% for message in messages %}
 							<div class="alert alert-{{ label }}" role="alert">
 								{{ message }}
-							</div>
-						{% endfor %}
-					{% endfor %}
-					{% block body %}{% endblock %}
-				</main>
-				{# <div class="col col-lg-2"></div> #}
-			</div>
-		</div>
-		<script src="http://127.0.0.8/js/hideAside.js"></script>
+									</div>
+								{% endfor %}
+							{% endfor %}
+							{% block body %}{% endblock %}
+						</main>
+						{# <div class="col col-lg-2"></div> #}
+					</div>
+				</div>
+				<script src="{{asset('/js/hideAside.js')}}"></script>
+			</body>
+		</html>
 	</body>
 </html>

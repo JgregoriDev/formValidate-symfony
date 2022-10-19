@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Articulo;
 use App\Form\ArticuloType;
+use App\Form\BusquedaArticuloType;
 use App\Repository\ArticuloRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,8 +25,8 @@ class ArticuloController extends AbstractController
     public function index(ArticuloRepository $articuloRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $queryArticulos = $articuloRepository->obtenerQueryArticulos();
-
-
+    
+        // $formBusqueda->handleRequest($request);
         $pagination = $paginator->paginate(
             $queryArticulos,
             $request->query->getInt('page', 1), /*page number*/
@@ -33,6 +34,7 @@ class ArticuloController extends AbstractController
         );
         return $this->render('articulo/index.html.twig', [
             'articulos' => $pagination,
+            // 'formBusqueda'=>$formBusqueda->createView()
         ]);
     }
 
@@ -47,18 +49,18 @@ class ArticuloController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $blobData = $form->get("img")->getData();
-            
+
             if ($blobData) {
                 $imageContent = file_get_contents($blobData);
                 $articulo->setImagen($imageContent);
             }
             // $subfamilia = $form->get("codsubfamilia")->getData();
-            
+
             $entityManager->persist($articulo);
             $entityManager->flush();
             $this->addFlash(
-               'success',
-               'Se ha introducido el articulo de manera correcta'
+                'success',
+                'Se ha introducido el articulo de manera correcta'
             );
             return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -70,18 +72,46 @@ class ArticuloController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/{codarticulo}", name="app_articulo_show", methods={"GET"})
      */
     public function show(Articulo $articulo): Response
     {
-        $base64Image=null;
-        if($articulo->getImagen()){
+        $base64Image = null;
+        if ($articulo->getImagen()) {
             $base64Image = base64_encode(stream_get_contents($articulo->getImagen()));
         }
         return $this->render('articulo/show.html.twig', [
             'articulo' => $articulo,
-            'base64Image'=>$base64Image
+            'base64Image' => $base64Image
+        ]);
+    }
+
+    /**
+     * @Route("/buscar/{slug}", name="app_articulo_search", methods={"GET","POST"})
+     */
+    public function searchArticle(ArticuloRepository $articuloRepository, String $slug, Request $request,PaginatorInterface $paginator): Response
+    {
+        $formBusqueda = $this->createForm(BusquedaArticuloType::class);
+        $formBusqueda->handleRequest($request);
+        $articulos = $articuloRepository->searchByDescription($slug);
+        $pagination = $paginator->paginate(
+            $articulos,
+            $request->query->getInt('page', 1), /*page number*/
+            12 /*limit per page*/
+        );
+        // var_dump($pagination);
+        if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
+            $textABuscar = $formBusqueda->get('buscar')->getData();
+
+            return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
+        }
+        return $this->render('articulo/search.html.twig', [
+            'formBusqueda' => $formBusqueda->createView(),
+            'textoBuscado' => $slug,
+            'articulos' => $pagination
+            // 'articulo' => $articulo,
         ]);
     }
 
@@ -103,7 +133,7 @@ class ArticuloController extends AbstractController
             $this->addFlash(
                 'success',
                 'Se ha editado el articulo de manera correcta'
-             );
+            );
             return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -126,5 +156,14 @@ class ArticuloController extends AbstractController
         }
 
         return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    public function getRequestBuscar($formBusqueda):\Symfony\Component\HttpFoundation\RedirectResponse
+    {
+        if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
+            $textABuscar = $formBusqueda->get('buscar')->getData();
+
+            return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
+        }
     }
 }
