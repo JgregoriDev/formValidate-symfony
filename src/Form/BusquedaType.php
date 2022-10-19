@@ -7,7 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BusquedaArticuloType extends AbstractType
+class BusquedaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -16,7 +16,7 @@ class BusquedaArticuloType extends AbstractType
                 "required"=>true,
                 "label"=>false,
                 "attr"=>[
-                    "placeholder"=>"Buscar artículo",
+                    "placeholder"=>"Buscar",
                     "class"=>"d-inline"
                 ]
             ])

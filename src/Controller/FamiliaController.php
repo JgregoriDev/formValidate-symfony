@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-
+use App\Form\BusquedaType;
 /**
  * @Route("/familia")
  */
@@ -30,7 +30,7 @@ class FamiliaController extends AbstractController
      */
     public function index(FamiliaRepository $familiaRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        
+
         $queryArticulos = $familiaRepository->obtenerQueryArticulos();
         $pagination = $paginator->paginate(
             $queryArticulos,
@@ -38,9 +38,15 @@ class FamiliaController extends AbstractController
             12 /*limit per page*/
         );
 
-    
+        $formBusqueda = $this->createForm(BusquedaType::class);
+        $formBusqueda->handleRequest($request);
+        if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
+            $textABuscar = $formBusqueda->get('buscar')->getData();
+            return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
+        }
         return $this->render('familia/index.html.twig', [
             'pagination' => $pagination,
+            'formBusqueda'=>$formBusqueda->createView()
         ]);
     }
     // public function index(FamiliaRepository $familiaRepository): Response
@@ -69,28 +75,66 @@ class FamiliaController extends AbstractController
             $this->addFlash(
                 'success',
                 'Se ha introducido la forma de pago de manera correcta'
-             );
+            );
             return $this->redirectToRoute('app_familia_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        $formBusqueda = $this->createForm(BusquedaType::class);
+        $formBusqueda->handleRequest($request);
+        if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
+            $textABuscar = $formBusqueda->get('buscar')->getData();
+            return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
+        }
         return $this->renderForm('familia/new.html.twig', [
             'familium' => $familium,
             'typeButton' => 'success',
             'form' => $form,
+            'formBusqueda' => $formBusqueda,
         ]);
     }
 
     /**
      * @Route("/{codfamilia}", name="app_familia_show", methods={"GET"})
      */
-    public function show(Familia $familium): Response
+    public function show(Familia $familium,Request $request): Response
     {
         $base64Image = null;
         if ($familium->getImagen() !== null)
             $base64Image = base64_encode(stream_get_contents($familium->getImagen()));
+        $formBusqueda = $this->createForm(BusquedaType::class);
+        $formBusqueda->handleRequest($request);
+        if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
+            $textABuscar = $formBusqueda->get('buscar')->getData();
+            return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
+        }
         return $this->render('familia/show.html.twig', [
             'familium' => $familium,
-            'base64Image' => $base64Image
+            'base64Image' => $base64Image,
+            "formBusqueda"=>$formBusqueda->createView()
+        ]);
+    }
+        /**
+     * @Route("/buscar/{slug}", name="app_articulo_search", methods={"GET","POST"})
+     */
+    public function searchFamilia(FamiliaRepository $familiaRepository, String $slug, Request $request, PaginatorInterface $paginator): Response
+    {
+        $formBusqueda = $this->createForm(BusquedaType::class);
+        $formBusqueda->handleRequest($request);
+        $familiasQuery = $familiaRepository->searchFamilyByNombre($slug);
+        $pagination = $paginator->paginate(
+            $familiasQuery,
+            $request->query->getInt('pagina', 1), /*page number*/
+            12 /*limit per page*/
+        );
+
+        if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
+            $textABuscar = $formBusqueda->get('buscar')->getData();
+            return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
+        }
+        return $this->render('familia/search.html.twig', [
+            'formBusqueda' => $formBusqueda->createView(),
+            'textoBuscado' => $slug,
+            'familias' => $pagination,
+            // 'articulo' => $articulo,
         ]);
     }
 
@@ -112,14 +156,20 @@ class FamiliaController extends AbstractController
             $this->addFlash(
                 'success',
                 'Se ha editado la forma de pago de manera correcta'
-             );
+            );
             return $this->redirectToRoute('app_familia_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        $formBusqueda = $this->createForm(BusquedaType::class);
+        $formBusqueda->handleRequest($request);
+        if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
+            $textABuscar = $formBusqueda->get('buscar')->getData();
+            return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
+        }
         return $this->renderForm('familia/edit.html.twig', [
             'familium' => $familium,
             'typeButton' => 'warning',
             'form' => $form,
+            'formBusqueda' => $formBusqueda
         ]);
     }
 

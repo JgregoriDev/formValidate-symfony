@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Articulo;
 use App\Form\ArticuloType;
-use App\Form\BusquedaArticuloType;
+use App\Form\BusquedaType;
 use App\Repository\ArticuloRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,7 +32,7 @@ class ArticuloController extends AbstractController
             $request->query->getInt('pagina', 1), /*page number*/
             12 /*limit per page*/
         );
-        $formBusqueda = $this->createForm(BusquedaArticuloType::class);
+        $formBusqueda = $this->createForm(BusquedaType::class);
         $formBusqueda->handleRequest($request);
         if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
             $textABuscar = $formBusqueda->get('buscar')->getData();
@@ -49,7 +49,7 @@ class ArticuloController extends AbstractController
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $formBusqueda = $this->createForm(BusquedaArticuloType::class);
+        $formBusqueda = $this->createForm(BusquedaType::class);
         $formBusqueda->handleRequest($request);
         if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
             $textABuscar = $formBusqueda->get('buscar')->getData();
@@ -91,7 +91,7 @@ class ArticuloController extends AbstractController
      */
     public function show(Articulo $articulo, Request $request): Response
     {
-        $formBusqueda = $this->createForm(BusquedaArticuloType::class);
+        $formBusqueda = $this->createForm(BusquedaType::class);
         $formBusqueda->handleRequest($request);
         if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
             $textABuscar = $formBusqueda->get('buscar')->getData();
@@ -113,7 +113,7 @@ class ArticuloController extends AbstractController
      */
     public function searchArticle(ArticuloRepository $articuloRepository, String $slug, Request $request, PaginatorInterface $paginator): Response
     {
-        $formBusqueda = $this->createForm(BusquedaArticuloType::class);
+        $formBusqueda = $this->createForm(BusquedaType::class);
         $formBusqueda->handleRequest($request);
         $articulos = $articuloRepository->searchByDescription($slug);
         $pagination = $paginator->paginate(
@@ -141,7 +141,7 @@ class ArticuloController extends AbstractController
     {
         $form = $this->createForm(ArticuloType::class, $articulo);
         $form->handleRequest($request);
-        $formBusqueda = $this->createForm(BusquedaArticuloType::class);
+        $formBusqueda = $this->createForm(BusquedaType::class);
         $formBusqueda->handleRequest($request);
         if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
             $textABuscar = $formBusqueda->get('buscar')->getData();

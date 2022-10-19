@@ -44,6 +44,14 @@ class FamiliaRepository extends ServiceEntityRepository
         return $qb
             ->getQuery();
     }
+    public function searchFamilyByNombre(String $busqueda)
+    {
+        $query=$this->createQueryBuilder("f");
+        return $query
+        ->andWhere("f.nombre LIKE :busqueda")
+        ->setParameter("busqueda","%".$busqueda."%")
+        ->getQuery();
+    }
 
     //    /**
     //     * @return Familia[] Returns an array of Familia objects

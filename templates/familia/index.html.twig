@@ -4,54 +4,68 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Listado de familias</h1>
-	<nav aria-label="breadcrumb my-3">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item">
-				<a href="{{ path('app_inicio') }}">Inicio</a>
-			</li>
-			<li class="breadcrumb-item active" aria-current="page">Familias</li>
-		</ol>
-	</nav>
-	<div class="d-flex justify-content-end">
-		<a href="{{ path('app_familia_new') }}" class="btn btn-primary">Añadir familia</a>
-	</div>
-	{% if pagination is  not empty %}
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">Código familia</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Acciones</th>
-				</tr>
-			</thead>
-			<tbody>
-				<div class="text-end"></div>
-				{% for familia in pagination %}
-					<tr id="{{familia.codfamilia}}">
-						<td>{{familia.codfamilia}}</td>
-						<td>{{familia.nombre}}</td>
-						<td id="{{familia.codFamilia}}">
-							<a href="{{ path('app_familia_show', {codfamilia: familia.codfamilia}) }}" class="btn my-2 my-lg-0 btn-secondary mx-1" title="Ver">
-								<i class="bi bi-eye"></i>
-							</a>
-							<a href="{{ path('app_familia_edit', {codfamilia: familia.codfamilia}) }}" class="btn my-2 my-lg-0 btn-warning mx-1" title="Editar">
-								<i class="bi bi-pencil-square"></i>
-							</a>
-						</td>
-					</tr>
-
-				{% endfor %}
-			</tbody>
-			<tfoot class="navigation text-center"></tfoot>
-		</table>
-		<div class="d-flex justify-content-center">
-			{{ knp_pagination_render(pagination) }}
+	{% if formBusqueda is defined %}
+		{{form_start(formBusqueda)}}
+		<div class="row">
+			<div class="col-9">
+				{{ form_widget(formBusqueda) }}
+			</div>
+			<div class="col-3">
+				<button type="submit" class="d-inline btn btn-primary" title="Buscar">
+					<i class="bi bi-search mx-2"></i>
+				</button>
+			</div>
 		</div>
+		{{form_end(formBusqueda)}}
+		{% endif %}
+		<h1>Listado de familias</h1>
+		<nav aria-label="breadcrumb my-3">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{{ path('app_inicio') }}">Inicio</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">Familias</li>
+			</ol>
+		</nav>
+		<div class="d-flex justify-content-end">
+			<a href="{{ path('app_familia_new') }}" class="btn btn-primary">Añadir familia</a>
+		</div>
+		{% if pagination is  not empty %}
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Código familia</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<div class="text-end"></div>
+					{% for familia in pagination %}
+						<tr id="{{familia.codfamilia}}">
+							<td>{{familia.codfamilia}}</td>
+							<td>{{familia.nombre}}</td>
+							<td id="{{familia.codFamilia}}">
+								<a href="{{ path('app_familia_show', {codfamilia: familia.codfamilia}) }}" class="btn my-2 my-lg-0 btn-secondary mx-1" title="Ver">
+									<i class="bi bi-eye"></i>
+								</a>
+								<a href="{{ path('app_familia_edit', {codfamilia: familia.codfamilia}) }}" class="btn my-2 my-lg-0 btn-warning mx-1" title="Editar">
+									<i class="bi bi-pencil-square"></i>
+								</a>
+							</td>
+						</tr>
 
-	{% else %}
-		<p>No hay familias disponible</p>
-	{% endif %}
+					{% endfor %}
+				</tbody>
+				<tfoot class="navigation text-center"></tfoot>
+			</table>
+			<div class="d-flex justify-content-center">
+				{{ knp_pagination_render(pagination) }}
+			</div>
+
+		{% else %}
+			<p>No hay familias disponible</p>
+		{% endif %}
 
 
-{% endblock %}
+	{% endblock %}

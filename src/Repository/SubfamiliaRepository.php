@@ -45,6 +45,14 @@ class SubfamiliaRepository extends ServiceEntityRepository
         ->getQuery()
         ;
     }
+    public function searchSubfamilyByNombre(String $busqueda)
+    {
+        $query=$this->createQueryBuilder("s");
+        return $query
+        ->andWhere("s.nombre LIKE :busqueda")
+        ->setParameter("busqueda","%".$busqueda."%")
+        ->getQuery();
+    }
 //    /**
 //     * @return Subfamilia[] Returns an array of Subfamilia objects
 //     */

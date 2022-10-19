@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Búsqueda artículo con descripción
+	{{textoBuscado}}
+{% endblock %}
+
+{% block body %}
+	<h1>Búsqueda familia</h1>
+	<nav aria-label="breadcrumb my-3">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_familia_index') }}">Familias</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Buscar artículo</li>
+		</ol>
+	</nav>
+	<h3>Resultados de búsquedas de familias por nombre
+		{{textoBuscado}}</h3>
+	<div class="d-inline justify-content-center align-content-center">
+		<div>
+			{{form_start(formBusqueda)}}
+			<div class="row">
+				<div class="col-9">
+					{{ form_widget(formBusqueda) }}
+				</div>
+				<div class="col-3">
+					<button type="submit" class="d-inline btn btn-primary" title="Buscar">
+						<i class="bi bi-search mx-2"></i>
+					</button>
+				</div>
+			</div>
+			{{form_end(formBusqueda)}}
+		</div>
+		{% if familias is not empty %}
+			<p class="fw-bold text-success">Total de familias encontradas
+				{{familias|length}}</p>
+			<div class="row">
+				{% for familia in familias %}
+					<div class="card col-2 gapp-1" style="">
+
+
+						<div class="card-body">
+							<h5 class="card-title">Código artículo:
+								{{familia.codfamilia}}
+							</h5>
+							<p class="card-text">Descripcion:
+								{{familia.nombre}}</p>
+							<a href="{{ path('app_familia_show',{'codfamilia': familia.codfamilia}) }}" class="btn btn-primary">Ver página familia</a>
+						</div>
+					</div>
+					<div class="col-1"></div>
+
+				{% endfor %}
+			</div>
+			<div class="d-flex justify-content-center">
+				{{ knp_pagination_render(familias) }}
+			</div>
+		{% else %}
+			<p class="fw-bold text-danger">No existen artículos con la descripción:
+				{{textoBuscado}}</p>
+		{% endif %}
+
+	</div>
+
+
+{% endblock %}
