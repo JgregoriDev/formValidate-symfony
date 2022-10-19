@@ -75,7 +75,7 @@ class FpController extends AbstractController
             'fp' => $fp,
             'typeButton' => 'success',
             'form' => $form,
-            'formBusqueda' => $formBusqueda->createView(),
+            'formBusqueda' => $formBusqueda,
         ]);
     }
 
