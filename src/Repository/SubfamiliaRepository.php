@@ -40,41 +40,39 @@ class SubfamiliaRepository extends ServiceEntityRepository
     }
     public function obtenerQuerySubfamilias()
     {
-        $qb=$this->createQueryBuilder("s");
+        $qb = $this->createQueryBuilder("s");
         return $qb
-        ->getQuery()
-        ;
+            ->getQuery();
     }
     public function searchSubfamilyByNombre(String $busqueda)
     {
-        $query=$this->createQueryBuilder("s");
+        $query = $this->createQueryBuilder("s");
         return $query
-        ->andWhere("s.nombre LIKE :busqueda")
-        ->setParameter("busqueda","%".$busqueda."%")
-        ->getQuery();
+            ->andWhere("s.nombre LIKE :busqueda")
+            ->setParameter("busqueda", "%" . $busqueda . "%");
     }
-//    /**
-//     * @return Subfamilia[] Returns an array of Subfamilia objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Subfamilia[] Returns an array of Subfamilia objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('s')
+    //            ->andWhere('s.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('s.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Subfamilia
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Subfamilia
+    //    {
+    //        return $this->createQueryBuilder('s')
+    //            ->andWhere('s.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

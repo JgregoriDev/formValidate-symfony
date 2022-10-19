@@ -13,7 +13,7 @@ class BusquedaType extends AbstractType
     {
         $builder
             ->add('buscar',TextType::class,[
-                "required"=>true,
+                "required"=>false,
                 "label"=>false,
                 "attr"=>[
                     "placeholder"=>"Buscar",

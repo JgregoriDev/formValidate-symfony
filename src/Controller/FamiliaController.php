@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Form\BusquedaType;
+
 /**
  * @Route("/familia")
  */
@@ -42,11 +43,11 @@ class FamiliaController extends AbstractController
         $formBusqueda->handleRequest($request);
         if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
             $textABuscar = $formBusqueda->get('buscar')->getData();
-            return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
+            return $this->redirectToRoute('app_familia_search', ['slug' => $textABuscar]);
         }
         return $this->render('familia/index.html.twig', [
             'pagination' => $pagination,
-            'formBusqueda'=>$formBusqueda->createView()
+            'formBusqueda' => $formBusqueda->createView()
         ]);
     }
     // public function index(FamiliaRepository $familiaRepository): Response
@@ -82,7 +83,7 @@ class FamiliaController extends AbstractController
         $formBusqueda->handleRequest($request);
         if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
             $textABuscar = $formBusqueda->get('buscar')->getData();
-            return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
+            return $this->redirectToRoute('app_familia_search', ['slug' => $textABuscar]);
         }
         return $this->renderForm('familia/new.html.twig', [
             'familium' => $familium,
@@ -95,7 +96,7 @@ class FamiliaController extends AbstractController
     /**
      * @Route("/{codfamilia}", name="app_familia_show", methods={"GET"})
      */
-    public function show(Familia $familium,Request $request): Response
+    public function show(Familia $familium, Request $request): Response
     {
         $base64Image = null;
         if ($familium->getImagen() !== null)
@@ -104,16 +105,17 @@ class FamiliaController extends AbstractController
         $formBusqueda->handleRequest($request);
         if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
             $textABuscar = $formBusqueda->get('buscar')->getData();
-            return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
+            return $this->redirectToRoute('app_familia_search', ['slug' => $textABuscar]);
         }
         return $this->render('familia/show.html.twig', [
             'familium' => $familium,
             'base64Image' => $base64Image,
-            "formBusqueda"=>$formBusqueda->createView()
+            "formBusqueda" => $formBusqueda->createView()
         ]);
     }
-        /**
-     * @Route("/buscar/{slug}", name="app_articulo_search", methods={"GET","POST"})
+    
+    /**
+     * @Route("/buscar/{slug}", name="app_familia_search", methods={"GET","POST"})
      */
     public function searchFamilia(FamiliaRepository $familiaRepository, String $slug, Request $request, PaginatorInterface $paginator): Response
     {
@@ -128,7 +130,7 @@ class FamiliaController extends AbstractController
 
         if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
             $textABuscar = $formBusqueda->get('buscar')->getData();
-            return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
+            return $this->redirectToRoute('app_familia_search', ['slug' => $textABuscar]);
         }
         return $this->render('familia/search.html.twig', [
             'formBusqueda' => $formBusqueda->createView(),
@@ -163,7 +165,7 @@ class FamiliaController extends AbstractController
         $formBusqueda->handleRequest($request);
         if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
             $textABuscar = $formBusqueda->get('buscar')->getData();
-            return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
+            return $this->redirectToRoute('app_familia_search', ['slug' => $textABuscar]);
         }
         return $this->renderForm('familia/edit.html.twig', [
             'familium' => $familium,

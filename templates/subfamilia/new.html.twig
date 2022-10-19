@@ -1,10 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Crear nueva Subfamilia{% endblock %}
+{% block title %}Crear nueva Subfamilia
+{% endblock %}
 
 {% block body %}
-    <h1>Crear nueva Subfamilia</h1>
-    <nav aria-label="breadcrumb my-3">
+	{% if formBusqueda is defined %}
+		{{form_start(formBusqueda)}}
+		<div class="row">
+			<div class="col-9">
+				{{ form_widget(formBusqueda) }}
+			</div>
+			<div class="col-3">
+				<button type="submit" class="d-inline btn btn-primary" title="Buscar">
+					<i class="bi bi-search mx-2"></i>
+				</button>
+			</div>
+		</div>
+		{{form_end(formBusqueda)}}
+	{% endif %}
+	<h1>Crear nueva Subfamilia</h1>
+	<nav aria-label="breadcrumb my-3">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="{{ path('app_inicio') }}">Inicio</a>
@@ -15,7 +30,7 @@
 			<li class="breadcrumb-item active" aria-current="page">Crear nueva subfamilia</li>
 		</ol>
 	</nav>
-    {{ include('subfamilia/_form.html.twig') }}
+	{{ include('subfamilia/_form.html.twig') }}
 
-    {# <a href="{{ path('app_subfamilia_index') }}" class="btn btn-secondary">Volver a la lista</a> #}
+	{# <a href="{{ path('app_subfamilia_index') }}" class="btn btn-secondary">Volver a la lista</a> #}
 {% endblock %}
