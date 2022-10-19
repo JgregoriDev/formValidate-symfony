@@ -45,14 +45,16 @@ class FpRepository extends ServiceEntityRepository
         ->getQuery()
         ;
     }
-    public function searchByDescription(String $busqueda)
+    public function searchFpByNombre(String $busqueda)
     {
-        $query=$this->createQueryBuilder("a");
+        $query=$this->createQueryBuilder("f");
         return $query
-        ->andWhere("a.descripcion LIKE :busqueda")
+        ->andWhere("f.nombre LIKE :busqueda")
         ->setParameter("busqueda","%".$busqueda."%")
         ->getQuery();
     }
+
+    
 
 //    /**
 //     * @return Fp[] Returns an array of Fp objects

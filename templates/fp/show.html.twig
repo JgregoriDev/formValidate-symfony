@@ -4,8 +4,25 @@
 {% endblock %}
 
 {% block body %}
+	{% if formBusqueda is defined %}
+		<div>
+			{{form_start(formBusqueda)}}
+			<div class="row">
+				<div class="col-9">
+					{{ form_widget(formBusqueda) }}
+				</div>
+				<div class="col-3">
+					<button type="submit" class="d-inline btn btn-primary" title="Buscar">
+						<i class="bi bi-search mx-2"></i>
+					</button>
+				</div>
+			</div>
+			{{form_end(formBusqueda)}}
+		</div>
+	
+	{% endif %}
 	<h1>Fp</h1>
-		<nav aria-label="breadcrumb my-3">
+	<nav aria-label="breadcrumb my-3">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="{{ path('app_inicio') }}">Inicio</a>
@@ -15,7 +32,7 @@
 			</li>
 			<li class="breadcrumb-item active" aria-current="page">Mostrar formas de pago</li>
 		</ol>
-    </nav>
+	</nav>
 	<div class="d-flex justify-content-end">
 		<a href="{{ path('app_fp_edit', {'codfp': fp.codfp}) }}" class="btn btn-warning text-white mx-2">Editar</a>
 

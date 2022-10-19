@@ -1,10 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nueva forma de pago{% endblock %}
+{% block title %}Nueva forma de pago
+{% endblock %}
 
 {% block body %}
-    <h1>Crear forma de pago</h1>
-    <nav aria-label="breadcrumb my-3">
+		{% if formBusqueda is defined %}
+		<div>
+			{{form_start(formBusqueda)}}
+			<div class="row">
+				<div class="col-9">
+					{{ form_widget(formBusqueda) }}
+				</div>
+				<div class="col-3">
+					<button type="submit" class="d-inline btn btn-primary" title="Buscar">
+						<i class="bi bi-search mx-2"></i>
+					</button>
+				</div>
+			</div>
+			{{form_end(formBusqueda)}}
+		</div>
+	
+	{% endif %}
+	<h1>Crear forma de pago</h1>
+	<nav aria-label="breadcrumb my-3">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="{{ path('app_inicio') }}">Inicio</a>
@@ -14,8 +32,8 @@
 			</li>
 			<li class="breadcrumb-item active" aria-current="page">Nuevas formas de pago</li>
 		</ol>
-    </nav>
-    {{ include('fp/_form.html.twig') }}
+	</nav>
+	{{ include('fp/_form.html.twig') }}
 
-  
+
 {% endblock %}

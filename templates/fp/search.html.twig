@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Búsqueda forma de pago con nombre
+	{{textoBuscado}}
+{% endblock %}
+
+{% block body %}
+
+	<h1>Búsqueda forma de pago</h1>
+	<nav aria-label="breadcrumb my-3">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_inicio') }}">Inicio</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_fp_index') }}">Formas de pago</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Buscar de forma de pago</li>
+		</ol>
+	</nav>
+	<h3>Resultados de búsqueda de formas de pago por nombre:
+		{{textoBuscado}}</h3>
+	<div class="d-inline justify-content-center align-content-center">
+		<div>
+			{{form_start(formBusqueda)}}
+			<div class="row">
+				<div class="col-9">
+					{{ form_widget(formBusqueda) }}
+				</div>
+				<div class="col-3">
+					<button type="submit" class="d-inline btn btn-primary" title="Buscar">
+						<i class="bi bi-search mx-2"></i>
+					</button>
+				</div>
+			</div>
+			{{form_end(formBusqueda)}}
+		</div>
+		{% if fps is not empty %}
+			<p class="fw-bold text-success">Total de formas de pago encontradas
+				{{fps|length}}</p>
+			<div class="row">
+				{% for fp in fps %}
+					<div class="card col-2 gapp-1" style="">
+
+
+						<div class="card-body">
+							<h5 class="card-title">Código forma de pago:
+								{{fp.codfp}}
+							</h5>
+							<p class="card-text">Descripcion:
+								{{fp.nombre}}</p>
+							<a href="{{ path('app_fp_show',{'codfp': fp.codfp}) }}" class="btn btn-primary">Ver página formas de dpago</a>
+						</div>
+					</div>
+					<div class="col-1"></div>
+
+				{% endfor %}
+			</div>
+			<div class="d-flex justify-content-center">
+				{{ knp_pagination_render(fps) }}
+			</div>
+		{% else %}
+			<p class="fw-bold text-danger">No existen formas de pago con la descripción:
+				{{textoBuscado}}</p>
+		{% endif %}
+
+	</div>
+
+
+{% endblock %}
