@@ -19,11 +19,11 @@
 	<table class="table">
 		<tbody>
 			<tr>
-				<th>Codproveedor</th>
+				<th>Código proveedor</th>
 				<td>{{ proveedor.codproveedor }}</td>
 			</tr>
 			<tr>
-				<th>Razonsocial</th>
+				<th>Razón social</th>
 				<td>{{ proveedor.razonsocial }}</td>
 			</tr>
 			<tr>
@@ -35,11 +35,11 @@
 				<td>{{ proveedor.domicilio }}</td>
 			</tr>
 			<tr>
-				<th>Codpostal</th>
+				<th>Código postal</th>
 				<td>{{ proveedor.codpostal }}</td>
 			</tr>
 			<tr>
-				<th>Poblacion</th>
+				<th>Población</th>
 				<td>{{ proveedor.poblacion }}</td>
 			</tr>
 			<tr>
@@ -47,19 +47,19 @@
 				<td>{{ proveedor.provincia }}</td>
 			</tr>
 			<tr>
-				<th>Email</th>
+				<th>E-mail</th>
 				<td>{{ proveedor.email }}</td>
 			</tr>
 			<tr>
-				<th>Www</th>
+				<th>Enlace web</th>
 				<td>{{ proveedor.www }}</td>
 			</tr>
 			<tr>
-				<th>Tfno1</th>
+				<th>Teléfono 1</th>
 				<td>{{ proveedor.tfno1 }}</td>
 			</tr>
 			<tr>
-				<th>Tfno2</th>
+				<th>Teléfono 2</th>
 				<td>{{ proveedor.tfno2 }}</td>
 			</tr>
 			<tr>
@@ -67,7 +67,7 @@
 				<td>{{ proveedor.fax }}</td>
 			</tr>
 			<tr>
-				<th>Movil</th>
+				<th>Móvil</th>
 				<td>{{ proveedor.movil }}</td>
 			</tr>
 			<tr>
@@ -75,7 +75,7 @@
 				<td>{{ proveedor.cuenta }}</td>
 			</tr>
 			<tr>
-				<th>Cuentapago</th>
+				<th>Cuenta de pago</th>
 				<td>{{ proveedor.cuentapago }}</td>
 			</tr>
 			<tr>
@@ -95,7 +95,7 @@
 				<td>{{ proveedor.nifpaisresidencia }}</td>
 			</tr>
 			<tr>
-				<th>Claveidenpaisresidencia</th>
+				<th>Clave id en país de residencia</th>
 				<td>{{ proveedor.claveidenpaisresidencia }}</td>
 			</tr>
 			<tr>
@@ -103,23 +103,23 @@
 				<td>{{ proveedor.contabIntracom }}</td>
 			</tr>
 			<tr>
-				<th>TieneRe</th>
-				<td>{{ proveedor.tieneRe ? 'Yes' : 'No' }}</td>
+				<th>Tiene re</th>
+				<td>{{ proveedor.tieneRe ? 'Sí' : 'No' }}</td>
 			</tr>
 			<tr>
 				<th>Esinversionsujetopasivo</th>
 				<td>{{ proveedor.esinversionsujetopasivo }}</td>
 			</tr>
 			<tr>
-				<th>Pais</th>
+				<th>País</th>
 				<td>{{ proveedor.pais }}</td>
 			</tr>
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_proveedor_index') }}">back to list</a>
+	<a href="{{ path('app_proveedor_index') }}">Volver a la lista</a>
 
-	<a href="{{ path('app_proveedor_edit', {'codproveedor': proveedor.codproveedor}) }}">edit</a>
+	<a href="{{ path('app_proveedor_edit', {'codproveedor': proveedor.codproveedor}) }}">Editar</a>
 
 	{{ include('proveedor/_delete_form.html.twig') }}
 {% endblock %}
