@@ -76,8 +76,8 @@ class ArticuloType extends AbstractType
             ])
             ->add('codigo', IntegerType::class, [
                 'label' => 'Código:',
+                'required'   => false,
                 'empty_data' => '0',
-                'label' => 'Código:'
             ])
             ->add('esmanoobra', null, [
                 'label' => 'Ha habido mano de obra'

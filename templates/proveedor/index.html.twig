@@ -23,12 +23,12 @@
 			<tr>
 				<th>Codproveedor</th>
 				<th>Razonsocial</th>
-				<th class="d-none d-lg-table-cell">Nif</th>
+				{# <th class="d-none d-lg-table-cell">Nif</th>
 				<th class="d-none d-lg-table-cell">Domicilio</th>
 				<th class="d-none d-lg-table-cell">Codpostal</th>
 				<th class="d-none d-lg-table-cell">Poblacion</th>
-				<th class="d-none d-lg-table-cell">Provincia</th>
-				<th class="d-none d-lg-table-cell">Email</th>
+				<th class="d-none d-lg-table-cell">Provincia</th> #}
+				{# <th class="d-none d-lg-table-cell">Email</th>
 				<th class="d-none d-lg-table-cell">Www</th>
 				<th class="d-none d-lg-table-cell">Tfno1</th>
 				<th class="d-none d-lg-table-cell">Tfno2</th>
@@ -43,8 +43,8 @@
 				<th class="d-none d-lg-table-cell">Claveidenpaisresidencia</th>
 				<th class="d-none d-lg-table-cell">ContabIntracom</th>
 				<th class="d-none d-lg-table-cell">TieneRe</th>
-				<th class="d-none d-lg-table-cell">Esinversionsujetopasivo</th>
-				<th class="d-none d-lg-table-cell">Pais</th>
+				<th class="d-none d-lg-table-cell">Esinversionsujetopasivo</th> #}
+				{# <th class="d-none d-lg-table-cell">Pais</th> #}
 				<th class="d-none d-lg-table-cell">Acciones</th>
 			</tr>
 		</thead>
@@ -53,12 +53,12 @@
 				<tr>
 					<td>{{ proveedor.codproveedor }}</td>
 					<td>{{ proveedor.razonsocial }}</td>
-					<td class="d-none d-lg-table-cell">{{ proveedor.nif }}</td>
+					{# <td class="d-none d-lg-table-cell">{{ proveedor.nif }}</td>
 					<td class="d-none d-lg-table-cell">{{ proveedor.domicilio }}</td>
 					<td class="d-none d-lg-table-cell">{{ proveedor.codpostal }}</td>
 					<td class="d-none d-lg-table-cell">{{ proveedor.poblacion }}</td>
-					<td class="d-none d-lg-table-cell">{{ proveedor.provincia }}</td>
-					<td class="d-none d-lg-table-cell">{{ proveedor.email }}</td>
+					<td class="d-none d-lg-table-cell">{{ proveedor.provincia }}</td> #}
+					{# <td class="d-none d-lg-table-cell">{{ proveedor.email }}</td>
 					<td class="d-none d-lg-table-cell">{{ proveedor.www }}</td>
 					<td class="d-none d-lg-table-cell">{{ proveedor.tfno1 }}</td>
 					<td class="d-none d-lg-table-cell">{{ proveedor.tfno2 }}</td>
@@ -73,8 +73,8 @@
 					<td class="d-none d-lg-table-cell">{{ proveedor.claveidenpaisresidencia }}</td>
 					<td class="d-none d-lg-table-cell">{{ proveedor.contabIntracom }}</td>
 					<td class="d-none d-lg-table-cell">{{ proveedor.tieneRe ? 'Yes' : 'No' }}</td>
-					<td class="d-none d-lg-table-cell">{{ proveedor.esinversionsujetopasivo }}</td>
-					<td class="d-none d-lg-table-cell">{{ proveedor.pais }}</td>
+					<td class="d-none d-lg-table-cell">{{ proveedor.esinversionsujetopasivo }}</td> #}
+					{# <td class="d-none d-lg-table-cell">{{ proveedor.pais }}</td> #}
 					<td>
 						<a href="{{ path('app_proveedor_show', {'codproveedor': proveedor.codproveedor}) }}" class="btn btn-secondary my-1 my-lg-0" title="Mostrar">
 							<i class="bi bi-eye"></i>

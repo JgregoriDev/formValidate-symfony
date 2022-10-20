@@ -16,6 +16,12 @@
 			<li class="breadcrumb-item active" aria-current="page">mostrar proveedor</li>
 		</ol>
 	</nav>
+	<div class="d-flex justify-content-end">
+		<a href="{{ path('app_proveedor_edit', {'codproveedor': proveedor.codproveedor}) }}" class="btn btn-warning me-1">Editar</a>
+
+		{{ include('proveedor/_delete_form.html.twig') }}
+
+	</div>
 	<table class="table">
 		<tbody>
 			<tr>
@@ -117,9 +123,6 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_proveedor_index') }}">Volver a la lista</a>
+	<a href="{{ path('app_proveedor_index') }}" class="btn btn-secondary">Volver a la lista</a>
 
-	<a href="{{ path('app_proveedor_edit', {'codproveedor': proveedor.codproveedor}) }}">Editar</a>
-
-	{{ include('proveedor/_delete_form.html.twig') }}
 {% endblock %}
