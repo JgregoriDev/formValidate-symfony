@@ -121,7 +121,12 @@ class ArticuloController extends AbstractController
             $request->query->getInt('pagina', 1), /*page number*/
             12 /*limit per page*/
         );
-
+        foreach ($pagination as $articulo) {
+            if ($articulo->getImagen()) {
+                $base64Image = base64_encode(stream_get_contents($articulo->getImagen()));
+                $articulo->setImagen($base64Image);
+            }
+        }
         if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
             $textABuscar = $formBusqueda->get('buscar')->getData();
             return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);

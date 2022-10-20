@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Búsqueda artículo con descripción {{textoBuscado}}
+{% block title %}Búsqueda artículo con descripción
+	{{textoBuscado}}
 {% endblock %}
 
 {% block body %}
@@ -37,12 +38,16 @@
 			<div class="row">
 				{% for articulo in articulos %}
 					<div class="card col-2 gapp-1" style="">
-				
-						
+
+
 						<div class="card-body">
-							<h5 class="card-title">Código artículo: {{articulo.codarticulo}}
+							<img src="data:image/png;base64,{{articulo.Imagen}}" class="card-img-top" alt="" srcset="">
+
+							<h5 class="card-title">Código artículo:
+								{{articulo.codarticulo}}
 							</h5>
-							<p class="card-text">Descripcion: {{articulo.descripcion}}</p>
+							<p class="card-text">Descripcion:
+								{{articulo.descripcion}}</p>
 							<a href="{{ path('app_articulo_show',{'codarticulo': articulo.codarticulo}) }}" class="btn btn-primary">Ver página artículo</a>
 						</div>
 					</div>
@@ -54,7 +59,8 @@
 				{{ knp_pagination_render(articulos) }}
 			</div>
 		{% else %}
-			<p class="fw-bold text-danger">No existen artículos con la descripción: {{textoBuscado}}</p>
+			<p class="fw-bold text-danger">No existen artículos con la descripción:
+				{{textoBuscado}}</p>
 		{% endif %}
 
 	</div>
