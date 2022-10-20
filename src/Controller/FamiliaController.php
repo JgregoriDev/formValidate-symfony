@@ -113,7 +113,7 @@ class FamiliaController extends AbstractController
             "formBusqueda" => $formBusqueda->createView()
         ]);
     }
-    
+
     /**
      * @Route("/buscar/{slug}", name="app_familia_search", methods={"GET","POST"})
      */
@@ -131,6 +131,12 @@ class FamiliaController extends AbstractController
         if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
             $textABuscar = $formBusqueda->get('buscar')->getData();
             return $this->redirectToRoute('app_familia_search', ['slug' => $textABuscar]);
+        }
+        foreach ($pagination as $familia) {
+            if ($familia->getImagen()) {
+                $base64Image = base64_encode(stream_get_contents($familia->getImagen()));
+                $familia->setImagen($base64Image);
+            }
         }
         return $this->render('familia/search.html.twig', [
             'formBusqueda' => $formBusqueda->createView(),
