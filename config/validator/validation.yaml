@@ -5,13 +5,13 @@ App\Entity\Familia:
     nombre:
       - Length:
           max: 40
-          maxMessage: "el campo nombre no puede superar el límite de {{ limit }} caracteres"
+          maxMessage: "El campo nombre no puede superar el límite de {{ limit }} caracteres"
     margen:
-      - GreaterThan: { value: 0, message: Deberia ser un numero mayor de 0 }
+      - GreaterThan: { value: 0, message: Deberia ser un número mayor de 0 }
       - LessThan:
           { value: 10000, message: Deberia ser un numero menor de 10000 }
     ivapercent:
-      - GreaterThan: { value: 0, message: Deberia ser un numero mayor de 0 }
+      - GreaterThan: { value: 0, message: Deberia ser un número mayor de 0 }
       - LessThan: { value: 100, message: Deberia ser un numero menor de 100 }
 # Subfamilia
 App\Entity\Subfamilia:
@@ -19,29 +19,35 @@ App\Entity\Subfamilia:
     nombre:
       - Length:
           max: 40
-          maxMessage: "el campo nombre no puede superar el límite de {{ limit }} caracteres"
+          maxMessage: "El campo nombre no puede superar el límite de {{ limit }} caracteres"
     codfamilia:
       - NotBlank: { message: El campo código familia no puede estar vacio }
     codsubfamilia:
       - NotBlank: { message: El campo código subfamilia no puede estar vacio }
-      - GreaterThan: { value: -1, message: Deberia ser un numero mayor de 0 }
+      - GreaterThan: { value: -1, message: 'El campo código subfamilia debe ser un número mayor o igual a 0'}
 # Origen gasto
 App\Entity\Origengasto:
   properties:
     descripcion:
       - Length:
           max: 40
-          maxMessage: "el campo descripción no puede superar el límite de {{ limit }} caracteres"
+          maxMessage: "El campo descripción no puede superar el límite de {{ limit }} caracteres"
 # Marca
 App\Entity\Marca:
-
+  properties:
+    codmarca:
+      - GreaterThan:
+          {
+            value: -1,
+            message: "El campo código subfamilia debe ser un número mayor o igual a 0",
+          }
 # Proveedor
 App\Entity\Proveedor:
   properties:
   razonsocial:
     - Length:
         max: 50
-        maxMessage: "el campo razón social no puede superar el límite de {{ limit }} caracteres"
+        maxMessage: "El campo razón social no puede superar el límite de {{ limit }} caracteres"
 # Articulo
 App\Entity\Articulo:
   properties:
@@ -50,94 +56,94 @@ App\Entity\Articulo:
     descripcion:
       - Length:
           max: 50
-          maxMessage: "el campo descripción no puede superar el límite de {{ limit }} caracteres"
+          maxMessage: "El campo descripción no puede superar el límite de {{ limit }} caracteres"
     caractecnicas:
       - Length:
           max: 50
-          maxMessage: "el campo descripción no puede superar el límite de {{ limit }} caracteres"
+          maxMessage: "El campo descripción no puede superar el límite de {{ limit }} caracteres"
     auxMargen:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo margen auxiliar deber ser un numero mayor o igual a 0",
+            message: "El campo margen auxiliar debe ser un número mayor o igual a 0",
           }
     margen:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo margen  deber ser un numero mayor o igual a 0",
+            message: "El campo margen  debe ser un número mayor o igual a 0",
           }
     base:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo base deber ser un numero mayor o igual a 0",
+            message: "El campo base debe ser un número mayor o igual a 0",
           }
     base2:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo base 2 deber ser un numero mayor o igual a 0",
+            message: "El campo base 2 debe ser un número mayor o igual a 0",
           }
     existenciasdisponibles:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo existencias disponibles deber ser un numero mayor o igual a 0",
+            message: "El campo existencias disponibles debe ser un número mayor o igual a 0",
           }
     pvpOfertaMostrador:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo pvp oferta mostrador deber ser un numero mayor o igual a 0",
+            message: "El campo pvp oferta mostrador debe ser un número mayor o igual a 0",
           }
     pvp:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo pvp deber ser un numero mayor o igual a 0",
+            message: "El campo pvp debe ser un número mayor o igual a 0",
           }
     pvp2:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo pvp2 deber ser un numero mayor o igual a 0",
+            message: "El campo pvp2 debe ser un número mayor o igual a 0",
           }
     udsUltimaentrada:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo unidades última entrada deber ser un numero mayor o igual a 0",
+            message: "El campo unidades última entrada debe ser un número mayor o igual a 0",
           }
     ivapercent:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo margen auxiliar deber ser un numero mayor o igual a 0",
+            message: "El campo margen auxiliar debe ser un número mayor o igual a 0",
           }
     nordenMostrar:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo margen auxiliar deber ser un numero mayor o igual a 0",
+            message: "El campo margen auxiliar debe ser un número mayor o igual a 0",
           }
     peso:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo peso deber ser un numero mayor o igual a 0",
+            message: "El campo peso debe ser un número mayor o igual a 0",
           }
     codcategoria:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo código categoria deber ser un numero mayor o igual a 0",
+            message: "El campo código categoria debe ser un número mayor o igual a 0",
           }
     codsubcategoria:
       - GreaterThan:
           {
             value: -1,
-            message: "el campo código subcategoria deber ser un numero mayor o igual a 0",
+            message: "El campo código subcategoria debe ser un número mayor o igual a 0",
           }
 
 # Forma de pago
