@@ -151,21 +151,22 @@ class SubfamiliaController extends AbstractController
     /**
      * @Route("/buscar/{slug}", name="app_subfamilia_search", methods={"GET","POST"})
      */
-    public function searchSubfamilia(SubfamiliaRepository $subfamilia, String $slug, Request $request): Response
+    public function searchSubfamilia(SubfamiliaRepository $subfamilia, String $slug, Request $request)//: Response
     {
         $formBusqueda = $this->createForm(BusquedaType::class);
         $formBusqueda->handleRequest($request);
-        $subfamilia = $subfamilia->searchSubfamilyByNombre($slug);
-        // var_dump($subfamilia);
+        // $subfamilia = $subfamilia->searchSubfamilyByNombre($slug);
+        $subfamilia=$subfamilia->findBy(['nombre'=>$slug],['nombre' => 'ASC'],1 ,0);
+        
         if ($formBusqueda->isSubmitted() && $formBusqueda->isValid()) {
             $textABuscar = $formBusqueda->get('buscar')->getData();
             return $this->redirectToRoute('app_subfamilia_search', ['slug' => $textABuscar]);
         }
-        return $this->render('subfamilia/search.html.twig', [
-            'formBusqueda' => $formBusqueda->createView(),
-            'textoBuscado' => $slug,
-            'subfamilias' => $subfamilia,
-            // 'articulo' => $articulo,
-        ]);
+         return $this->render('subfamilia/search.html.twig', [
+             'formBusqueda' => $formBusqueda->createView(),
+             'textoBuscado' => $slug,
+             'subfamilias' => $subfamilia,
+        //      'articulo' => $articulo,
+         ]);
     }
 }

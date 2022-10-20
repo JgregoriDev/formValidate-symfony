@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Búsqueda artículo con descripción {{textoBuscado}}
+{% block title %}Búsqueda subfamilia con nombre {{textoBuscado}}
 {% endblock %}
 
 {% block body %}
@@ -42,7 +42,7 @@
 						<div class="card-body">
 							<h5 class="card-title">Código subfamilia: {{subfamilia.codsubfamilia}}
 							</h5>
-							<p class="card-text">Descripcion: {{articulo.nombre}}</p>
+							<p class="card-text">Descripcion: {{subfamilia.nombre}}</p>
 							<a href="{{ path('app_subfamilia_show',{'codsubfamilia': subfamilia.codsubfamilia}) }}" class="btn btn-primary">Ver página subfamilia</a>
 						</div>
 					</div>
