@@ -104,25 +104,32 @@ class ArticuloType extends AbstractType
             ->add('udXUdgrannel', null, [
                 'label' => 'Unidades por granel:'
             ])
-            // ->add('imagen')
-            ->add('img', FileType::class, [
-                "label" => "Selecciona una imagen",
-                "required" => false,
-                "mapped" => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '64k',
-                        'maxSizeMessage'=>'Por favor sube una imagen como máximo de 64 kb',
-                        'mimeTypes' => [
-                            'image/png',
-                            'image/jpg',
-                            'image/jpeg'
-                        ],
-
-                        'mimeTypesMessage' => 'Por favor sube una imagen con formato png o jpg',
-                    ])
-                ],
+            ->add('img',FileType::class, [
+                'data_class' => null,
+                "multiple" => true,
+                "mapped" => false
             ])
+            // ->add('imagen')
+            // ->add('img', FileType::class, [
+            //     "data_class"=>null,
+            //     "required" => true,
+            //     "label" => "Selecciona una imagen",
+            //     "multiple"=>true,
+            //     "mapped" => false,
+            //     'constraints' => [
+            //         new File([
+            //             'maxSize' => '2048k',
+            //             'maxSizeMessage'=>'Por favor sube una imagen como máximo de 2048 kb',
+            //             'mimeTypes' => [
+            //                 'image/png',
+            //                 'image/jpg',
+            //                 'image/jpeg'
+            //             ],
+
+            //             'mimeTypesMessage' => 'Por favor sube una imagen con formato png o jpg',
+            //         ])
+            //     ],
+            // ])
             ->add('ivapercent', IntegerType::class, [
                 'required'   => false,
                 'empty_data' => '0',

@@ -13,6 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @Route("/articulo")
@@ -47,7 +53,7 @@ class ArticuloController extends AbstractController
     /**
      * @Route("/nuevo", name="app_articulo_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, ArticuloRepository $articuloRepository, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $formBusqueda = $this->createForm(BusquedaType::class);
         $formBusqueda->handleRequest($request);
@@ -61,19 +67,51 @@ class ArticuloController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $blobData = $form->get("img")->getData();
+            foreach ($blobData as $brochureFile) {
+                # code...
+                if ($brochureFile) {
+                    $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
 
-            if ($blobData) {
-                $imageContent = file_get_contents($blobData);
-                $articulo->setImagen($imageContent);
+                    // Move the file to the directory where brochures are stored
+                    try {
+                        $brochureFile->move(
+                            $this->getParameter('brochures_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        // ... handle exception if something happens during file upload
+                    }
+                    $arrayFile[] = $newFilename;
+                    // updates the 'brochureFilename' property to store the PDF file name
+                    // instead of its contents
+                }
             }
-            // $subfamilia = $form->get("codsubfamilia")->getData();
+            if (count($arrayFile) > 0) {
+                $encoders = [new XmlEncoder(), new JsonEncoder()];
+                $normalizers = [new ObjectNormalizer()];
 
-            $entityManager->persist($articulo);
-            $entityManager->flush();
-            $this->addFlash(
-                'success',
-                'Se ha introducido el articulo de manera correcta'
-            );
+                $serializer = new Serializer($normalizers, $encoders);
+                $jsonContent = $serializer->serialize($arrayFile, 'json');
+                $articulo->setImagen($jsonContent);
+
+                $articuloRepository->add($articulo, true);
+            }
+            // var_dump($blobData);
+            // if ($blobData) {
+            //     $imageContent = file_get_contents($blobData);
+            //     $articulo->setImagen($imageContent);
+            // }
+            // // $subfamilia = $form->get("codsubfamilia")->getData();
+
+            // $entityManager->persist($articulo);
+            // $entityManager->flush();
+            // $this->addFlash(
+            //     'success',
+            //     'Se ha introducido el articulo de manera correcta'
+            // );
             return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -97,13 +135,15 @@ class ArticuloController extends AbstractController
             $textABuscar = $formBusqueda->get('buscar')->getData();
             return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
         }
-        $base64Image = null;
-        if ($articulo->getImagen()) {
-            $base64Image = base64_encode(stream_get_contents($articulo->getImagen()));
-        }
+        // if ($articulo->getImagen()) {
+        //     $base64Image = base64_encode(stream_get_contents($articulo->getImagen()));
+        // }
+        $imgArrayJson=stream_get_contents($articulo->getImagen());
+        $arrayImages=json_decode($imgArrayJson);
+        // dump($imgArrayJson);
         return $this->render('articulo/show.html.twig', [
             'articulo' => $articulo,
-            'base64Image' => $base64Image,
+            'imgArrayJson' => $arrayImages,
             'formBusqueda' => $formBusqueda->createView()
         ]);
     }

@@ -158,12 +158,7 @@ class Articulo
      */
     private $udXUdgrannel;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="IMAGEN", type="blob", length=65535, nullable=true)
-     */
-    private $imagen;
+
 
     /**
      * @var string|null
@@ -286,6 +281,11 @@ class Articulo
      * })
      */
     private $codmarcar;
+
+    /**
+     * @ORM\Column(type="blob")
+     */
+    private $Imagen;
 
 
     public function getCodarticulo(): ?int
@@ -521,18 +521,6 @@ class Articulo
         return $this;
     }
 
-    public function getImagen()
-    {
-        return $this->imagen;
-    }
-
-    public function setImagen($imagen): self
-    {
-        $this->imagen = $imagen;
-
-        return $this;
-    }
-
     public function getIvapercent(): ?string
     {
         return $this->ivapercent;
@@ -721,6 +709,18 @@ class Articulo
     public function setCodmarcar(?Marca $codmarcar): self
     {
         $this->codmarcar = $codmarcar;
+
+        return $this;
+    }
+
+    public function getImagen()
+    {
+        return $this->Imagen;
+    }
+
+    public function setImagen($Imagen): self
+    {
+        $this->Imagen = $Imagen;
 
         return $this;
     }

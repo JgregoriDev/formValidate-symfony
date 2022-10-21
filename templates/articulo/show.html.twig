@@ -183,7 +183,8 @@
 				<td>{{ articulo.nomcategoria }}</td>
 			</tr>
 			<tr>
-				<th>Nombre subcategoría<a href=""></a></th>
+				<th>Nombre subcategoría<a href=""></a>
+				</th>
 				<td>{{ articulo.nomsubcategoria }}</td>
 			</tr>
 			<tr>
@@ -192,11 +193,15 @@
 			</tr>
 		</tbody>
 	</table>
-	{% if base64Image is not null %}
-		<div class="mb-3">
-			<img src="data:image/png;base64,{{base64Image}}" alt="" srcset="">
-		</div>
-
+	{% if imgArrayJson is not null %}
+		{# <div class="mb-3">
+							<img src="data:image/png;base64,{{base64Image}}" alt="" srcset="">
+						</div> #}
+		{% for image in imgArrayJson %}
+			<div>
+				<img src="{{ asset('uploads/') }}{{image}}" alt="" srcset="">
+			</div>
+		{% endfor %}
 	{% endif %}
 	<div class="text-center">
 
