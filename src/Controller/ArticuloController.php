@@ -53,7 +53,7 @@ class ArticuloController extends AbstractController
     /**
      * @Route("/nuevo", name="app_articulo_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, ArticuloRepository $articuloRepository, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function new(Request $request, ArticuloRepository $articuloRepository, SluggerInterface $slugger): Response
     {
         $formBusqueda = $this->createForm(BusquedaType::class);
         $formBusqueda->handleRequest($request);
@@ -138,8 +138,8 @@ class ArticuloController extends AbstractController
         // if ($articulo->getImagen()) {
         //     $base64Image = base64_encode(stream_get_contents($articulo->getImagen()));
         // }
-        $imgArrayJson=stream_get_contents($articulo->getImagen());
-        $arrayImages=json_decode($imgArrayJson);
+        $imgArrayJson = stream_get_contents($articulo->getImagen());
+        $arrayImages = json_decode($imgArrayJson);
         // dump($imgArrayJson);
         return $this->render('articulo/show.html.twig', [
             'articulo' => $articulo,
@@ -182,7 +182,7 @@ class ArticuloController extends AbstractController
     /**
      * @Route("/{codarticulo}/editar", name="app_articulo_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Articulo $articulo, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request,EntityManagerInterface $entityManager, Articulo $articulo, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(ArticuloType::class, $articulo);
         $form->handleRequest($request);
@@ -192,20 +192,61 @@ class ArticuloController extends AbstractController
             $textABuscar = $formBusqueda->get('buscar')->getData();
             return $this->redirectToRoute('app_articulo_search', ['slug' => $textABuscar]);
         }
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $blobData = $form->get("img")->getData();
+        //     if ($blobData) {
+        //         $imageContent = file_get_contents($blobData);
+        //         $articulo->setImagen($imageContent);
+        //     }
+        //     $entityManager->flush();
+        //     $this->addFlash(
+        //         'success',
+        //         'Se ha editado el articulo de manera correcta'
+        //     );
+        //     return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);
+        // }
+        $arrayFile=[];
         if ($form->isSubmitted() && $form->isValid()) {
             $blobData = $form->get("img")->getData();
-            if ($blobData) {
-                $imageContent = file_get_contents($blobData);
-                $articulo->setImagen($imageContent);
+            foreach ($blobData as $brochureFile) {
+                # code...
+                if ($brochureFile) {
+                    $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
+
+                    // Move the file to the directory where brochures are stored
+                    try {
+                        $brochureFile->move(
+                            $this->getParameter('brochures_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        // ... handle exception if something happens during file upload
+                    }
+                    $arrayFile[] = $newFilename;
+                    // updates the 'brochureFilename' property to store the PDF file name
+                    // instead of its contents
+                }
             }
+        }
+        if (count($arrayFile) > 0) {
+            $encoders = [new XmlEncoder(), new JsonEncoder()];
+            $normalizers = [new ObjectNormalizer()];
+
+            $serializer = new Serializer($normalizers, $encoders);
+            $jsonContent = $serializer->serialize($arrayFile, 'json');
+            $articulo->setImagen($jsonContent);
+
+            // $articuloRepository->add($articulo, true);
             $entityManager->flush();
             $this->addFlash(
-                'success',
-                'Se ha editado el articulo de manera correcta'
+               'success',
+               'Se ha actualizado de manera satisfactoria este articulo'
             );
-            return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_articulo_index');
         }
-
         return $this->renderForm('articulo/edit.html.twig', [
             'articulo' => $articulo,
             'fromBusqueda' => $formBusqueda,
