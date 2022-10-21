@@ -65,17 +65,18 @@ class ArticuloController extends AbstractController
         $form = $this->createForm(ArticuloType::class, $articulo);
         $form->handleRequest($request);
 
+        /* Saving the images in the database. */
         if ($form->isSubmitted() && $form->isValid()) {
             $blobData = $form->get("img")->getData();
             foreach ($blobData as $brochureFile) {
                 # code...
                 if ($brochureFile) {
                     $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
-                    // this is needed to safely include the file name as part of the URL
+
                     $safeFilename = $slugger->slug($originalFilename);
                     $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
 
-                    // Move the file to the directory where brochures are stored
+
                     try {
                         $brochureFile->move(
                             $this->getParameter('brochures_directory'),
@@ -90,6 +91,7 @@ class ArticuloController extends AbstractController
                 }
             }
             if (count($arrayFile) > 0) {
+                /* Serializing the array of images and saving it in the database. */
                 $encoders = [new XmlEncoder(), new JsonEncoder()];
                 $normalizers = [new ObjectNormalizer()];
 
@@ -138,7 +140,9 @@ class ArticuloController extends AbstractController
         // if ($articulo->getImagen()) {
         //     $base64Image = base64_encode(stream_get_contents($articulo->getImagen()));
         // }
+        /* Getting the content of the image. */
         $imgArrayJson = stream_get_contents($articulo->getImagen());
+        /* Decoding the json string to an array. */
         $arrayImages = json_decode($imgArrayJson);
         // dump($imgArrayJson);
         return $this->render('articulo/show.html.twig', [
@@ -156,6 +160,7 @@ class ArticuloController extends AbstractController
         $formBusqueda = $this->createForm(BusquedaType::class);
         $formBusqueda->handleRequest($request);
         $articulos = $articuloRepository->searchByDescription($slug);
+        /* Paginating the query. */
         $pagination = $paginator->paginate(
             $articulos,
             $request->query->getInt('pagina', 1), /*page number*/
@@ -182,7 +187,7 @@ class ArticuloController extends AbstractController
     /**
      * @Route("/{codarticulo}/editar", name="app_articulo_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request,EntityManagerInterface $entityManager, Articulo $articulo, SluggerInterface $slugger): Response
+    public function edit(Request $request, EntityManagerInterface $entityManager, Articulo $articulo, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(ArticuloType::class, $articulo);
         $form->handleRequest($request);
@@ -205,18 +210,19 @@ class ArticuloController extends AbstractController
         //     );
         //     return $this->redirectToRoute('app_articulo_index', [], Response::HTTP_SEE_OTHER);
         // }
-        $arrayFile=[];
+        $arrayFile = [];
         if ($form->isSubmitted() && $form->isValid()) {
+            /* Moving the file to the directory where brochures are stored. */
             $blobData = $form->get("img")->getData();
             foreach ($blobData as $brochureFile) {
                 # code...
                 if ($brochureFile) {
                     $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
-                    // this is needed to safely include the file name as part of the URL
+
                     $safeFilename = $slugger->slug($originalFilename);
                     $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
 
-                    // Move the file to the directory where brochures are stored
+
                     try {
                         $brochureFile->move(
                             $this->getParameter('brochures_directory'),
@@ -226,8 +232,7 @@ class ArticuloController extends AbstractController
                         // ... handle exception if something happens during file upload
                     }
                     $arrayFile[] = $newFilename;
-                    // updates the 'brochureFilename' property to store the PDF file name
-                    // instead of its contents
+                
                 }
             }
         }
@@ -242,8 +247,8 @@ class ArticuloController extends AbstractController
             // $articuloRepository->add($articulo, true);
             $entityManager->flush();
             $this->addFlash(
-               'success',
-               'Se ha actualizado de manera satisfactoria este articulo'
+                'success',
+                'Se ha actualizado de manera satisfactoria este articulo'
             );
             return $this->redirectToRoute('app_articulo_index');
         }
